@@ -107,13 +107,15 @@ def plot_box_plot(numeric_var, group_var=None):
     fig, ax = plt.subplots(figsize=(10, 6))
     
     if group_var:
-        sns.boxplot(data=df, x=group_var, y=numeric_var, ax=ax)
+        # Switch x and y for horizontal orientation
+        sns.boxplot(data=df, x=numeric_var, y=group_var, ax=ax)
         ax.set_title(f'Box Plot of {numeric_var} by {group_var}')
     else:
-        sns.boxplot(data=df, y=numeric_var, ax=ax)
+        sns.boxplot(data=df, x=numeric_var, ax=ax)
         ax.set_title(f'Box Plot of {numeric_var}')
 
-    ax.set_ylabel(numeric_var)
+    ax.set_xlabel(numeric_var)  # Change ylabel to xlabel
+    ax.set_ylabel(group_var if group_var else 'Distribution')  # Change xlabel to ylabel
     st.pyplot(fig)
 
 # Render the box plot
@@ -121,4 +123,5 @@ if box_group_variable:
     plot_box_plot(box_variable, box_group_variable)
 else:
     plot_box_plot(box_variable)
+
 
