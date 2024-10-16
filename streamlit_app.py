@@ -52,23 +52,23 @@ st.markdown("<p class='description'>Explore risk factors, visualize trends, and 
 st.image(image, use_column_width=True)
 
 # Add buttons for navigation (optional)
+# Add buttons for navigation (optional)
 st.markdown("<div class='button-container'>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 1, 1])
 
 with col1:
     if st.button('Explore Data'):
-        st.session_state['current_page'] = 'visualization'  # Set the session state for the visualization page
+        st.session_state['current_page'] = 'visualization'  # Adjust accordingly
 
 with col2:
     if st.button('Risk Prediction'):
-        st.session_state['current_page'] = 'risk_prediction'  # Adjust this according to your actual page name
+        st.session_state['current_page'] = 'risk_prediction'  # Adjust accordingly
 
 with col3:
     if st.button('Simulate Risks'):
         st.session_state['current_page'] = 'simulate_risks'  # Adjust accordingly
 
 st.markdown("</div>", unsafe_allow_html=True)
-
 # Check session state to render the appropriate page
 if 'current_page' in st.session_state:
     if st.session_state['current_page'] == 'visualization':
