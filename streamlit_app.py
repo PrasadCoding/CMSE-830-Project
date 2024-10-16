@@ -4,68 +4,46 @@ from PIL import Image
 # Set page config
 st.set_page_config(page_title="Heart Disease Prediction App")
 
-# Load image for the home screen (replace with your own image)
-image = Image.open('heart_disease_image_2.jpg')
+# Check session state for page navigation
+if 'page' not in st.session_state:
+    st.session_state.page = 'home'  # Default to home page
 
-# Custom CSS for styling (optional)
-st.markdown("""
-    <style>
-    .main-title {
-        font-size: 50px;
-        color: #FF4B4B;
-        text-align: center;
-        font-weight: bold;
-    }
-    .sub-title {
-        font-size: 20px;
-        color: #4B4B4B;
-        text-align: center;
-    }
-    .description {
-        font-size: 18px;
-        color: #333333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-    .stButton button {
-        width: 200px;
-        height: 50px;
-        font-size: 18px;
-        color: white;
-        background-color: #FF4B4B;
-        border: none;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+# Navigation logic using session state
+def go_to_visualization():
+    st.session_state.page = 'visualization'
 
-# Title and description
-st.markdown("<h1 class='main-title'>Heart Disease Prediction</h1>", unsafe_allow_html=True)
-st.markdown("<h3 class='sub-title'>Using Data to Predict and Prevent Heart Disease</h3>", unsafe_allow_html=True)
-st.markdown("<p class='description'>Explore risk factors, visualize trends, and predict heart disease risk using advanced machine learning and interactive tools.</p>", unsafe_allow_html=True)
+# Home Screen layout
+if st.session_state.page == 'home':
+    # Load image for the home screen (replace with your own image)
+    image = Image.open('heart_disease_image.jpg')
+    
+    # Title and description
+    st.markdown("<h1 style='text-align: center; color: #FF4B4B;'>Heart Disease Prediction</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #4B4B4B;'>Using Data to Predict and Prevent Heart Disease</h3>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #333333;'>Explore risk factors, visualize trends, and predict heart disease risk using advanced machine learning and interactive tools.</p>", unsafe_allow_html=True)
+    
+    # Display image on the home screen
+    st.image(image, use_column_width=True)
+    
+    # Button to navigate to visualization page
+    st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+    if st.button("Go to Visualizations"):
+        go_to_visualization()
+    st.markdown("</div>", unsafe_allow_html=True)
 
-# Display image on the home screen
-st.image(image, use_column_width=True)
+# Visualization Page
+if st.session_state.page == 'visualization':
+    st.markdown("<h1 style='text-align: center;'>Data Visualization</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Here you can explore the data through various visualizations.</p>", unsafe_allow_html=True)
+    
+    # Example plot (replace with your actual visualizations)
+    import matplotlib.pyplot as plt
+    import numpy as np
 
-# Add buttons for navigation (optional)
-st.markdown("<div class='button-container'>", unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1,1,1])
+    fig, ax = plt.subplots()
+    ax.plot(np.random.randn(100), color='blue')
+    st.pyplot(fig)
 
-with col1:
-    if st.button('Explore Data'):
-        navigate_to('visualization')  # Place your logic for navigating to EDA page here
-with col2:
-    if st.button('Risk Prediction'):
-        st.experimental_rerun()  # Place your logic for navigating to prediction model page here
-with col3:
-    if st.button('Simulate Risks'):
-        st.experimental_rerun()  # Place your logic for navigating to simulation page here
-st.markdown("</div>", unsafe_allow_html=True)
-
-# Footer (optional)
-st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: gray;'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
+    # Button to return to Home
+    if st.button("Back to Home"):
+        st.session_state.page = 'home'
