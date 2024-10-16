@@ -1,13 +1,10 @@
 # CMSE 830 Project Heart Disease Prediction
-```
-⬆️ (Replace above with your app's name)
-```
 
 Description of the app ...
 
 ## Demo App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://app-starter-kit.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://heart-disease-pred.streamlit.app/)
 
 ## GitHub Codespaces
 
