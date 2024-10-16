@@ -17,10 +17,26 @@ numeric_features = df.select_dtypes(include=['float64', 'int64'])
 # Calculate the correlation matrix
 correlation_matrix = numeric_features.corr()
 
+# Title and description
+st.title("EDA Overview")
+st.write(
+    "Welcome to the Exploratory Data Analysis (EDA) Overview! "
+    "In this section, we will visualize the relationships between variables using an interactive correlation heatmap."
+)
+
+# Subtitle for heatmap
+st.subheader("Interactive Correlation Heatmap")
+
+# Selectbox for color scheme
+color_palette = st.selectbox(
+    "Choose a color scheme for the heatmap:",
+    options=["RdBu", "Viridis", "Cividis", "Inferno", "Magma", "Plasma", "YlGnBu"]
+)
+
 # Option 1: Using Seaborn for Static Heatmap
 def plot_seaborn_heatmap():
     fig, ax = plt.subplots(figsize=(10, 8))
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0, ax=ax)
+    sns.heatmap(correlation_matrix, annot=True, cmap=color_palette, center=0, ax=ax)
     st.pyplot(fig)
 
 # Option 2: Using Plotly for Interactive Heatmap
@@ -29,7 +45,7 @@ def plot_plotly_heatmap():
         z=correlation_matrix.values,
         x=correlation_matrix.columns,
         y=correlation_matrix.columns,
-        colorscale='RdBu',
+        colorscale=color_palette,  # Use selected color palette
         zmin=-1, zmax=1))
 
     fig.update_layout(title="Interactive Correlation Heatmap", 
