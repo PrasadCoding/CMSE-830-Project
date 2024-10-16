@@ -33,15 +33,14 @@ color_palette = st.selectbox(
     options=["RdBu", "Viridis", "Cividis", "Inferno", "Magma", "Plasma", "YlGnBu"]
 )
 
-# Check if the selected palette is available for Seaborn
-if color_palette in sns.color_palette():
-    st.write(f"The selected color palette '{color_palette}' is available for Seaborn!")
-
 # Option 1: Using Seaborn for Static Heatmap
 def plot_seaborn_heatmap():
     fig, ax = plt.subplots(figsize=(10, 8))
-    sns.heatmap(correlation_matrix, annot=True, cmap=color_palette, center=0, ax=ax)
-    st.pyplot(fig)
+    try:
+        sns.heatmap(correlation_matrix, annot=True, cmap=color_palette, center=0, ax=ax)
+        st.pyplot(fig)
+    except KeyError:
+        st.write(f"The selected color palette '{color_palette}' is **not supported** by Seaborn. Please choose a different palette.")
 
 # Option 2: Using Plotly for Interactive Heatmap
 def plot_plotly_heatmap():
