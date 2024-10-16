@@ -51,27 +51,34 @@ st.markdown("<p class='description'>Explore risk factors, visualize trends, and 
 # Display image on the home screen
 st.image(image, use_column_width=True)
 
-# Add buttons for navigation (optional)
-# Add buttons for navigation (optional)
+# Add buttons for navigation
 st.markdown("<div class='button-container'>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 1, 1])
 
 with col1:
     if st.button('Explore Data'):
-        st.session_state['current_page'] = 'visualization'  # Adjust accordingly
-        from pages import visualization
+        st.session_state['current_page'] = 'visualization'  # Set the page to visualization
 
 with col2:
     if st.button('Risk Prediction'):
-        st.session_state['current_page'] = 'risk_prediction'  # Adjust accordingly
+        st.session_state['current_page'] = 'risk_prediction'  # Set the page to risk prediction
 
 with col3:
     if st.button('Simulate Risks'):
-        st.session_state['current_page'] = 'simulate_risks'  # Adjust accordingly
+        st.session_state['current_page'] = 'simulate_risks'  # Set the page to simulate risks
 
 st.markdown("</div>", unsafe_allow_html=True)
-# Check session state to render the appropriate page
 
+# Check session state to render the appropriate page
+if 'current_page' in st.session_state:
+    current_page = st.session_state['current_page']
+    if current_page == 'visualization':
+        # Import and display your visualization page here
+        import pages.visualization  # Adjust path as needed
+    elif current_page == 'risk_prediction':
+        import pages.risk_prediction  # Adjust path as needed
+    elif current_page == 'simulate_risks':
+        import pages.simulate_risks  # Adjust path as needed
 
 # Footer (optional)
 st.markdown("<hr>", unsafe_allow_html=True)
