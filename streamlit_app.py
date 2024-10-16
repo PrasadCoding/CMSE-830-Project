@@ -70,17 +70,7 @@ with col3:
 
 st.markdown("</div>", unsafe_allow_html=True)
 # Check session state to render the appropriate page
-if 'current_page' in st.session_state:
-    if st.session_state['current_page'] == 'visualization':
-        import visualization  # Ensure this imports the correct module for your visualization page
-    elif st.session_state['current_page'] == 'risk_prediction':
-        import risk_prediction  # Ensure this imports the correct module for your risk prediction page
-    elif st.session_state['current_page'] == 'simulate_risks':
-        import simulate_risks  # Ensure this imports the correct module for your simulation page
 
-# Optionally, you can add an initial condition to set the default page
-else:
-    st.session_state['current_page'] = 'home'  # Or whatever the default page should be
 
 # Footer (optional)
 st.markdown("<hr>", unsafe_allow_html=True)
