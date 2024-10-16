@@ -1,4 +1,4 @@
-# 📦 Streamlit App Starter Kit 
+# CMSE 830 Project Heart Disease Prediction
 ```
 ⬆️ (Replace above with your app's name)
 ```
