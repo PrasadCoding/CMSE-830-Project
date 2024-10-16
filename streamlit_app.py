@@ -5,7 +5,7 @@ from PIL import Image
 st.set_page_config(page_title="Heart Disease Prediction App")
 
 # Load image for the home screen (replace with your own image)
-image = Image.open('heart_disease_image.jpg')
+image = Image.open('heart_disease_image_2.jpg')
 
 # Custom CSS for styling (optional)
 st.markdown("""
