@@ -16,7 +16,7 @@ def navigate_to(page):
 # Home page layout
 if st.session_state.page == 'home':
     # Load and resize the image for the home screen
-    image = Image.open('/mnt/data/image.png')  # Replace with the correct image path
+    image = Image.open('heart_disease_image.jpg')  # Replace with the correct image path
     st.image(image, width=600)  # Adjust the width to resize the image
 
     # Custom CSS for styling
