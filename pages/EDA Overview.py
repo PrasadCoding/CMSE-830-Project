@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 # Assuming you already have your dataset
-df = pd.read_csv('your_heart_disease_data.csv')
+df = pd.read_csv('dataset/heart_disease.csv')
 
 # Select numeric features for correlation heatmap
 numeric_features = df.select_dtypes(include=['float64', 'int64'])
