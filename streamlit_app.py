@@ -53,24 +53,34 @@ st.image(image, use_column_width=True)
 
 # Add buttons for navigation (optional)
 st.markdown("<div class='button-container'>", unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1,1,1])
+col1, col2, col3 = st.columns([1, 1, 1])
 
 with col1:
     if st.button('Explore Data'):
-        st.session_state['current_page'] = 'visualization'  # Set a session state to navigate
-        st.experimental_rerun()  # This will trigger the page navigation
+        st.session_state['current_page'] = 'visualization'  # Set the session state for the visualization page
 
 with col2:
     if st.button('Risk Prediction'):
         st.session_state['current_page'] = 'risk_prediction'  # Adjust this according to your actual page name
-        st.experimental_rerun()
 
 with col3:
     if st.button('Simulate Risks'):
         st.session_state['current_page'] = 'simulate_risks'  # Adjust accordingly
-        st.experimental_rerun()
 
-# st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
+
+# Check session state to render the appropriate page
+if 'current_page' in st.session_state:
+    if st.session_state['current_page'] == 'visualization':
+        import visualization  # Ensure this imports the correct module for your visualization page
+    elif st.session_state['current_page'] == 'risk_prediction':
+        import risk_prediction  # Ensure this imports the correct module for your risk prediction page
+    elif st.session_state['current_page'] == 'simulate_risks':
+        import simulate_risks  # Ensure this imports the correct module for your simulation page
+
+# Optionally, you can add an initial condition to set the default page
+else:
+    st.session_state['current_page'] = 'home'  # Or whatever the default page should be
 
 # Footer (optional)
 st.markdown("<hr>", unsafe_allow_html=True)
