@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 # Assuming you already have your dataset
-df = pd.read_csv('dataset/heart_disease.csv')
+df = pd.read_csv('your_heart_disease_data.csv')
 
 # Select numeric features for correlation heatmap
 numeric_features = df.select_dtypes(include=['float64', 'int64'])
@@ -32,6 +32,10 @@ color_palette = st.selectbox(
     "Choose a color scheme for the heatmap:",
     options=["RdBu", "Viridis", "Cividis", "Inferno", "Magma", "Plasma", "YlGnBu"]
 )
+
+# Check if the selected palette is available for Seaborn
+if color_palette in sns.color_palette():
+    st.write(f"The selected color palette '{color_palette}' is available for Seaborn!")
 
 # Option 1: Using Seaborn for Static Heatmap
 def plot_seaborn_heatmap():
