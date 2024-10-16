@@ -57,14 +57,21 @@ col1, col2, col3 = st.columns([1,1,1])
 
 with col1:
     if st.button('Explore Data'):
-        st.experimental_rerun()  # Place your logic for navigating to EDA page here
+        st.experimental_rerun()  # This can remain, but will be used differently below
+        st.session_state['current_page'] = 'visualization'  # Set a session state to navigate
+        st.experimental_rerun()  # This will trigger the page navigation
+
 with col2:
     if st.button('Risk Prediction'):
-        st.experimental_rerun()  # Place your logic for navigating to prediction model page here
+        st.session_state['current_page'] = 'risk_prediction'  # Adjust this according to your actual page name
+        st.experimental_rerun()
+
 with col3:
     if st.button('Simulate Risks'):
-        st.experimental_rerun()  # Place your logic for navigating to simulation page here
-st.markdown("</div>", unsafe_allow_html=True)
+        st.session_state['current_page'] = 'simulate_risks'  # Adjust accordingly
+        st.experimental_rerun()
+
+# st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer (optional)
 st.markdown("<hr>", unsafe_allow_html=True)
