@@ -18,7 +18,7 @@ numeric_features = df.select_dtypes(include=['float64', 'int64'])
 correlation_matrix = numeric_features.corr()
 
 # Title and description
-st.title("EDA Overview")
+st.markdown("<h1 style='color: #FF4B4B;'>EDA Overview</h1>", unsafe_allow_html=True)
 st.write(
     "Welcome to the Exploratory Data Analysis (EDA) Overview! "
     "In this section, we will visualize the relationships between variables using an interactive correlation heatmap."
