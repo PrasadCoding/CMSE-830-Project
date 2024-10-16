@@ -57,7 +57,7 @@ col1, col2, col3 = st.columns([1,1,1])
 
 with col1:
     if st.button('Explore Data'):
-        navigate_to('visualization.py')  # Place your logic for navigating to EDA page here
+        navigate_to('visualization')  # Place your logic for navigating to EDA page here
 with col2:
     if st.button('Risk Prediction'):
         st.experimental_rerun()  # Place your logic for navigating to prediction model page here
