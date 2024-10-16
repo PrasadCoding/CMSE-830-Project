@@ -87,3 +87,38 @@ def plot_histogram(variable, bins):
 
 # Render the histogram
 plot_histogram(hist_variable, num_bins)
+
+# Customizable Box Plots
+
+st.subheader("Customizable Box Plots")
+
+# Select a numeric variable for box plot
+box_variable = st.selectbox("Choose a numeric variable for the box plot:", options=numeric_features.columns)
+
+# If there are categorical variables, select one for grouping (adjust based on your DataFrame)
+categorical_features = df.select_dtypes(include=['object', 'category']).columns.tolist()
+if categorical_features:
+    box_group_variable = st.selectbox("Choose a categorical variable for grouping:", options=categorical_features)
+else:
+    box_group_variable = None
+
+# Function to plot the box plot
+def plot_box_plot(numeric_var, group_var=None):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    if group_var:
+        sns.boxplot(data=df, x=group_var, y=numeric_var, ax=ax)
+        ax.set_title(f'Box Plot of {numeric_var} by {group_var}')
+    else:
+        sns.boxplot(data=df, y=numeric_var, ax=ax)
+        ax.set_title(f'Box Plot of {numeric_var}')
+
+    ax.set_ylabel(numeric_var)
+    st.pyplot(fig)
+
+# Render the box plot
+if box_group_variable:
+    plot_box_plot(box_variable, box_group_variable)
+else:
+    plot_box_plot(box_variable)
+
