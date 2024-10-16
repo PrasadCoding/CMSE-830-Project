@@ -64,3 +64,26 @@ if heatmap_type == "Seaborn":
     plot_seaborn_heatmap()
 else:
     plot_plotly_heatmap()
+
+
+# Customizable Histograms
+
+st.subheader("Customizable Histograms")
+
+# Select a numeric variable for histogram
+hist_variable = st.selectbox("Choose a variable for the histogram:", options=numeric_features.columns)
+
+# Select number of bins
+num_bins = st.slider("Select the number of bins:", min_value=5, max_value=100, value=20)
+
+# Function to plot the histogram
+def plot_histogram(variable, bins):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.hist(df[variable], bins=bins, color='skyblue', edgecolor='black')
+    ax.set_title(f'Histogram of {variable}')
+    ax.set_xlabel(variable)
+    ax.set_ylabel('Frequency')
+    st.pyplot(fig)
+
+# Render the histogram
+plot_histogram(hist_variable, num_bins)
