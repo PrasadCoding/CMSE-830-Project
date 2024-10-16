@@ -51,6 +51,10 @@ st.markdown("<p class='description'>Explore risk factors, visualize trends, and 
 # Display image on the home screen
 st.image(image, use_column_width=True)
 
+# Initialize current_page if it doesn't exist
+if 'current_page' not in st.session_state:
+    st.session_state['current_page'] = 'home'
+
 # Add buttons for navigation
 st.markdown("<div class='button-container'>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 1, 1])
@@ -58,27 +62,30 @@ col1, col2, col3 = st.columns([1, 1, 1])
 with col1:
     if st.button('Explore Data'):
         st.session_state['current_page'] = 'visualization'  # Set the page to visualization
+        st.experimental_rerun()  # Rerun to reflect the change
 
 with col2:
     if st.button('Risk Prediction'):
         st.session_state['current_page'] = 'risk_prediction'  # Set the page to risk prediction
+        st.experimental_rerun()  # Rerun to reflect the change
 
 with col3:
     if st.button('Simulate Risks'):
         st.session_state['current_page'] = 'simulate_risks'  # Set the page to simulate risks
+        st.experimental_rerun()  # Rerun to reflect the change
 
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Check session state to render the appropriate page
-if 'current_page' in st.session_state:
-    current_page = st.session_state['current_page']
-    if current_page == 'visualization':
-        # Import and display your visualization page here
-        import pages.visualization  # Adjust path as needed
-    elif current_page == 'risk_prediction':
-        import pages.risk_prediction  # Adjust path as needed
-    elif current_page == 'simulate_risks':
-        import pages.simulate_risks  # Adjust path as needed
+if st.session_state['current_page'] == 'visualization':
+    import pages.visualization  # Ensure the path is correct
+elif st.session_state['current_page'] == 'risk_prediction':
+    import pages.risk_prediction  # Ensure the path is correct
+elif st.session_state['current_page'] == 'simulate_risks':
+    import pages.simulate_risks  # Ensure the path is correct
+else:
+    # Home page is the default
+    pass
 
 # Footer (optional)
 st.markdown("<hr>", unsafe_allow_html=True)
