@@ -61,17 +61,17 @@ col1, col2, col3 = st.columns([1, 1, 1])
 
 with col1:
     if st.button('Explore Data'):
-        st.session_state['current_page'] = 'visualization'  # Set the page to visualization
+        st.session_state['current_page'] = 'visualization'
         st.experimental_rerun()  # Rerun to reflect the change
 
 with col2:
     if st.button('Risk Prediction'):
-        st.session_state['current_page'] = 'risk_prediction'  # Set the page to risk prediction
+        st.session_state['current_page'] = 'risk_prediction'
         st.experimental_rerun()  # Rerun to reflect the change
 
 with col3:
     if st.button('Simulate Risks'):
-        st.session_state['current_page'] = 'simulate_risks'  # Set the page to simulate risks
+        st.session_state['current_page'] = 'simulate_risks'
         st.experimental_rerun()  # Rerun to reflect the change
 
 st.markdown("</div>", unsafe_allow_html=True)
