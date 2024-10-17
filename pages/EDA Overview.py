@@ -162,51 +162,6 @@ color_to_use = color_input if color_input else default_color
 plot_interactive_scatter_plot(x_variable, y_variable, color_to_use)
 
 
-# Risk Heatmap
-
-st.header("Risk Heatmap")
-
-# Create bins for age and BMI
-age_bins = [20, 30, 40, 50, 60, 70, 80, 90]
-bmi_bins = [15, 20, 25, 30, 35, 40]
-
-# Categorize the data
-df['age_group'] = pd.cut(df['age'], bins=age_bins)
-df['bmi_group'] = pd.cut(df['BMI'], bins=bmi_bins)
-# Use the currentSmoker column directly
-df['smoking_group'] = df['currentSmoker'].replace({0: "Non-Smoker", 1: "Smoker"})
-
-# Create a pivot table to calculate the average risk for each group
-risk_heatmap_data = df.groupby(['age_group', 'bmi_group', 'smoking_group']).agg(
-    average_risk=('TenYearCHD', 'mean')).reset_index()
-
-# Pivot the data for heatmap
-risk_matrix = risk_heatmap_data.pivot_table(
-    index=['age_group', 'bmi_group'], 
-    columns='smoking_group', 
-    values='average_risk', 
-    fill_value=0)
-
-# Create the heatmap
-fig = go.Figure(data=go.Heatmap(
-    z=risk_matrix.values,
-    x=risk_matrix.columns,
-    y=risk_matrix.index,
-    colorscale='Viridis',  # Change color scale as needed
-    colorbar=dict(title='Average Risk'),
-))
-
-fig.update_layout(
-    title='Risk Heatmap of Heart Disease',
-    xaxis_title='Smoking Status',
-    yaxis_title='Age and BMI Groups',
-    height=600,
-    width=800
-)
-
-# Render the heatmap
-st.plotly_chart(fig)
-
 
 
 
