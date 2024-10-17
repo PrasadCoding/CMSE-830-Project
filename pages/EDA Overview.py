@@ -166,15 +166,15 @@ plot_interactive_scatter_plot(x_variable, y_variable, color_to_use)
 
 st.header("Risk Heatmap")
 
-# Create bins for age, BMI, and smoking status
+# Create bins for age and BMI
 age_bins = [20, 30, 40, 50, 60, 70, 80, 90]
 bmi_bins = [15, 20, 25, 30, 35, 40]
-smoking_bins = [0, 1]  # 0 for non-smokers, 1 for smokers
 
 # Categorize the data
 df['age_group'] = pd.cut(df['age'], bins=age_bins)
 df['bmi_group'] = pd.cut(df['BMI'], bins=bmi_bins)
-df['smoking_group'] = pd.cut(df['currentSmoker'], bins=smoking_bins, labels=["Non-Smoker", "Smoker"])
+# Use the currentSmoker column directly
+df['smoking_group'] = df['currentSmoker'].replace({0: "Non-Smoker", 1: "Smoker"})
 
 # Create a pivot table to calculate the average risk for each group
 risk_heatmap_data = df.groupby(['age_group', 'bmi_group', 'smoking_group']).agg(
@@ -206,6 +206,7 @@ fig.update_layout(
 
 # Render the heatmap
 st.plotly_chart(fig)
+
 
 
 
