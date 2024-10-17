@@ -8,6 +8,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.figure_factory as ff
+import hiplot as hip
 # Assuming you already have your dataset
 df = pd.read_csv('dataset/heart_disease.csv')
 
