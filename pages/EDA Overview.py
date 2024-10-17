@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.figure_factory as ff
 import hiplot as hip
+import streamlit.components.v1 as components
 # Assuming you already have your dataset
 df = pd.read_csv('dataset/heart_disease.csv')
 
@@ -178,8 +179,11 @@ if len(selected_columns) > 1:
 
     # Render the parallel plot using streamlit's component function
     with st.spinner("Loading Parallel Plot..."):
-        # Save the hiplot visualization as an HTML
-        exp.display_st()  # Use hiplot's built-in Streamlit display method
+        # Convert the hiplot experiment to HTML
+        hiplot_html = exp.to_html()
+
+        # Use Streamlit to embed the HTML
+        components.html(hiplot_html, height=800)
 else:
     st.warning("Please select at least two columns for the parallel plot.")
 
