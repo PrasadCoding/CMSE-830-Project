@@ -11,7 +11,7 @@ image = Image.open('images/heart_disease_image.jpg')
 st.markdown("""
     <style>
     body {
-        background: linear-gradient(to bottom right, #ffe6e6, #f2f9ff); /* Soft gradient */
+        background-color: #e0f7e0; /* Light green background */
     }
     .main-title {
         font-size: 50px;
