@@ -125,6 +125,8 @@ plot_interactive_box_plot(box_variable, box_group_variable)
 
 # Interactive Scatter Plot
 
+# Interactive Scatter Plot
+
 st.subheader("Interactive Scatter Plot")
 
 # Select X and Y variables
@@ -142,9 +144,15 @@ color_palette = st.selectbox("Choose a color palette:", options=['Viridis', 'Civ
 
 # Function to plot the interactive scatter plot
 def plot_interactive_scatter_plot(x_var, y_var, color_var=None, palette='Viridis'):
-    fig = px.scatter(df, x=x_var, y=y_var, color=color_var, color_continuous_scale=palette,
-                     title=f'Interactive Scatter Plot of {y_var} vs {x_var}',
-                     hover_name=color_var if color_var else None)
+    # Check if a color variable is selected and adjust the Plotly parameters accordingly
+    if color_var:
+        fig = px.scatter(df, x=x_var, y=y_var, color=color_var,
+                         color_discrete_sequence=px.colors.sequential.__dict__[palette],
+                         title=f'Interactive Scatter Plot of {y_var} vs {x_var}',
+                         hover_name=color_var)
+    else:
+        fig = px.scatter(df, x=x_var, y=y_var,
+                         title=f'Interactive Scatter Plot of {y_var} vs {x_var}')
 
     fig.update_layout(
         xaxis_title=x_var,
@@ -156,6 +164,7 @@ def plot_interactive_scatter_plot(x_var, y_var, color_var=None, palette='Viridis
 
 # Render the interactive scatter plot
 plot_interactive_scatter_plot(x_variable, y_variable, color_variable, color_palette)
+
 
 
 
