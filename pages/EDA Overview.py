@@ -7,7 +7,7 @@ import seaborn as sns
 import plotly.express as px
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-
+import plotly.figure_factory as ff
 # Assuming you already have your dataset
 df = pd.read_csv('dataset/heart_disease.csv')
 
@@ -33,11 +33,11 @@ st.write("### Interactive Missing Values Heatmap")
 # Create an input box to choose a color palette
 palette_choice = st.selectbox(
     "Choose a color palette",
-    ["Blues", "Greens", "Oranges", "Purples", "Reds", "Viridis"]
+    ["RdBu", "viridis", "plasma", "cividis", "inferno", "magma", "Plasma", "YlGnBu"]
 )
 
 # Option to use seaborn heatmap or interactive plotly heatmap
-heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Interactive"])
+heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Plotly"])
 
 # Function to plot seaborn heatmap
 def plot_seaborn_missing_values_heatmap():
