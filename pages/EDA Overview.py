@@ -94,39 +94,33 @@ def plot_histogram():
 plot_histogram()
 
 
-# Customizable Box Plots
+# Customizable Box Plot
 
-# Customizable Interactive Box Plots
+st.header("Customizable Box Plots")
 
-st.subheader("Customizable Interactive Box Plots")
+# Create columns for feature selection and color input
+box_col1, box_col2 = st.columns(2)
 
-# Select a numeric variable for the box plot
-box_variable = st.selectbox("Choose a numeric variable for the box plot:", options=numeric_features.columns)
+with box_col1:
+    selected_box_feature = st.selectbox("Select Feature for Box Plot", numeric_features.columns)
 
-# If there are categorical variables, select one for grouping (adjust based on your DataFrame)
-categorical_features = df.select_dtypes(include=['object', 'category']).columns.tolist()
-if categorical_features:
-    box_group_variable = st.selectbox("Choose a categorical variable for grouping:", options=categorical_features)
-else:
-    box_group_variable = None
+with box_col2:
+    color_input_box = st.text_input("Enter Box Color (Hex Code or Name)", placeholder="#1f77b4")  # Default color as a placeholder
 
-# Function to plot the interactive box plot
-def plot_interactive_box_plot(numeric_var, group_var=None):
-    if group_var:
-        fig = px.box(df, x=numeric_var, y=group_var, points="all", title=f'Interactive Box Plot of {numeric_var} by {group_var}')
-    else:
-        fig = px.box(df, x=numeric_var, points="all", title=f'Interactive Box Plot of {numeric_var}')
-
-    fig.update_layout(
-        xaxis_title=numeric_var,
-        yaxis_title=group_var if group_var else 'Distribution',
-        width=800, height=600
-    )
+# Plot box plot
+def plot_box_plot():
+    default_color = "#1f77b4"  # Default color
+    color = color_input_box if color_input_box else default_color  # Use input color or default
+    
+    # Create the box plot using Plotly
+    fig = go.Figure(data=go.Box(y=df[selected_box_feature], boxmean=True, marker_color=color))
+    fig.update_layout(title=f"Box Plot of {selected_box_feature}", yaxis_title=selected_box_feature)
     
     st.plotly_chart(fig)
 
-# Render the interactive box plot
-plot_interactive_box_plot(box_variable, box_group_variable)
+# Render the box plot
+plot_box_plot()
+
 
 # Interactive Scatter Plot
 st.subheader("Interactive Scatter Plot")
