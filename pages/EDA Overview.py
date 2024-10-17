@@ -139,28 +139,29 @@ col3, col4 = st.columns(2)
 # Input box for custom color
 custom_color = col3.text_input("Enter Hex Color Code (e.g., #FF5733)")
 
-# Select a categorical variable for coloring (if available)
-categorical_variable = col4.selectbox("Choose Categorical Variable for Color (if applicable)", ["None", "Sex_male", "currentSmoker", "BPMeds", "prevalentStroke", "prevalentHyp", "diabetes", "TenYearCHD"])
-
-# Default color
 default_color = 'blue'
 
 # Create scatter plot
-if categorical_variable == "None":
-    # No color differentiation
-    fig = px.scatter(df, x=x_variable, y=y_variable, color_discrete_sequence=[custom_color or default_color])
+# Get the selected color variable
+categorical_variable = st.selectbox('Choose a categorical variable for color', df.columns)
+
+# Error handling to check if the selected column is valid
+if categorical_variable not in df.columns:
+    st.error(f"The selected column '{categorical_variable}' does not exist.")
 else:
-    # Color by the selected categorical variable
-    fig = px.scatter(df, x=x_variable, y=y_variable, color=categorical_variable, 
-                     color_discrete_sequence=[custom_color or default_color])
+    try:
+        # Convert the column to categorical if it's not already
+        if df[categorical_variable].dtype != 'object' and df[categorical_variable].dtype.name != 'category':
+            df[categorical_variable] = df[categorical_variable].astype('category')
+        
+        # Plot the scatter plot with color based on the selected categorical variable
+        fig = px.scatter(df, x=x_variable, y=y_variable, color=categorical_variable,
+                         color_discrete_sequence=px.colors.qualitative.Set1)
+        st.plotly_chart(fig)
 
-# Update layout
-fig.update_layout(title=f'Scatter Plot of {y_variable} vs {x_variable}',
-                  xaxis_title=x_variable,
-                  yaxis_title=y_variable)
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
-# Show the scatter plot
-st.plotly_chart(fig)
 
 
 
