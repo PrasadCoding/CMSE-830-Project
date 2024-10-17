@@ -127,8 +127,16 @@ plot_interactive_box_plot(box_variable, box_group_variable)
 st.subheader("Interactive Scatter Plot")
 
 # Select X and Y variables
-x_variable = st.selectbox("Choose a variable for the X-axis:", options=numeric_features.columns)
-y_variable = st.selectbox("Choose a variable for the Y-axis:", options=numeric_features.columns)
+# Create two columns for select boxes
+col1, col2 = st.columns(2)
+
+# Select X variable in the first column
+with col1:
+    x_variable = st.selectbox("Choose a variable for the X-axis:", options=numeric_features.columns)
+
+# Select Y variable in the second column
+with col2:
+    y_variable = st.selectbox("Choose a variable for the Y-axis:", options=numeric_features.columns)
 
 # Select a color variable (optional, if a categorical variable exists)
 if categorical_features:
