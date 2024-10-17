@@ -140,7 +140,7 @@ col3, col4 = st.columns(2)
 custom_color = col3.text_input("Enter Hex Color Code (e.g., #FF5733)")
 
 # Select a categorical variable for coloring (if available)
-categorical_variable = col4.selectbox("Choose Categorical Variable for Color (if applicable)", ["None"] + df.select_dtypes(include=['object']).columns.tolist())
+categorical_variable = col4.selectbox("Choose Categorical Variable for Color (if applicable)", ["None", "Sex_male", "currentSmoker", "BPMeds", "prevalentStroke", "prevalentHyp", "diabetes", "TenYearCHD"])
 
 # Default color
 default_color = 'blue'
