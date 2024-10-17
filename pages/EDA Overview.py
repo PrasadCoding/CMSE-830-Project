@@ -136,31 +136,31 @@ y_variable = col2.selectbox("Choose Y Variable", numeric_features.columns)
 # Create another row of columns for custom color and categorical variable
 col3, col4 = st.columns(2)
 
-# Input box for custom color
-custom_color = col3.text_input("Enter Hex Color Code (e.g., #FF5733)")
+# Options for the selectbox
+color_options = ["None", "Sex_male", "currentSmoker", "BPMeds", "prevalentStroke", "prevalentHyp", "diabetes", "TenYearCHD"]
+# In the first column, create the selectbox for choosing the categorical variable
+with col3:
+    categorical_variable = st.selectbox('Choose a categorical variable for color', color_options)
 
-default_color = 'blue'
+# In the second column, create the input box for a custom color
+with col4:
+    custom_color = st.text_input('Enter color (hex code)', value='#1f77b4')
 
-# Create scatter plot
-# Get the selected color variable
-categorical_variable = st.selectbox('Choose a categorical variable for color', df.columns)
-
-# Error handling to check if the selected column is valid
-if categorical_variable not in df.columns:
-    st.error(f"The selected column '{categorical_variable}' does not exist.")
+# If the user chooses "None", use the custom color for the scatter plot
+if categorical_variable == "None":
+    fig = px.scatter(df, x=x_variable, y=y_variable, color_discrete_sequence=[custom_color])  # Use custom color
 else:
-    try:
-        # Convert the column to categorical if it's not already
-        if df[categorical_variable].dtype != 'object' and df[categorical_variable].dtype.name != 'category':
-            df[categorical_variable] = df[categorical_variable].astype('category')
-        
-        # Plot the scatter plot with color based on the selected categorical variable
-        fig = px.scatter(df, x=x_variable, y=y_variable, color=categorical_variable,
-                         color_discrete_sequence=px.colors.qualitative.Set1)
-        st.plotly_chart(fig)
+    # Convert the selected column to categorical if it's not already
+    if df[categorical_variable].dtype != 'object' and df[categorical_variable].dtype.name != 'category':
+        df[categorical_variable] = df[categorical_variable].astype('category')
+    
+    # Plot the scatter plot with color based on the selected categorical variable
+    fig = px.scatter(df, x=x_variable, y=y_variable, color=categorical_variable,
+                     color_discrete_sequence=px.colors.qualitative.Set1)
 
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
+# Display the scatter plot
+st.plotly_chart(fig)
+
 
 
 
