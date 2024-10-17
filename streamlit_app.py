@@ -10,12 +10,16 @@ image = Image.open('images/heart_disease_image.jpg')
 # Custom CSS for styling (optional)
 st.markdown("""
     <style>
+    body {
+        background-color: #f9f9f9;
+    }
     .main-title {
         font-size: 50px;
         color: #FF4B4B;
         text-align: center;
         font-weight: bold;
-        margin-top: 20px;
+        margin-top: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
     .sub-title {
         font-size: 24px;
@@ -27,21 +31,27 @@ st.markdown("""
         font-size: 18px;
         color: #333333;
         text-align: center;
-        margin-bottom: 30px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 20px auto;
+        max-width: 700px;
+        line-height: 1.6;
     }
     .footer {
         text-align: center;
         color: gray;
         font-size: 14px;
         margin-top: 40px;
+        margin-bottom: 20px;
     }
     .image-container {
         display: flex;
         justify-content: center;
-        margin-bottom: 30px;
+        margin: 30px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    img {
+        border-radius: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -53,7 +63,7 @@ st.markdown("<p class='description'>Explore risk factors, visualize trends, and 
 
 # Display image on the home screen
 st.markdown("<div class='image-container'>", unsafe_allow_html=True)
-st.image(image, use_column_width=True)
+st.image(image, use_column_width='auto')
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer
