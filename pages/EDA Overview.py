@@ -11,6 +11,41 @@ import plotly.graph_objects as go
 # Assuming you already have your dataset
 df = pd.read_csv('dataset/heart_disease.csv')
 
+# Detect missing values in the dataset
+missing_values = df.isnull()
+
+# Select color palette for the heatmap
+st.write("### Interactive Missing Values Heatmap")
+
+# Create an input box to choose a color palette
+palette_choice = st.selectbox(
+    "Choose a color palette",
+    ["Blues", "Greens", "Oranges", "Purples", "Reds", "Viridis"]
+)
+
+# Option to use seaborn heatmap or interactive plotly heatmap
+heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Interactive"])
+
+# Function to plot seaborn heatmap
+def plot_seaborn_missing_values_heatmap():
+    fig, ax = plt.subplots(figsize=(12, 8))
+    sns.heatmap(missing_values, cmap=palette_choice, cbar=False, ax=ax)
+    ax.set_title("Missing Values Heatmap")
+    st.pyplot(fig)
+
+# Function to plot interactive heatmap using plotly
+def plot_interactive_missing_values_heatmap():
+    z = missing_values.astype(int).values
+    fig = ff.create_annotated_heatmap(z, colorscale=palette_choice)
+    fig.update_layout(title="Interactive Missing Values Heatmap", width=900, height=600)
+    st.plotly_chart(fig)
+
+# Render the selected heatmap
+if heatmap_type == "Seaborn":
+    plot_seaborn_missing_values_heatmap()
+else:
+    plot_interactive_missing_values_heatmap()
+
 # Select numeric features for correlation heatmap
 numeric_features = df.select_dtypes(include=['float64', 'int64'])
 
