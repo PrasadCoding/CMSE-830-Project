@@ -2,7 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # Set page title and description
-st.title("BMI Calculator")
+st.markdown("<h1 style='color: #FF4B4B;'>BMI Calculator</h1>", unsafe_allow_html=True)
 st.write("Calculate your Body Mass Index (BMI) and visualize your BMI category.")
 
 # Input form for height and weight
