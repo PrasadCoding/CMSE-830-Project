@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 # Set page config
-st.set_page_config(page_title="Heart Disease Prediction App")
+st.set_page_config(page_title="Heart Disease Prediction App", layout="wide")
 
 # Load image for the home screen (replace with your own image)
 image = Image.open('images/heart_disease_image.jpg')
