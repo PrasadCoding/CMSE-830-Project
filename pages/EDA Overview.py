@@ -123,43 +123,44 @@ plot_box_plot()
 
 
 # Interactive Scatter Plot
-st.subheader("Interactive Scatter Plot")
 
-# Create two columns for X and Y variable select boxes
+st.header("Interactive Scatter Plot")
+
+# Create columns for select boxes and color input
 col1, col2 = st.columns(2)
 
 # Select X and Y variables
-with col1:
-    x_variable = st.selectbox("Choose a variable for the X-axis:", options=numeric_features.columns)
+x_variable = col1.selectbox("Choose X Variable", numeric_features.columns)
+y_variable = col2.selectbox("Choose Y Variable", numeric_features.columns)
 
-with col2:
-    y_variable = st.selectbox("Choose a variable for the Y-axis:", options=numeric_features.columns)
+# Create another row of columns for custom color and categorical variable
+col3, col4 = st.columns(2)
 
-# Allow the user to input a hex color code or leave it blank
-color_input = st.text_input("Enter a hex color code (e.g., #FF5733) or leave blank for default color:")
+# Input box for custom color
+custom_color = col3.text_input("Enter Hex Color Code (e.g., #FF5733)")
 
-# Define a default color
+# Select a categorical variable for coloring (if available)
+categorical_variable = col4.selectbox("Choose Categorical Variable for Color (if applicable)", ["None"] + df.select_dtypes(include=['object']).columns.tolist())
+
+# Default color
 default_color = 'blue'
 
-# Function to plot the interactive scatter plot
-def plot_interactive_scatter_plot(x_var, y_var, point_color):
-    fig = px.scatter(df, x=x_var, y=y_var,
-                     title=f'Interactive Scatter Plot of {y_var} vs {x_var}',
-                     color_discrete_sequence=[point_color])
+# Create scatter plot
+if categorical_variable == "None":
+    # No color differentiation
+    fig = px.scatter(df, x=x_variable, y=y_variable, color_discrete_sequence=[custom_color or default_color])
+else:
+    # Color by the selected categorical variable
+    fig = px.scatter(df, x=x_variable, y=y_variable, color=categorical_variable, 
+                     color_discrete_sequence=[custom_color or default_color])
 
-    fig.update_layout(
-        xaxis_title=x_var,
-        yaxis_title=y_var,
-        width=800, height=600
-    )
+# Update layout
+fig.update_layout(title=f'Scatter Plot of {y_variable} vs {x_variable}',
+                  xaxis_title=x_variable,
+                  yaxis_title=y_variable)
 
-    st.plotly_chart(fig)
-
-# Determine the color to use: user input or default
-color_to_use = color_input if color_input else default_color
-
-# Render the interactive scatter plot
-plot_interactive_scatter_plot(x_variable, y_variable, color_to_use)
+# Show the scatter plot
+st.plotly_chart(fig)
 
 
 
