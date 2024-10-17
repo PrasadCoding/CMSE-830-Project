@@ -51,52 +51,20 @@ st.markdown("<p class='description'>Explore risk factors, visualize trends, and 
 # Display image on the home screen
 st.image(image, use_column_width=True)
 
-# Add buttons for navigation
+# Add buttons for navigation (optional)
 st.markdown("<div class='button-container'>", unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1, 1, 1])
+col1, col2, col3 = st.columns([1,1,1])
 
 with col1:
     if st.button('Explore Data'):
-        st.session_state.page = "Explore Data"  # Set the page state
-        st.experimental_rerun()  # Refresh to navigate
-
+        pass  # Place your logic for navigating to EDA page here
 with col2:
     if st.button('Risk Prediction'):
-        st.session_state.page = "Risk Prediction"  # Set the page state
-        st.experimental_rerun()  # Refresh to navigate
-
+        pass  # Place your logic for navigating to prediction model page here
 with col3:
     if st.button('Simulate Risks'):
-        st.session_state.page = "Simulate Risks"  # Set the page state
-        st.experimental_rerun()  # Refresh to navigate
-
+        pass  # Place your logic for navigating to simulation page here
 st.markdown("</div>", unsafe_allow_html=True)
-
-# Sidebar for navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Explore Data", "Risk Prediction", "Simulate Risks"])
-
-# Manage page content based on selected state
-if 'page' not in st.session_state:
-    st.session_state.page = "Home"
-
-if st.session_state.page == "Home":
-    # Home page content is already rendered above
-    ...
-
-elif st.session_state.page == "Explore Data":
-    # Render the EDA Overview page
-    exec(open("pages/EDA Overview.py").read())
-
-elif st.session_state.page == "Risk Prediction":
-    # Logic for the Risk Prediction page
-    st.write("Risk Prediction Page")
-    # Include your prediction model code here
-
-elif st.session_state.page == "Simulate Risks":
-    # Logic for the Simulate Risks page
-    st.write("Simulate Risks Page")
-    # Include your simulation code here
 
 # Footer (optional)
 st.markdown("<hr>", unsafe_allow_html=True)
