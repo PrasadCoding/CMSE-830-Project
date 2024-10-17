@@ -165,6 +165,7 @@ else:
 # Display the scatter plot
 st.plotly_chart(fig)
 
+st.header("Interactive Parallel Plot")
 
 selected_columns = st.multiselect(
     "Select features for Parallel Plot", 
