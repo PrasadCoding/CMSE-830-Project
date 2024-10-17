@@ -39,7 +39,7 @@ with col2:
 
 # Option 1: Using Seaborn for Static Heatmap
 def plot_seaborn_heatmap():
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(15, 8))
     try:
         sns.heatmap(correlation_matrix, annot=True, cmap=color_palette, center=0, ax=ax)
         st.pyplot(fig)
