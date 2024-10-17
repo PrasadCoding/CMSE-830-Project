@@ -7,32 +7,23 @@ st.set_page_config(page_title="Heart Disease Prediction App")
 # Load image for the home screen (replace with your own image)
 image = Image.open('images/heart_disease_image.jpg')
 
-# Set background color using Streamlit's markdown capabilities
-st.markdown(
-    """
-    <style>
-    .reportview-container {
-        background: #e0f7e0; /* Light green background */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Custom CSS for other styling
+# Custom CSS for styling (optional)
 st.markdown("""
     <style>
+    body {
+        background-color: #f9f9f9;
+    }
     .main-title {
         font-size: 50px;
-        color: #D32F2F; /* Darker red */
+        color: #FF4B4B;
         text-align: center;
         font-weight: bold;
         margin-top: 30px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
     .sub-title {
-        font-size: 26px; /* Slightly larger */
-        color: #1976D2; /* Blue for contrast */
+        font-size: 24px;
+        color: #4B4B4B;
         text-align: center;
         margin-bottom: 10px;
     }
@@ -43,7 +34,6 @@ st.markdown("""
         margin: 20px auto;
         max-width: 700px;
         line-height: 1.6;
-        font-style: italic; /* Italic for emphasis */
     }
     .footer {
         text-align: center;
@@ -56,21 +46,12 @@ st.markdown("""
         display: flex;
         justify-content: center;
         margin: 30px 0;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow */
-        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
         overflow: hidden;
-        background-color: #ffffff; /* White background for image */
     }
     img {
-        border-radius: 15px; /* Consistent corner radius */
-    }
-    .stats {
-        background-color: #ffffff; /* White background for stats */
-        padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
-        margin: 20px auto;
-        max-width: 700px; /* Centered width */
     }
     </style>
     """, unsafe_allow_html=True)
