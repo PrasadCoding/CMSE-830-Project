@@ -28,10 +28,13 @@ st.write(
 st.subheader("Interactive Correlation Heatmap")
 
 # Selectbox for color scheme
-color_palette = st.selectbox(
-    "Choose a color scheme for the heatmap:",
-    options=["RdBu", "Viridis", "Cividis", "Inferno", "Magma", "Plasma", "YlGnBu"]
-)
+col1, col2 = st.columns(2)
+
+with col1:
+    heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Plotly"])
+
+with col2:
+    color_palette = st.selectbox("Choose Color Palette", ["coolwarm", "RdBu", "viridis", "plasma", "cividis"])
 
 # Option 1: Using Seaborn for Static Heatmap
 def plot_seaborn_heatmap():
@@ -55,9 +58,6 @@ def plot_plotly_heatmap():
                       xaxis_nticks=36, 
                       width=800, height=600)
     st.plotly_chart(fig)
-
-# Create a selectbox to switch between heatmap types
-heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Plotly"])
 
 # Render the selected heatmap
 if heatmap_type == "Seaborn":
