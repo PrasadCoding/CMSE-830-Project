@@ -137,7 +137,7 @@ y_variable = col2.selectbox("Choose Y Variable", numeric_features.columns)
 col3, col4 = st.columns(2)
 
 # Options for the selectbox
-color_options = ["None", "Sex_male", "currentSmoker", "BPMeds", "prevalentStroke", "prevalentHyp", "diabetes", "TenYearCHD"]
+color_options = ["None", "male", "currentSmoker", "BPMeds", "prevalentStroke", "prevalentHyp", "diabetes", "TenYearCHD"]
 # In the first column, create the selectbox for choosing the categorical variable
 with col3:
     categorical_variable = st.selectbox('Choose a categorical variable for color', color_options)
