@@ -164,7 +164,23 @@ else:
 st.plotly_chart(fig)
 
 
+selected_columns = st.multiselect(
+    "Select features for Parallel Plot", 
+    df.columns.tolist(), 
+    default=["age", "BMI", "sysBP", "diaBP", "heartRate", "glucose", "TenYearCHD"]
+)
 
+# Check if the user has selected at least two columns
+if len(selected_columns) > 1:
+    # Create the parallel plot using hiplot
+    exp = hip.Experiment.from_dataframe(df[selected_columns])
+
+    # Render the parallel plot using streamlit's component function
+    with st.spinner("Loading Parallel Plot..."):
+        # Save the hiplot visualization as an HTML
+        exp.display_st()  # Use hiplot's built-in Streamlit display method
+else:
+    st.warning("Please select at least two columns for the parallel plot.")
 
 
 
