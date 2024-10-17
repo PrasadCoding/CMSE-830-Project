@@ -7,12 +7,21 @@ st.set_page_config(page_title="Heart Disease Prediction App")
 # Load image for the home screen (replace with your own image)
 image = Image.open('images/heart_disease_image.jpg')
 
-# Custom CSS for styling (optional)
+# Set background color using Streamlit's markdown capabilities
+st.markdown(
+    """
+    <style>
+    .reportview-container {
+        background: #e0f7e0; /* Light green background */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Custom CSS for other styling
 st.markdown("""
     <style>
-    body {
-        background-color: #e0f7e0; /* Light green background */
-    }
     .main-title {
         font-size: 50px;
         color: #D32F2F; /* Darker red */
@@ -71,7 +80,10 @@ st.markdown("<h1 class='main-title'>Heart Disease Prediction</h1>", unsafe_allow
 st.markdown("<h3 class='sub-title'>Using Data to Predict and Prevent Heart Disease</h3>", unsafe_allow_html=True)
 st.markdown("<p class='description'>Explore risk factors, visualize trends, and predict heart disease risk using advanced machine learning and interactive tools.</p>", unsafe_allow_html=True)
 
-
+# Display image on the home screen
+st.markdown("<div class='image-container'>", unsafe_allow_html=True)
+st.image(image, use_column_width='auto')
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Additional content section
 st.markdown("<div class='stats'>", unsafe_allow_html=True)
