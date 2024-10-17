@@ -5,7 +5,7 @@ import joblib  # or import pickle if you used pickle to save your model
 # model = joblib.load('random_forest_model.pkl')  # Adjust the path as needed
 
 # Set up the page title and description
-st.title("Heart Disease Prediction Model")
+st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction Model</h1>", unsafe_allow_html=True)
 st.write("Provide the following information to predict the likelihood of heart disease:")
 
 # Collect user input for the prediction model
