@@ -23,43 +23,6 @@ st.write(
     "Welcome to the Exploratory Data Analysis (EDA) Overview! "
     "In this section, we will visualize the relationships between variables using an interactive correlation heatmap."
 )
-
-# Detect missing values in the dataset
-missing_values = df.isnull()
-
-# Select color palette for the heatmap
-st.write("### Interactive Missing Values Heatmap")
-
-# Create an input box to choose a color palette
-palette_choice = st.selectbox(
-    "Choose a color palette",
-    ["RdBu", "viridis", "plasma", "cividis", "inferno", "magma", "Plasma", "YlGnBu"]
-)
-
-# Option to use seaborn heatmap or interactive plotly heatmap
-heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Plotly"])
-
-# Function to plot seaborn heatmap
-def plot_seaborn_missing_values_heatmap():
-    fig, ax = plt.subplots(figsize=(12, 8))
-    sns.heatmap(missing_values, cmap=palette_choice, cbar=False, ax=ax)
-    ax.set_title("Missing Values Heatmap")
-    st.pyplot(fig)
-
-# Function to plot interactive heatmap using plotly
-def plot_interactive_missing_values_heatmap():
-    z = missing_values.astype(int).values
-    fig = ff.create_annotated_heatmap(z, colorscale=palette_choice)
-    fig.update_layout(title="Interactive Missing Values Heatmap", width=900, height=600)
-    st.plotly_chart(fig)
-
-# Render the selected heatmap
-if heatmap_type == "Seaborn":
-    plot_seaborn_missing_values_heatmap()
-else:
-    plot_interactive_missing_values_heatmap()
-
-
 # Subtitle for heatmap
 st.subheader("Interactive Correlation Heatmap")
 
