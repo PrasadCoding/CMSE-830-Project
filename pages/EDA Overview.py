@@ -90,9 +90,11 @@ plot_histogram(hist_variable, num_bins)
 
 # Customizable Box Plots
 
-st.subheader("Customizable Box Plots")
+# Customizable Interactive Box Plots
 
-# Select a numeric variable for box plot
+st.subheader("Customizable Interactive Box Plots")
+
+# Select a numeric variable for the box plot
 box_variable = st.selectbox("Choose a numeric variable for the box plot:", options=numeric_features.columns)
 
 # If there are categorical variables, select one for grouping (adjust based on your DataFrame)
@@ -102,26 +104,23 @@ if categorical_features:
 else:
     box_group_variable = None
 
-# Function to plot the box plot
-def plot_box_plot(numeric_var, group_var=None):
-    fig, ax = plt.subplots(figsize=(10, 6))
-    
+# Function to plot the interactive box plot
+def plot_interactive_box_plot(numeric_var, group_var=None):
     if group_var:
-        # Switch x and y for horizontal orientation
-        sns.boxplot(data=df, x=numeric_var, y=group_var, ax=ax)
-        ax.set_title(f'Box Plot of {numeric_var} by {group_var}')
+        fig = px.box(df, x=numeric_var, y=group_var, points="all", title=f'Interactive Box Plot of {numeric_var} by {group_var}')
     else:
-        sns.boxplot(data=df, x=numeric_var, ax=ax)
-        ax.set_title(f'Box Plot of {numeric_var}')
+        fig = px.box(df, x=numeric_var, points="all", title=f'Interactive Box Plot of {numeric_var}')
 
-    ax.set_xlabel(numeric_var)  # Change ylabel to xlabel
-    ax.set_ylabel(group_var if group_var else 'Distribution')  # Change xlabel to ylabel
-    st.pyplot(fig)
+    fig.update_layout(
+        xaxis_title=numeric_var,
+        yaxis_title=group_var if group_var else 'Distribution',
+        width=800, height=600
+    )
+    
+    st.plotly_chart(fig)
 
-# Render the box plot
-if box_group_variable:
-    plot_box_plot(box_variable, box_group_variable)
-else:
-    plot_box_plot(box_variable)
+# Render the interactive box plot
+plot_interactive_box_plot(box_variable, box_group_variable)
+
 
 
