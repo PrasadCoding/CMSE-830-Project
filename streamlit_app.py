@@ -66,6 +66,14 @@ st.markdown("<div class='image-container'>", unsafe_allow_html=True)
 st.image(image, use_column_width='auto')
 st.markdown("</div>", unsafe_allow_html=True)
 
+# Additional content section
+st.markdown("<div class='stats'>", unsafe_allow_html=True)
+st.markdown("<h4>Did You Know?</h4>", unsafe_allow_html=True)
+st.markdown("<p>Heart disease is the leading cause of death worldwide, claiming around 17.9 million lives each year.</p>", unsafe_allow_html=True)
+st.markdown("<p>Key risk factors include high blood pressure, high cholesterol, smoking, diabetes, and obesity.</p>", unsafe_allow_html=True)
+st.markdown("<p>Early detection and lifestyle changes can significantly reduce the risk of heart disease.</p>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
+
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<p class='footer'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
