@@ -139,13 +139,16 @@ else:
 # Define fixed colors for scatter plot
 fixed_colors = ['blue', 'orange', 'green', 'red', 'purple', 'brown', 'pink', 'gray', 'olive', 'cyan']
 
+# Allow the user to select a color from fixed options
+selected_color = st.selectbox("Choose a color for the scatter plot:", options=fixed_colors)
+
 # Function to plot the interactive scatter plot
-def plot_interactive_scatter_plot(x_var, y_var, color_var=None):
-    # Check if a color variable is selected and adjust the Plotly parameters accordingly
+def plot_interactive_scatter_plot(x_var, y_var, color_var=None, point_color=None):
+    # Check if a color variable is selected
     if color_var:
         # Get unique categories for coloring
         unique_categories = df[color_var].unique()
-        color_map = {category: fixed_colors[i % len(fixed_colors)] for i, category in enumerate(unique_categories)}
+        color_map = {category: point_color for i, category in enumerate(unique_categories)}
         
         # Map colors to data
         df['color'] = df[color_var].map(color_map)
@@ -156,7 +159,8 @@ def plot_interactive_scatter_plot(x_var, y_var, color_var=None):
                          hover_name=color_var)
     else:
         fig = px.scatter(df, x=x_var, y=y_var,
-                         title=f'Interactive Scatter Plot of {y_var} vs {x_var}')
+                         title=f'Interactive Scatter Plot of {y_var} vs {x_var}',
+                         color_discrete_sequence=[point_color])
 
     fig.update_layout(
         xaxis_title=x_var,
@@ -167,7 +171,8 @@ def plot_interactive_scatter_plot(x_var, y_var, color_var=None):
     st.plotly_chart(fig)
 
 # Render the interactive scatter plot
-plot_interactive_scatter_plot(x_variable, y_variable, color_variable)
+plot_interactive_scatter_plot(x_variable, y_variable, color_variable, selected_color)
+
 
 
 
