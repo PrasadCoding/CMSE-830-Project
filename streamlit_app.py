@@ -18,20 +18,20 @@ st.markdown("""
         color: #FF4B4B;
         text-align: center;
         font-weight: bold;
-        margin-top: 10px;
+        margin: 5px 0; /* Reduced top and bottom margin */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
     .sub-title {
         font-size: 22px;
         color: #333333;
         text-align: center;
-        margin-bottom: 5px;
+        margin: 5px 0; /* Reduced top and bottom margin */
     }
     .description {
         font-size: 18px;
         color: #555555;
         text-align: center;
-        margin: 10px auto;
+        margin: 5px auto; /* Reduced top and bottom margin */
         max-width: 700px;
         line-height: 1.6;
     }
@@ -39,12 +39,12 @@ st.markdown("""
         text-align: center;
         color: gray;
         font-size: 14px;
-        margin: 20px 0;
+        margin: 10px 0; /* Reduced margin */
     }
     .image-container {
         display: flex;
         justify-content: center;
-        margin: 20px 0;
+        margin: 10px 0; /* Reduced top and bottom margin */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         overflow: hidden;
@@ -57,7 +57,7 @@ st.markdown("""
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px auto;
+        margin: 20px auto; /* Keep some space around the stats */
         max-width: 800px;
     }
     .stats h4 {
