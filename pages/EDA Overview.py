@@ -34,7 +34,7 @@ with col1:
     heatmap_type = st.selectbox("Choose Heatmap Type", ["Seaborn", "Plotly"])
 
 with col2:
-    color_palette = st.selectbox("Choose Color Palette", ["coolwarm", "RdBu", "viridis", "plasma", "cividis"])
+    color_palette = st.selectbox("Choose Color Palette", ["RdBu", "viridis", "plasma", "cividis", "inferno", "magma", "Plasma", "YlGnBu"])
 
 # Option 1: Using Seaborn for Static Heatmap
 def plot_seaborn_heatmap():
