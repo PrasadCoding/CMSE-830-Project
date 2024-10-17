@@ -146,6 +146,9 @@ with col3:
 with col4:
     custom_color = st.text_input('Enter color (hex code)', value='#1f77b4')
 
+if custom_color == '':
+    custom_color = '#1f77b4'  # Default color
+
 # If the user chooses "None", use the custom color for the scatter plot
 if categorical_variable == "None":
     fig = px.scatter(df, x=x_variable, y=y_variable, color_discrete_sequence=[custom_color])  # Use custom color
