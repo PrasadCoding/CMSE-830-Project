@@ -11,6 +11,19 @@ import plotly.graph_objects as go
 # Assuming you already have your dataset
 df = pd.read_csv('dataset/heart_disease.csv')
 
+# Select numeric features for correlation heatmap
+numeric_features = df.select_dtypes(include=['float64', 'int64'])
+
+# Calculate the correlation matrix
+correlation_matrix = numeric_features.corr()
+
+# Title and description
+st.markdown("<h1 style='color: #FF4B4B;'>EDA Overview</h1>", unsafe_allow_html=True)
+st.write(
+    "Welcome to the Exploratory Data Analysis (EDA) Overview! "
+    "In this section, we will visualize the relationships between variables using an interactive correlation heatmap."
+)
+
 # Detect missing values in the dataset
 missing_values = df.isnull()
 
@@ -46,18 +59,6 @@ if heatmap_type == "Seaborn":
 else:
     plot_interactive_missing_values_heatmap()
 
-# Select numeric features for correlation heatmap
-numeric_features = df.select_dtypes(include=['float64', 'int64'])
-
-# Calculate the correlation matrix
-correlation_matrix = numeric_features.corr()
-
-# Title and description
-st.markdown("<h1 style='color: #FF4B4B;'>EDA Overview</h1>", unsafe_allow_html=True)
-st.write(
-    "Welcome to the Exploratory Data Analysis (EDA) Overview! "
-    "In this section, we will visualize the relationships between variables using an interactive correlation heatmap."
-)
 
 # Subtitle for heatmap
 st.subheader("Interactive Correlation Heatmap")
