@@ -4,18 +4,6 @@ from PIL import Image
 # Set page config
 st.set_page_config(page_title="Heart Disease Prediction App", layout="wide")
 
-st.markdown(
-    """
-    <style>
-    .main {
-        max-width: 1200px;
-        margin: 20 auto;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Load image for the home screen (replace with your own image)
 image = Image.open('images/heart_disease_image.jpg')
 
