@@ -112,9 +112,9 @@ def plot_box_plot():
     default_color = "#1f77b4"  # Default color
     color = color_input_box if color_input_box else default_color  # Use input color or default
     
-    # Create the box plot using Plotly
-    fig = go.Figure(data=go.Box(y=df[selected_box_feature], boxmean=True, marker_color=color))
-    fig.update_layout(title=f"Box Plot of {selected_box_feature}", yaxis_title=selected_box_feature)
+    # Create the horizontal box plot using Plotly
+    fig = go.Figure(data=go.Box(x=df[selected_box_feature], boxmean=True, marker_color=color))
+    fig.update_layout(title=f"Horizontal Box Plot of {selected_box_feature}", xaxis_title=selected_box_feature)
     
     st.plotly_chart(fig)
 
