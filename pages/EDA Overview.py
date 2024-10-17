@@ -66,27 +66,33 @@ else:
     plot_plotly_heatmap()
 
 
-# Customizable Histograms
+# Customizable Histogram
 
-st.subheader("Customizable Histograms")
+st.header("Customizable Histograms")
 
-# Select a numeric variable for histogram
-hist_variable = st.selectbox("Choose a variable for the histogram:", options=numeric_features.columns)
+# Create columns for feature selection, color input, and bins slider
+hist_col1, hist_col2 = st.columns(2)
 
-# Select number of bins
-num_bins = st.slider("Select the number of bins:", min_value=5, max_value=100, value=20)
+with hist_col1:
+    selected_feature = st.selectbox("Select Feature for Histogram", numeric_features.columns)
 
-# Function to plot the histogram
-def plot_histogram(variable, bins):
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(df[variable], bins=bins, color='skyblue', edgecolor='black')
-    ax.set_title(f'Histogram of {variable}')
-    ax.set_xlabel(variable)
-    ax.set_ylabel('Frequency')
-    st.pyplot(fig)
+with hist_col2:
+    color_input = st.text_input("Enter Color (Hex Code or Name)", placeholder="#1f77b4")  # Default color as a placeholder
+
+# Slider for number of bins
+num_bins = st.slider("Select Number of Bins", min_value=5, max_value=50, value=20)
+
+# Plot histogram
+def plot_histogram():
+    default_color = "#1f77b4"  # Default color
+    color = color_input if color_input else default_color  # Use input color or default
+    fig = go.Figure(data=go.Histogram(x=df[selected_feature], marker_color=color, nbinsx=num_bins))
+    fig.update_layout(title=f"Histogram of {selected_feature}", xaxis_title=selected_feature, yaxis_title="Count")
+    st.plotly_chart(fig)
 
 # Render the histogram
-plot_histogram(hist_variable, num_bins)
+plot_histogram()
+
 
 # Customizable Box Plots
 
