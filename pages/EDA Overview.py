@@ -123,4 +123,40 @@ def plot_interactive_box_plot(numeric_var, group_var=None):
 plot_interactive_box_plot(box_variable, box_group_variable)
 
 
+# Interactive Scatter Plot
+
+st.subheader("Interactive Scatter Plot")
+
+# Select X and Y variables
+x_variable = st.selectbox("Choose a variable for the X-axis:", options=numeric_features.columns)
+y_variable = st.selectbox("Choose a variable for the Y-axis:", options=numeric_features.columns)
+
+# Select a color variable (optional, if a categorical variable exists)
+if categorical_features:
+    color_variable = st.selectbox("Choose a categorical variable for color coding (optional):", options=[None] + categorical_features.tolist())
+else:
+    color_variable = None
+
+# Choose a color palette
+color_palette = st.selectbox("Choose a color palette:", options=['Viridis', 'Cividis', 'Plasma', 'Inferno', 'Magma', 'YlGnBu'])
+
+# Function to plot the interactive scatter plot
+def plot_interactive_scatter_plot(x_var, y_var, color_var=None, palette='Viridis'):
+    fig = px.scatter(df, x=x_var, y=y_var, color=color_var, color_continuous_scale=palette,
+                     title=f'Interactive Scatter Plot of {y_var} vs {x_var}',
+                     hover_name=color_var if color_var else None)
+
+    fig.update_layout(
+        xaxis_title=x_var,
+        yaxis_title=y_var,
+        width=800, height=600
+    )
+
+    st.plotly_chart(fig)
+
+# Render the interactive scatter plot
+plot_interactive_scatter_plot(x_variable, y_variable, color_variable, color_palette)
+
+
+
 
