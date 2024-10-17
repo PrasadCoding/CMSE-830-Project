@@ -2,7 +2,7 @@ import streamlit as st
 import joblib  # or import pickle if you used pickle to save your model
 
 # Load the pre-trained Random Forest model
-model = joblib.load('random_forest_model.pkl')  # Adjust the path as needed
+# model = joblib.load('random_forest_model.pkl')  # Adjust the path as needed
 
 # Set up the page title and description
 st.title("Heart Disease Prediction Model")
