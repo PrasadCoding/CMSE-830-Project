@@ -122,9 +122,6 @@ def plot_interactive_box_plot(numeric_var, group_var=None):
 # Render the interactive box plot
 plot_interactive_box_plot(box_variable, box_group_variable)
 
-
-# Interactive Scatter Plot
-
 # Interactive Scatter Plot
 
 st.subheader("Interactive Scatter Plot")
@@ -139,16 +136,23 @@ if categorical_features:
 else:
     color_variable = None
 
-# Choose a color palette
-color_palette = st.selectbox("Choose a color palette:", options=['Viridis', 'Cividis', 'Plasma', 'Inferno', 'Magma', 'YlGnBu'])
+# Define fixed colors for scatter plot
+fixed_colors = ['blue', 'orange', 'green', 'red', 'purple', 'brown', 'pink', 'gray', 'olive', 'cyan']
 
 # Function to plot the interactive scatter plot
-def plot_interactive_scatter_plot(x_var, y_var, color_var=None, palette='Viridis'):
+def plot_interactive_scatter_plot(x_var, y_var, color_var=None):
     # Check if a color variable is selected and adjust the Plotly parameters accordingly
     if color_var:
-        fig = px.scatter(df, x=x_var, y=y_var, color=color_var,
-                         color_discrete_sequence=px.colors.sequential.__dict__[palette],
+        # Get unique categories for coloring
+        unique_categories = df[color_var].unique()
+        color_map = {category: fixed_colors[i % len(fixed_colors)] for i, category in enumerate(unique_categories)}
+        
+        # Map colors to data
+        df['color'] = df[color_var].map(color_map)
+        
+        fig = px.scatter(df, x=x_var, y=y_var, color='color', 
                          title=f'Interactive Scatter Plot of {y_var} vs {x_var}',
+                         color_discrete_map=color_map,
                          hover_name=color_var)
     else:
         fig = px.scatter(df, x=x_var, y=y_var,
@@ -163,7 +167,7 @@ def plot_interactive_scatter_plot(x_var, y_var, color_var=None, palette='Viridis
     st.plotly_chart(fig)
 
 # Render the interactive scatter plot
-plot_interactive_scatter_plot(x_variable, y_variable, color_variable, color_palette)
+plot_interactive_scatter_plot(x_variable, y_variable, color_variable)
 
 
 
