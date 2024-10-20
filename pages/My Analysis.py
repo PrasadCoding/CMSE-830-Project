@@ -278,24 +278,6 @@ plt.ylabel('Count')
 st.pyplot(plt)
 plt.close()
 
-import plotly.express as px
-
-# Calculate the correlation matrix
-correlation_matrix = df.corr()
-
-# Create an interactive heatmap
-fig = px.imshow(correlation_matrix,
-                labels=dict(x="Features", y="Features", color="Correlation"),
-                x=correlation_matrix.columns,
-                y=correlation_matrix.columns,
-                title="Interactive Heatmap of Feature Correlations",
-                color_continuous_scale='Viridis')
-
-# Display the heatmap in Streamlit
-st.subheader("Interactive Heatmap of Feature Correlations")
-st.plotly_chart(fig)
-
-
 # Adding Subheader and Content
 import plotly.express as px
 
@@ -322,4 +304,27 @@ This visualization helps us understand how features interact with one another, g
 
 # Display the heatmap in Streamlit
 st.plotly_chart(fig, use_container_width=True, key="heatmap_chart")
+
+
+import plotly.express as px
+
+# Create a scatter matrix (interactive pair plot)
+fig = px.scatter_matrix(df,
+                          dimensions=df.columns[:-1],  # Exclude target variable from dimensions
+                          color='TenYearCHD',           # Use 'TenYearCHD' as the hue
+                          title="Interactive Pair Plot of Heart Disease Prediction Dataset",
+                          color_continuous_scale=px.colors.sequential.Viridis)
+
+# Adding Subheader and Content
+st.subheader("Interactive Pair Plot of Heart Disease Prediction Dataset")
+
+st.write("""
+The scatter matrix below visualizes the pairwise relationships between the features in the heart disease dataset. 
+Each point represents an observation, and the color indicates whether the individual has heart disease (1) or not (0). 
+This visualization allows us to observe potential correlations and distributions across multiple dimensions, aiding in feature selection and analysis.
+""")
+
+# Display the scatter matrix in Streamlit
+st.plotly_chart(fig, use_container_width=True, key="scatter_matrix")
+
 
