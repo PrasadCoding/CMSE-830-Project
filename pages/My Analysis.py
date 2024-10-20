@@ -54,3 +54,15 @@ The primary goal of this project is to develop a predictive model that can asses
 4. Assess and visualize the performance of the model.
 """)
 
+st.header("Missing Values Analysis")
+
+# Brief introduction
+st.write("""
+Understanding missing values is crucial in data analysis as they can affect the performance of models and the overall insights we derive from the data. 
+Here, we check the number of missing values in each feature of the dataset to determine if any imputation or data cleaning is necessary.
+""")
+
+# Display the missing values count
+missing_values = df.isnull().sum()
+st.write(missing_values)
+
