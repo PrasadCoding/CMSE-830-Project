@@ -193,3 +193,27 @@ plt.tight_layout()
 # Show the histograms in Streamlit
 st.pyplot(plt)
 plt.close()  # Close the plot to prevent duplicate display
+
+st.subheader("Univariate Analysis Insights")
+st.write("""
+The histograms above provide valuable insights into the distribution of numeric variables in our heart disease dataset:
+
+1. **Age**: The age distribution appears to be roughly normal, with a peak around 60 years, indicating that this is the age range where heart disease prevalence may be higher.
+
+2. **Education**: The education variable shows a distinct bar distribution, suggesting that most individuals have achieved either low or moderate levels of education, which could impact health outcomes.
+
+3. **Cigarettes Per Day**: The distribution of cigarettes smoked per day indicates a significant number of individuals who are non-smokers, with a few outliers who smoke heavily, highlighting the importance of smoking as a risk factor.
+
+4. **Total Cholesterol**: The total cholesterol levels show a right-skewed distribution, with most individuals having levels below 300, but with a few cases exceeding this threshold, indicating potential health risks.
+
+5. **Systolic and Diastolic Blood Pressure**: Both blood pressure measures exhibit a normal distribution, but with noticeable peaks at lower values, suggesting a trend towards healthier blood pressure levels among the majority.
+
+6. **Body Mass Index (BMI)**: The BMI distribution is left-skewed, with a concentration of individuals falling below the average range of 25, which may indicate a healthier population in terms of weight.
+
+7. **Heart Rate**: The histogram of heart rate displays a more uniform distribution, suggesting a diverse range of heart rates among individuals, which may correlate with varying fitness levels.
+
+8. **Glucose Levels**: Glucose levels are highly right-skewed, with most individuals showing low levels and a few outliers with elevated glucose levels, indicating potential health concerns such as prediabetes or diabetes.
+
+Overall, these distributions provide important context for understanding the demographic and health-related characteristics of the individuals in this dataset. They can inform our modeling decisions and highlight potential areas for further investigation in relation to heart disease risk factors.
+""")
+
