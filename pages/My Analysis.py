@@ -278,3 +278,46 @@ plt.ylabel('Count')
 st.pyplot(plt)
 plt.close()
 
+import plotly.express as px
+
+# Calculate the correlation matrix
+correlation_matrix = df.corr()
+
+# Create an interactive heatmap
+fig = px.imshow(correlation_matrix,
+                labels=dict(x="Features", y="Features", color="Correlation"),
+                x=correlation_matrix.columns,
+                y=correlation_matrix.columns,
+                title="Interactive Heatmap of Feature Correlations",
+                color_continuous_scale='Viridis')
+
+# Display the heatmap in Streamlit
+st.subheader("Interactive Heatmap of Feature Correlations")
+st.plotly_chart(fig)
+
+
+# Adding Subheader and Content
+st.subheader("Interactive Heatmap of Feature Correlations")
+
+st.write("""
+The heatmap below illustrates the correlation between various features in the heart disease dataset. 
+Correlation values range from -1 to 1, where values closer to 1 indicate a strong positive correlation, 
+values closer to -1 indicate a strong negative correlation, and values around 0 suggest no correlation. 
+This visualization helps us understand how features interact with one another, guiding our analysis and model selection.
+""")
+
+# Display the heatmap in Streamlit
+import plotly.express as px
+
+# Calculate the correlation matrix
+correlation_matrix = df.corr()
+
+# Create an interactive heatmap
+fig = px.imshow(correlation_matrix,
+                labels=dict(x="Features", y="Features", color="Correlation"),
+                x=correlation_matrix.columns,
+                y=correlation_matrix.columns,
+                title="Interactive Heatmap of Feature Correlations",
+                color_continuous_scale='Viridis')
+
+st.plotly_chart(fig)
