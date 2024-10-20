@@ -308,22 +308,24 @@ st.plotly_chart(fig, use_container_width=True, key="heatmap_chart")
 
 st.subheader("Interactive Pair Plot of Selected Features")
 
+# Description of the plot
 st.write("""
 The scatter matrix below visualizes the pairwise relationships between selected features in the heart disease dataset. 
 Each point represents an observation, and the color indicates whether the individual has heart disease (1) or not (0). 
 Focusing on a subset of features makes it easier to observe potential correlations and distributions, aiding in feature selection and analysis.
 """)
-non_categorical_features = ['age', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose', 'TenYearCHD']
-# Add a title to the Streamlit app
-st.subheader("Pair Plot of Important Non-Categorical Variables")
 
-# Create the pair plot
-fig, ax = plt.subplots(figsize=(15, 10))
-sns.pairplot(df[non_categorical_features], hue='TenYearCHD', diag_kind='kde', markers=["o", "s"], ax=ax)
-plt.suptitle('Pair Plot of Important Non-Categorical Variables', y=1.02)
+# Define the non-categorical features for the pair plot
+non_categorical_features = ['age', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose', 'TenYearCHD']
+
+# Create the pair plot without specifying ax
+pair_plot = sns.pairplot(df[non_categorical_features], hue='TenYearCHD', diag_kind='kde', markers=["o", "s"])
+
+# Set the title for the pair plot
+pair_plot.fig.suptitle('Pair Plot of Important Non-Categorical Variables', y=1.02)
 
 # Display the plot in Streamlit
-st.pyplot(fig)
+st.pyplot(pair_plot.fig)
 
 
 
