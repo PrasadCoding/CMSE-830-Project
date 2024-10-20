@@ -344,4 +344,30 @@ st.write("""
 
 """)
 
+# Set up the page title and description
+st.markdown("<h1 style='color: #FF4B4B;'>Final Conclusion</h1>", unsafe_allow_html=True)
 
+# Write the conclusion content
+st.write("""
+In this analysis, we explored the relationships between various factors contributing to heart disease risk, utilizing visualizations such as heatmaps and pair plots. Key findings include:
+""")
+
+st.write("""
+- **Significant Correlations**: Certain features, such as age, systolic blood pressure (sysBP), and total cholesterol (totChol), exhibit strong correlations with the likelihood of heart disease. These variables are crucial for risk assessment and should be monitored closely.
+""")
+
+st.write("""
+- **Predictive Modeling**: The Random Forest model demonstrated a robust ability to predict heart disease risk based on the provided features. The model's performance highlights the importance of integrating multiple health indicators in clinical assessments.
+""")
+
+st.write("""
+- **Clinical Implications**: Understanding the interplay between lifestyle factors (e.g., smoking and BMI) and medical history (e.g., prevalent hypertension and diabetes) can inform preventative strategies and targeted interventions for individuals at risk.
+""")
+
+st.write("""
+- **Future Directions**: Further research could enhance model accuracy by incorporating additional features or employing ensemble methods. Continuous monitoring and validation of the model with real-world data are recommended for optimal applicability in clinical settings.
+""")
+
+st.write("""
+This analysis underscores the importance of early detection and personalized healthcare strategies in mitigating heart disease risk.
+""")
