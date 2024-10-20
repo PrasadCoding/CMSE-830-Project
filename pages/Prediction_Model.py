@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 
 # Load the pre-trained Random Forest model
-model = joblib.load('random_forest_model.pkl')  # Adjust the path as needed
+  # Adjust the path as needed
 
 # Set up the page title and description
 st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction Model</h1>", unsafe_allow_html=True)
