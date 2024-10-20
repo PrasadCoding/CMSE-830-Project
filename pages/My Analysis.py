@@ -291,7 +291,7 @@ fig = px.imshow(correlation_matrix,
                 y=correlation_matrix.columns,
                 title="Interactive Heatmap of Feature Correlations",
                 color_continuous_scale='Viridis')
-
+fig.update_layout(width=900, height=700)
 # Adding Subheader and Content
 st.subheader("Interactive Heatmap of Feature Correlations")
 
@@ -314,7 +314,7 @@ fig = px.scatter_matrix(df,
                           color='TenYearCHD',           # Use 'TenYearCHD' as the hue
                           title="Interactive Pair Plot of Heart Disease Prediction Dataset",
                           color_continuous_scale=px.colors.sequential.Viridis)
-
+fig.update_layout(width=900, height=700)
 # Adding Subheader and Content
 st.subheader("Interactive Pair Plot of Heart Disease Prediction Dataset")
 
