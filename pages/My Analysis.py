@@ -92,6 +92,8 @@ For example, filling in someone's medical measurements, like cholesterol or gluc
 Therefore, removing the missing data will maintain the integrity and reliability of the analysis.
 """)
 
+df.dropna(inplace=True)
+
 st.subheader("Descriptive Statistics")
 
 st.write("""
