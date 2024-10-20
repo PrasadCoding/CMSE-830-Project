@@ -217,3 +217,24 @@ The histograms above provide valuable insights into the distribution of numeric 
 Overall, these distributions provide important context for understanding the demographic and health-related characteristics of the individuals in this dataset. They can inform our modeling decisions and highlight potential areas for further investigation in relation to heart disease risk factors.
 """)
 
+st.subheader("Class Distribution of Ten-Year Coronary Heart Disease Risk")
+st.write("""
+The bar chart displays the distribution of the **Ten-Year Coronary Heart Disease Risk** variable, illustrating the number of individuals classified as either at risk or not at risk for coronary heart disease over the next decade.
+
+1. **Not at Risk**: The majority of individuals fall into the 'not at risk' category, indicating a healthier population overall. This suggests that a significant portion of the dataset may have favorable health indicators and lifestyle choices.
+
+2. **At Risk**: A smaller proportion of individuals are classified as 'at risk,' highlighting the importance of targeted interventions for this group. Understanding the characteristics of these individuals can help identify risk factors and develop strategies to mitigate heart disease risk.
+
+Overall, this class distribution provides essential context for modeling and analysis, emphasizing the need to address the risk factors associated with coronary heart disease in the at-risk population.
+""")
+
+# Generate the count plot for Ten-Year Coronary Heart Disease Risk
+plt.figure(figsize=(8, 5))
+sns.countplot(x='TenYearCHD', data=df)
+plt.title('Class Distribution of Ten-Year Coronary Heart Disease Risk')
+plt.xlabel('Ten-Year Coronary Heart Disease Risk (0 = Not at Risk, 1 = At Risk)')
+plt.ylabel('Count')
+
+# Show the count plot in Streamlit
+st.pyplot(plt)
+plt.close()  # Close the plot to prevent duplicate display
