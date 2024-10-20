@@ -58,9 +58,9 @@ if st.button("Predict Heart Disease Risk"):
         "glucose": [glucose]
     }
     
-    input_data = pd.DataFrame(user_data)
+input_data = pd.DataFrame(user_data)
 
-    from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
@@ -87,12 +87,12 @@ y_pred = rf_model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
 # Printing the accuracy
-    
-    # Make a prediction using the loaded model
-    prediction = rf_model.predict(input_data)
 
-    # Display the prediction result
-    if prediction[0] == 1:
-        st.write("**Prediction Result:** You are at high risk of heart disease.")
-    else:
-        st.write("**Prediction Result:** You are at low risk of heart disease.")
+# Make a prediction using the loaded model
+prediction = rf_model.predict(input_data)
+
+# Display the prediction result
+if prediction[0] == 1:
+    st.write("**Prediction Result:** You are at high risk of heart disease.")
+else:
+    st.write("**Prediction Result:** You are at low risk of heart disease.")
