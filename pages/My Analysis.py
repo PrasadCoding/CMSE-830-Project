@@ -307,31 +307,46 @@ st.plotly_chart(fig, use_container_width=True, key="heatmap_chart")
 
 
 import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Select a subset of features for clarity
-features_to_plot = ['age', 'chol', 'sysBP', 'diaBP', 'BMI', 'heartRate']
+# Select important numerical features for visualization
+important_numerical_features = ['age', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose']
 
-# Create an interactive scatter matrix (pair plot) with selected features
-fig = px.scatter_matrix(df[features_to_plot + ['TenYearCHD']],  # Include target variable
-                         dimensions=features_to_plot,
-                         color='TenYearCHD',
-                         title="Interactive Pair Plot of Selected Features in Heart Disease Prediction Dataset",
-                         color_continuous_scale=px.colors.sequential.Viridis)
+# Create a Box Plot for Important Features
+box_fig = px.box(
+    df,
+    y=important_numerical_features,
+    title="Box Plots of Important Numerical Features",
+    points="all"  # Show all data points
+)
 
-# Update layout for a more manageable size
-fig.update_layout(width=700, height=700)  # Adjust width and height as needed
-
-# Adding Subheader and Content
-st.subheader("Interactive Pair Plot of Selected Features")
-
+# Display the box plot in Streamlit
+st.subheader("Box Plots of Important Numerical Features")
 st.write("""
-The scatter matrix below visualizes the pairwise relationships between selected features in the heart disease dataset. 
-Each point represents an observation, and the color indicates whether the individual has heart disease (1) or not (0). 
-Focusing on a subset of features makes it easier to observe potential correlations and distributions, aiding in feature selection and analysis.
+The box plots below provide a visual summary of the distribution of key numerical features related to heart disease.
+Each box plot displays the median, quartiles, and potential outliers for the selected features, aiding in identifying data distribution and anomalies.
 """)
+st.plotly_chart(box_fig, use_container_width=True, key="box_plots")
 
-# Display the scatter matrix in Streamlit
-st.plotly_chart(fig, use_container_width=True, key="scatter_matrix")
+# Create a Scatter Plot for two important features
+scatter_fig = px.scatter(
+    df,
+    x='age',
+    y='totChol',
+    color='TenYearCHD',
+    title="Scatter Plot of Age vs Total Cholesterol",
+    labels={'TenYearCHD': 'Heart Disease (1 = Yes, 0 = No)'},
+    color_continuous_scale=px.colors.sequential.Viridis
+)
+
+# Display the scatter plot in Streamlit
+st.subheader("Scatter Plot of Age vs Total Cholesterol")
+st.write("""
+This scatter plot illustrates the relationship between age and total cholesterol levels in the dataset. 
+Points are color-coded to indicate whether individuals have heart disease (1) or not (0), allowing for visual inspection of trends and correlations.
+""")
+st.plotly_chart(scatter_fig, use_container_width=True, key="scatter_plot")
 
 
 
