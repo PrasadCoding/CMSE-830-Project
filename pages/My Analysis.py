@@ -5,29 +5,41 @@ st.title("My Analysis")
 
 st.header("Dataset Description")
 st.markdown("""
-The dataset used in this analysis is focused on heart disease prediction. It contains health and demographic information about individuals, including features such as age, gender, blood pressure, cholesterol levels, smoking status, and others.
+The dataset used in this analysis is focused on heart disease prediction. It contains health and demographic information about individuals, including features such as Sex_male, age, currentSmoker, cigsPerDay, BPMeds, prevalentStroke, prevalentHyp, diabetes, totChol, sysBP, diaBP, BMI, heartRate, glucose, TenYearCHD.
 """)
 
 # Add dataset overview
 st.subheader("Dataset Overview")
 st.markdown("""
-- **Number of rows**: X (replace with actual number)
-- **Number of features**: Y (replace with actual number)
+- **Number of rows**: 4240 
+- **Number of features**: 15
 - **Target variable**: `TenYearCHD` – whether an individual will develop coronary heart disease within 10 years.
 """)
 
 # Display a table of key features
-st.subheader("Key Features")
+st.subheader("Features")
 st.table({
-    'Feature Name': ['age', 'sex', 'currentSmoker', 'totChol', 'sysBP', 'BMI', 'TenYearCHD'],
+    'Feature Name': [
+        'Sex_male', 'age', 'currentSmoker', 'cigsPerDay', 'BPMeds', 'prevalentStroke', 
+        'prevalentHyp', 'diabetes', 'totChol', 'sysBP', 'diaBP', 'BMI', 
+        'heartRate', 'glucose', 'TenYearCHD'
+    ],
     'Description': [
-        'Age of the individual',
         'Gender (1: Male, 0: Female)',
+        'Age of the individual',
         'Whether the individual is a current smoker (1 or 0)',
-        'Total cholesterol level',
-        'Systolic blood pressure',
-        'Body Mass Index',
-        'Whether the person develops heart disease in 10 years'
+        'Cigarettes smoked per day by the individual',
+        'Whether the individual is on blood pressure medication (1 or 0)',
+        'Whether the individual has had a stroke (1 or 0)',
+        'Whether the individual has hypertension (1 or 0)',
+        'Whether the individual has diabetes (1 or 0)',
+        'Total cholesterol level (mg/dL)',
+        'Systolic blood pressure (mmHg)',
+        'Diastolic blood pressure (mmHg)',
+        'Body Mass Index (BMI)',
+        'Heart rate (beats per minute)',
+        'Glucose level (mg/dL)',
+        'Whether the person develops heart disease in 10 years (1 or 0)'
     ]
 })
 
