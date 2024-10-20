@@ -1,8 +1,9 @@
 import streamlit as st
-import joblib  # or import pickle if you used pickle to save your model
+import joblib
+import pandas as pd
 
 # Load the pre-trained Random Forest model
-# model = joblib.load('random_forest_model.pkl')  # Adjust the path as needed
+model = joblib.load('random_forest_model.pkl')  # Adjust the path as needed
 
 # Set up the page title and description
 st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction Model</h1>", unsafe_allow_html=True)
@@ -57,14 +58,41 @@ if st.button("Predict Heart Disease Risk"):
         "glucose": [glucose]
     }
     
-    # import pandas as pd
-    # input_data = pd.DataFrame(user_data)
-    
-    # # Make a prediction using the loaded model
-    # prediction = model.predict(input_data)
+    input_data = pd.DataFrame(user_data)
 
-    # # Display the prediction result
-    # if prediction[0] == 1:
-    #     st.write("**Prediction Result:** You are at high risk of heart disease.")
-    # else:
-    #     st.write("**Prediction Result:** You are at low risk of heart disease.")
+    from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Sample DataFrame (replace this with your actual DataFrame)
+# df = pd.DataFrame(...)  # Your DataFrame
+
+# Assuming 'TenYearCHD' is the target variable and all other columns are features
+X = df.drop(columns=['TenYearCHD'])
+y = df['TenYearCHD']
+
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Creating the Random Forest Classifier
+rf_model = RandomForestClassifier(random_state=42)
+
+# Fitting the model
+rf_model.fit(X_train, y_train)
+
+# Making predictions
+y_pred = rf_model.predict(X_test)
+
+# Calculating accuracy
+accuracy = accuracy_score(y_test, y_pred)
+
+# Printing the accuracy
+    
+    # Make a prediction using the loaded model
+    prediction = rf_model.predict(input_data)
+
+    # Display the prediction result
+    if prediction[0] == 1:
+        st.write("**Prediction Result:** You are at high risk of heart disease.")
+    else:
+        st.write("**Prediction Result:** You are at low risk of heart disease.")
