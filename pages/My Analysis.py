@@ -242,18 +242,19 @@ st.pyplot(plt)
 plt.close()  # Close the plot to prevent duplicate display
 
 
-# Display class distribution before applying SMOTE
-st.subheader("Class Distribution Before Applying SMOTE")
-st.write(df['TenYearCHD'].value_counts())
+st.subheader("Addressing Class Imbalance with SMOTE")
+st.write("""
+In the analysis of the **Ten-Year Coronary Heart Disease Risk** variable, it is crucial to consider the class distribution. If the distribution is imbalanced, with one class significantly outnumbering the other, it may lead to biased model predictions. 
 
-# Plotting class distribution before SMOTE
-plt.figure(figsize=(8, 5))
-sns.countplot(x='TenYearCHD', data=df)
-plt.title('Class Distribution of Ten-Year Coronary Heart Disease Risk (Before SMOTE)')
-plt.xlabel('Ten-Year Coronary Heart Disease Risk (0 = Not at Risk, 1 = At Risk)')
-plt.ylabel('Count')
-st.pyplot(plt)
-plt.close()
+To address this issue, we can employ **SMOTE (Synthetic Minority Over-sampling Technique)**, which generates synthetic samples for the minority class. This technique helps balance the dataset by providing more examples for the model to learn from, potentially improving its performance on the minority class.
+
+However, it is essential to ensure that:
+1. The model being used benefits from a balanced dataset.
+2. The results are evaluated to confirm that SMOTE has a positive impact on model performance.
+
+Using SMOTE can be an effective strategy to enhance the predictive power of models, particularly in cases where class imbalance may hinder accurate predictions of heart disease risk.
+""")
+
 
 # Applying SMOTE
 from imblearn.over_sampling import SMOTE
