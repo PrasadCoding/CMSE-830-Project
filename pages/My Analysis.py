@@ -68,8 +68,19 @@ Here, we check the number of missing values in each feature of the dataset to de
 """)
 
 # Display the missing values count
+# Count of missing values
 missing_values = df.isnull().sum()
-st.write(missing_values)
+st.dataframe(missing_values[missing_values > 0])  # Display only features with missing values
+
+# Plotting heatmap of missing data
+st.write("### Heatmap of Missing Data")
+plt.figure(figsize=(10, 6))
+sns.heatmap(df.isnull(), cbar=False, cmap='viridis')
+plt.title('Heatmap of Missing Data in Heart Disease Dataset')
+
+# Show the heatmap in Streamlit
+st.pyplot(plt)
+plt.close() 
 
 st.subheader("Handling Missing Data")
 
@@ -124,23 +135,3 @@ st.subheader("Data Types After Conversion")
 st.code("df.dtypes")
 st.dataframe(df.dtypes)
 
-
-# Missing Values Section
-st.subheader("Missing Values Analysis")
-st.write("""
-Understanding missing values is crucial for effective data analysis. The table below shows the count of missing values for each feature in the dataset.
-""")
-
-# Count of missing values
-missing_values = df.isnull().sum()
-st.dataframe(missing_values[missing_values > 0])  # Display only features with missing values
-
-# Plotting heatmap of missing data
-st.write("### Heatmap of Missing Data")
-plt.figure(figsize=(10, 6))
-sns.heatmap(df.isnull(), cbar=False, cmap='viridis')
-plt.title('Heatmap of Missing Data in Heart Disease Dataset')
-
-# Show the heatmap in Streamlit
-st.pyplot(plt)
-plt.close() 
