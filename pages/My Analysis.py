@@ -114,7 +114,7 @@ st.code("df.dtypes")
 st.dataframe(df.dtypes)
 
 # Convert categorical variables
-category_list = ['Sex_male', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes', 'TenYearCHD']
+category_list = ['male', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes', 'TenYearCHD']
 for i in category_list:
     df[i] = df[i].astype('category')
 
