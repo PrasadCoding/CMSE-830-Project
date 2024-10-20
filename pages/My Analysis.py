@@ -372,4 +372,5 @@ y_pred = rf_model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
 # Printing the accuracy
-print(f'Accuracy of Random Forest Classifier: {accuracy:.2f}')
+st.wrtie(f'Accuracy of Random Forest Classifier: {accuracy:.2f}')
+st.wrtie(accuracy)
