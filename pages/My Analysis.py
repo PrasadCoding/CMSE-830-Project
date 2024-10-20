@@ -238,3 +238,40 @@ plt.ylabel('Count')
 # Show the count plot in Streamlit
 st.pyplot(plt)
 plt.close()  # Close the plot to prevent duplicate display
+
+
+# Display class distribution before applying SMOTE
+st.subheader("Class Distribution Before Applying SMOTE")
+st.write(df['TenYearCHD'].value_counts())
+
+# Plotting class distribution before SMOTE
+plt.figure(figsize=(8, 5))
+sns.countplot(x='TenYearCHD', data=df)
+plt.title('Class Distribution of Ten-Year Coronary Heart Disease Risk (Before SMOTE)')
+plt.xlabel('Ten-Year Coronary Heart Disease Risk (0 = Not at Risk, 1 = At Risk)')
+plt.ylabel('Count')
+st.pyplot(plt)
+plt.close()
+
+# Applying SMOTE
+from imblearn.over_sampling import SMOTE
+
+X = df.drop('TenYearCHD', axis=1)  # Features
+y = df['TenYearCHD']                # Target variable
+
+smote = SMOTE(random_state=42)
+X_resampled, y_resampled = smote.fit_resample(X, y)
+
+# Display class distribution after applying SMOTE
+st.subheader("Class Distribution After Applying SMOTE")
+st.write(pd.Series(y_resampled).value_counts())
+
+# Plotting class distribution after SMOTE
+plt.figure(figsize=(8, 5))
+sns.countplot(x=y_resampled)
+plt.title('Class Distribution of Ten-Year Coronary Heart Disease Risk (After SMOTE)')
+plt.xlabel('Ten-Year Coronary Heart Disease Risk (0 = Not at Risk, 1 = At Risk)')
+plt.ylabel('Count')
+st.pyplot(plt)
+plt.close()
+
