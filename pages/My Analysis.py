@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import StandardScaler
 
 df = pd.read_csv("dataset/heart_disease.csv")
 # Dataset description section
