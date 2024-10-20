@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 # Sample DataFrame (replace this with your actual DataFrame)
-# df = pd.DataFrame(...)  # Your DataFrame
+df = pd.DataFrame("dataset/heart_disease.csv")  # Your DataFrame
 
 # Assuming 'TenYearCHD' is the target variable and all other columns are features
 X = df.drop(columns=['TenYearCHD'])
