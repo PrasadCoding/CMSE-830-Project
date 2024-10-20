@@ -314,7 +314,7 @@ fig = px.scatter_matrix(df,
                           color='TenYearCHD',           # Use 'TenYearCHD' as the hue
                           title="Interactive Pair Plot of Heart Disease Prediction Dataset",
                           color_continuous_scale=px.colors.sequential.Viridis)
-fig.update_layout(width=900, height=700)
+fig.update_layout(width=1500, height=1000)
 # Adding Subheader and Content
 st.subheader("Interactive Pair Plot of Heart Disease Prediction Dataset")
 
