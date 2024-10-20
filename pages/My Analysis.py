@@ -342,8 +342,6 @@ st.write("""
 
 5. **Glucose Levels**: The analysis of glucose levels in relation to heart disease highlights a concerning trend, as higher glucose levels correspond to a higher presence of heart disease, suggesting that diabetes management could be critical for reducing cardiovascular risk.
 
-### Summary Statement
-Overall, the pair plot provides a comprehensive visualization of the relationships between key non-categorical variables and heart disease, emphasizing the importance of monitoring age, cholesterol, blood pressure, BMI, and glucose levels in assessing cardiovascular risk.
 """)
 
 
