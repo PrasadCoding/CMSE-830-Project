@@ -327,5 +327,23 @@ pair_plot.fig.suptitle('Pair Plot of Important Non-Categorical Variables', y=1.0
 # Display the plot in Streamlit
 st.pyplot(pair_plot.fig)
 
+# Title for the analysis section
+st.subheader("Analysis of Pair Plot")
+
+# Analysis sentences
+st.write("""
+1. **Age and Heart Disease**: The scatter plot of age versus the presence of heart disease (TenYearCHD) indicates a notable trend where older individuals tend to have a higher likelihood of heart disease, as evidenced by the increased concentration of orange markers (indicating heart disease) in the older age groups.
+
+2. **Total Cholesterol and Heart Disease**: The relationship between total cholesterol (totChol) and heart disease shows that individuals with higher cholesterol levels are more likely to be at risk, as indicated by the clustering of orange points at elevated cholesterol levels.
+
+3. **Blood Pressure Metrics**: Both systolic (sysBP) and diastolic blood pressure (diaBP) are positively correlated with heart disease, with a greater density of orange markers at higher blood pressure values, suggesting that hypertension is a significant risk factor.
+
+4. **BMI Correlation**: The plot of BMI against heart disease indicates a positive association; individuals with higher BMI values are more frequently represented by the orange markers, reinforcing the link between obesity and cardiovascular risk.
+
+5. **Glucose Levels**: The analysis of glucose levels in relation to heart disease highlights a concerning trend, as higher glucose levels correspond to a higher presence of heart disease, suggesting that diabetes management could be critical for reducing cardiovascular risk.
+
+### Summary Statement
+Overall, the pair plot provides a comprehensive visualization of the relationships between key non-categorical variables and heart disease, emphasizing the importance of monitoring age, cholesterol, blood pressure, BMI, and glucose levels in assessing cardiovascular risk.
+""")
 
 
