@@ -157,3 +157,12 @@ scaled_features_df['TenYearCHD'] = df['TenYearCHD'].values
 # Display the scaled features DataFrame
 st.write("### Scaled Features")
 st.dataframe(scaled_features_df)
+
+
+# Encoding Section
+st.subheader("Encoding of Categorical Variables")
+st.write("""
+In this analysis, we have determined that the categorical variables in our dataset have already been appropriately encoded. 
+Therefore, no additional encoding steps are required at this stage. This is beneficial as it allows us to proceed directly to modeling 
+without the need for further preprocessing of categorical features.
+""")
