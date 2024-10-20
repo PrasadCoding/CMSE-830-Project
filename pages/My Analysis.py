@@ -135,3 +135,24 @@ st.subheader("Data Types After Conversion")
 st.code("df.dtypes")
 st.dataframe(df.dtypes)
 
+# Scaling Numeric Features Section
+st.subheader("Feature Scaling")
+st.write("""
+Feature scaling is an essential preprocessing step in machine learning. It helps to standardize the range of independent variables or features 
+of data. In this analysis, we will standardize the numeric features using the StandardScaler, which will transform the features to have a mean of 0 and a standard deviation of 1.
+""")
+
+# Selecting numeric features
+numeric_features = df.select_dtypes(include=['float64', 'int64'])
+
+# Standardize the features
+scaler = StandardScaler()
+scaled_features = scaler.fit_transform(numeric_features)
+
+# Create a DataFrame for the scaled features
+scaled_features_df = pd.DataFrame(scaled_features, columns=numeric_features.columns)
+scaled_features_df['TenYearCHD'] = df['TenYearCHD'].values
+
+# Display the scaled features DataFrame
+st.write("### Scaled Features")
+st.dataframe(scaled_features_df)
