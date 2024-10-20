@@ -70,3 +70,23 @@ Here, we check the number of missing values in each feature of the dataset to de
 missing_values = df.isnull().sum()
 st.write(missing_values)
 
+st.subheader("Handling Missing Data")
+
+st.write("""
+After analyzing the missing values in the dataset, I have decided to drop rows with missing data. Since this is medical data, many of the features are categorical, 
+and filling missing values with averages (mean or median) would not provide meaningful or accurate results. 
+For example, filling in someone's medical measurements, like cholesterol or glucose levels, based on average values could lead to inaccurate insights or predictions. 
+Therefore, removing the missing data will maintain the integrity and reliability of the analysis.
+""")
+
+st.subheader("Descriptive Statistics")
+
+st.write("""
+The table below provides an overview of the key statistical metrics for each feature in the dataset, including the count, mean, standard deviation, 
+minimum, maximum, and the 25th, 50th, and 75th percentiles. This helps us understand the central tendencies and spread of the data, 
+which will inform our decision-making process during the analysis.
+""")
+
+st.dataframe(df.describe())
+
+
