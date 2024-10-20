@@ -89,4 +89,36 @@ which will inform our decision-making process during the analysis.
 
 st.dataframe(df.describe())
 
+# Data Type Conversion Section
+st.subheader("Data Type Conversion")
 
+st.write("""
+In this section, we analyze the dataset and ensure that the variable types are appropriate for the predictive modeling process.
+
+We have identified several variables in our dataset that should be treated as categorical. These include:
+
+- **Sex_male**: Indicates whether the individual is male (1) or not (0).
+- **currentSmoker**: Indicates whether the individual is a current smoker (1) or not (0).
+- **BPMeds**: Indicates whether the individual is on blood pressure medication (1) or not (0).
+- **prevalentStroke**: Indicates whether the individual has a history of stroke (1) or not (0).
+- **prevalentHyp**: Indicates whether the individual has hypertension (1) or not (0).
+- **diabetes**: Indicates whether the individual has diabetes (1) or not (0).
+- **TenYearCHD**: Indicates whether the individual is predicted to have coronary heart disease in the next 10 years (1) or not (0).
+
+To optimize our analysis, these variables have been converted to categorical data types. This allows us to effectively utilize them in our machine learning models, as categorical variables can be better handled during model training and evaluation.
+""")
+
+# Display Data Types Before Conversion
+st.subheader("Data Types Before Conversion")
+st.code("df.dtypes")
+st.dataframe(df.dtypes)
+
+# Convert categorical variables
+category_list = ['Sex_male', 'currentSmoker', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes', 'TenYearCHD']
+for i in category_list:
+    df[i] = df[i].astype('category')
+
+# Display Data Types After Conversion
+st.subheader("Data Types After Conversion")
+st.code("df.dtypes")
+st.dataframe(df.dtypes)
