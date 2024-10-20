@@ -166,3 +166,30 @@ In this analysis, we have determined that the categorical variables in our datas
 Therefore, no additional encoding steps are required at this stage. This is beneficial as it allows us to proceed directly to modeling 
 without the need for further preprocessing of categorical features.
 """)
+
+# Univariate Analysis for Numeric Variables
+st.subheader("Univariate Analysis for Numeric Variables")
+st.write("""
+In this section, we perform univariate analysis to explore the distribution of numeric variables in the dataset. 
+Histograms will provide insights into the frequency distribution of each feature, allowing us to identify patterns and potential outliers.
+""")
+
+# Generate histograms
+numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
+
+# Create a figure for histograms
+plt.figure(figsize=(20, 15))
+
+for i, col in enumerate(numeric_cols):
+    # Histogram
+    plt.subplot(4, 4, i + 1)
+    sns.histplot(df[col], kde=True)
+    plt.title(f'Histogram of {col}')
+    plt.xlabel(col)
+    plt.ylabel('Frequency')
+
+plt.tight_layout()
+
+# Show the histograms in Streamlit
+st.pyplot(plt)
+plt.close()  # Close the plot to prevent duplicate display
