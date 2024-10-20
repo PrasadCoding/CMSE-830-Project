@@ -345,4 +345,31 @@ st.write("""
 """)
 
 
-df
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Sample DataFrame (replace this with your actual DataFrame)
+# df = pd.DataFrame(...)  # Your DataFrame
+
+# Assuming 'TenYearCHD' is the target variable and all other columns are features
+X = df.drop(columns=['TenYearCHD'])
+y = df['TenYearCHD']
+
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Creating the Random Forest Classifier
+rf_model = RandomForestClassifier(random_state=42)
+
+# Fitting the model
+rf_model.fit(X_train, y_train)
+
+# Making predictions
+y_pred = rf_model.predict(X_test)
+
+# Calculating accuracy
+accuracy = accuracy_score(y_test, y_pred)
+
+# Printing the accuracy
+print(f'Accuracy of Random Forest Classifier: {accuracy:.2f}')
