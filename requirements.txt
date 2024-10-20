@@ -8,3 +8,4 @@ plotly
 scipy
 statsmodels
 hiplot
+imbalanced-learn
