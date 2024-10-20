@@ -308,23 +308,30 @@ st.plotly_chart(fig, use_container_width=True, key="heatmap_chart")
 
 import plotly.express as px
 
-# Create a scatter matrix (interactive pair plot)
-fig = px.scatter_matrix(df,
-                          dimensions=df.columns[:-1],  # Exclude target variable from dimensions
-                          color='TenYearCHD',           # Use 'TenYearCHD' as the hue
-                          title="Interactive Pair Plot of Heart Disease Prediction Dataset",
-                          color_continuous_scale=px.colors.sequential.Viridis)
-fig.update_layout(width=1500, height=1000)
+# Select a subset of features for clarity
+features_to_plot = ['age', 'chol', 'sysBP', 'diaBP', 'BMI', 'heartRate']
+
+# Create an interactive scatter matrix (pair plot) with selected features
+fig = px.scatter_matrix(df[features_to_plot + ['TenYearCHD']],  # Include target variable
+                         dimensions=features_to_plot,
+                         color='TenYearCHD',
+                         title="Interactive Pair Plot of Selected Features in Heart Disease Prediction Dataset",
+                         color_continuous_scale=px.colors.sequential.Viridis)
+
+# Update layout for a more manageable size
+fig.update_layout(width=700, height=700)  # Adjust width and height as needed
+
 # Adding Subheader and Content
-st.subheader("Interactive Pair Plot of Heart Disease Prediction Dataset")
+st.subheader("Interactive Pair Plot of Selected Features")
 
 st.write("""
-The scatter matrix below visualizes the pairwise relationships between the features in the heart disease dataset. 
+The scatter matrix below visualizes the pairwise relationships between selected features in the heart disease dataset. 
 Each point represents an observation, and the color indicates whether the individual has heart disease (1) or not (0). 
-This visualization allows us to observe potential correlations and distributions across multiple dimensions, aiding in feature selection and analysis.
+Focusing on a subset of features makes it easier to observe potential correlations and distributions, aiding in feature selection and analysis.
 """)
 
 # Display the scatter matrix in Streamlit
 st.plotly_chart(fig, use_container_width=True, key="scatter_matrix")
+
 
 
