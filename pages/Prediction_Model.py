@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score
 
 # Sample DataFrame (replace this with your actual DataFrame)
 df = pd.read_csv("dataset/heart_disease.csv")  # Your DataFrame
+df = df.drop('education', axis=1)
 df.dropna(inplace = True)
 # Assuming 'TenYearCHD' is the target variable and all other columns are features
 X = df.drop(columns=['TenYearCHD'])
