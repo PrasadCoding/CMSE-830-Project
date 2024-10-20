@@ -306,6 +306,14 @@ This visualization helps us understand how features interact with one another, g
 st.plotly_chart(fig, use_container_width=True, key="heatmap_chart")
 
 
+st.subheader("Interactive Pair Plot of Selected Features")
+
+st.write("""
+The scatter matrix below visualizes the pairwise relationships between selected features in the heart disease dataset. 
+Each point represents an observation, and the color indicates whether the individual has heart disease (1) or not (0). 
+Focusing on a subset of features makes it easier to observe potential correlations and distributions, aiding in feature selection and analysis.
+""")
+non_categorical_features = ['age', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose', 'TenYearCHD']
 # Add a title to the Streamlit app
 st.subheader("Pair Plot of Important Non-Categorical Variables")
 
