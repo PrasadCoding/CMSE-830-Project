@@ -1,6 +1,11 @@
 
 # Heart Disease Prediction with Machine Learning
 
+<a href="[https://your-app-url](https://cmse-heart-disease-pred.streamlit.app/)">
+    <img src="https://static.streamlit.io/images/badges/streamlit_badge_black_light.svg" alt="Streamlit">
+    Streamlit App
+</a>
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
@@ -12,7 +17,6 @@
 - [Results](#results)
 - [Conclusion](#conclusion)
 - [Future Work](#future-work)
-- [License](#license)
 
 ---
 
@@ -21,11 +25,10 @@ This project aims to predict the likelihood of individuals developing heart dise
 
 ## Project Structure
 ```
-├── data/                   # Folder for dataset
-├── notebooks/              # Jupyter notebooks for analysis and model building
+├── dataset/                   # Folder for dataset
+├── Heart_Disease_Prediction.ipynb/              # Jupyter notebooks for analysis and model building
 ├── pages/                  # Streamlit pages for the app
-├── models/                 # Saved machine learning models
-├── app.py                  # Main Streamlit app script
+├── streamlit_app.py                  # Main Streamlit app script
 └── README.md               # Project README file
 ```
 
@@ -95,6 +98,3 @@ Future improvements could include:
 - Adding more features related to diet and exercise.
 - Testing additional machine learning models.
 - Improving the user interface and experience of the app.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
