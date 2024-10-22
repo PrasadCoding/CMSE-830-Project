@@ -25,9 +25,15 @@ This project aims to predict the likelihood of individuals developing heart dise
 ## Project Structure
 ```
 ├── dataset/                   # Folder for dataset
+      ├──heart_disease.csv
 ├── Heart_Disease_Prediction.ipynb/              # Jupyter notebooks for analysis and model building
 ├── pages/                  # Streamlit pages for the app
+      ├──My Analysis.py
+      ├──EDA Overview.py
+      ├──BMI Calculator.py
+      ├──Prediction_Model.py
 ├── streamlit_app.py                  # Main Streamlit app script
+├──requirements.txt
 └── README.md               # Project README file
 ```
 
