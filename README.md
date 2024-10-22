@@ -3,7 +3,7 @@
 
 ## Streamlit App
 
-<a href="[https://www.example.com](https://cmse-heart-disease-pred.streamlit.app/)" class="custom-button">Open in Streamlit</a>
+<a href="https://cmse-heart-disease-pred.streamlit.app/" class="custom-button">Open in Streamlit</a>
 
 ## Table of Contents
 - [Introduction](#introduction)
