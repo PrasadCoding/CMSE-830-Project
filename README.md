@@ -4,6 +4,7 @@
 ## Streamlit App
 
 **[Open in Streamlit]([https://your-app-url](https://cmse-heart-disease-pred.streamlit.app/))**
+<a href="https://www.example.com" class="custom-button">Learn More</a>
 
 ## Table of Contents
 - [Introduction](#introduction)
