@@ -1,79 +1,71 @@
 import streamlit as st
 from PIL import Image
+import base64
 
 # Set page config
-st.set_page_config(page_title="Heart Disease Prediction App")
+st.set_page_config(page_title="Heart Disease Prediction App", page_icon="❤️")
 
-# Load image for the home screen (replace with your own image)
-image = Image.open('images/heart_disease_image.jpg')
+# URL of the background image hosted on GitHub (use the raw URL from the previous step)
+bg_image_url = "https://raw.githubusercontent.com/username/repository-name/branch-name/images/heart_disease_image.jpg"
 
-# Custom CSS for styling (optional)
+# Custom CSS for styling (full-screen background and text overlay)
 st.markdown("""
     <style>
-    body {
-        background-color: #f9f9f9;
+    .stApp {
+        background-image: url('{bg_image_url}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        position: relative;
     }
+    
+    .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+    }
+    
     .main-title {
         font-size: 50px;
-        color: #FF4B4B;
-        text-align: center;
         font-weight: bold;
-        margin-top: 30px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
     }
+    
     .sub-title {
         font-size: 24px;
-        color: #4B4B4B;
-        text-align: center;
-        margin-bottom: 10px;
+        margin-top: 10px;
+        font-weight: normal;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
+    
     .description {
         font-size: 18px;
-        color: #333333;
-        text-align: center;
-        margin: 20px auto;
-        max-width: 700px;
+        margin-top: 15px;
+        font-weight: normal;
+        max-width: 600px;
         line-height: 1.6;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
-    .footer {
-        text-align: center;
-        color: gray;
-        font-size: 14px;
-        margin-top: 40px;
-        margin-bottom: 20px;
-    }
-    .image-container {
-        display: flex;
-        justify-content: center;
-        margin: 30px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    img {
-        border-radius: 10px;
-    }
+    
     </style>
-    """, unsafe_allow_html=True)
+""".format(bg_image_url=bg_image_url), unsafe_allow_html=True)
 
-# Title and description
-st.markdown("<h1 class='main-title'>Heart Disease Prediction</h1>", unsafe_allow_html=True)
-st.markdown("<h3 class='sub-title'>Using Data to Predict and Prevent Heart Disease</h3>", unsafe_allow_html=True)
-st.markdown("<p class='description'>Explore risk factors, visualize trends, and predict heart disease risk using advanced machine learning and interactive tools.</p>", unsafe_allow_html=True)
-
-# Display image on the home screen
-st.markdown("<div class='image-container'>", unsafe_allow_html=True)
-st.image(image, use_column_width='auto')
-st.markdown("</div>", unsafe_allow_html=True)
-
-# Additional content section
-st.markdown("<div class='stats'>", unsafe_allow_html=True)
-st.markdown("<h4>Did You Know?</h4>", unsafe_allow_html=True)
-st.markdown("<p>Heart disease is the leading cause of death worldwide, claiming around 17.9 million lives each year.</p>", unsafe_allow_html=True)
-st.markdown("<p>Key risk factors include high blood pressure, high cholesterol, smoking, diabetes, and obesity.</p>", unsafe_allow_html=True)
-st.markdown("<p>Early detection and lifestyle changes can significantly reduce the risk of heart disease.</p>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
+# Overlay text on the background image
+st.markdown(f"""
+    <div class="overlay">
+        <h1 class="main-title">Heart Disease Prediction</h1>
+        <h3 class="sub-title">Using Data to Predict and Prevent Heart Disease</h3>
+        <p class="description">Explore risk factors, visualize trends, and predict heart disease risk using advanced machine learning and interactive tools.</p>
+    </div>
+""", unsafe_allow_html=True)
 
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("<p class='footer'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
+st.markdown("<p class='footer' style='text-align:center; color: gray;'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
