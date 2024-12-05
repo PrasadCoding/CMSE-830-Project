@@ -43,7 +43,7 @@ image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/ref
 set_bg_image(image_url)
 
 # Title and description
-st.markdown("<h1 style='color: #FF4B4B;'>EDA Overview</h1>", unsafe_allow_html=True)
+st.set_page_config(page_title="BMI Calculator", page_icon="📊", layout="wide")
 st.write(
     "Welcome to the Exploratory Data Analysis (EDA) Overview! "
     "In this section, we will visualize the relationships between variables using an interactive correlation heatmap."
