@@ -19,10 +19,12 @@ xgb_model = load_model_from_github(xgb_model_url)
 
 # Function to make prediction with RandomForest
 def predict_rf(features):
+    print(f"Features passed to RF model: {features}")  # Debugging line
     return rf_model.predict([features])[0]
 
 # Function to make prediction with XGBoost
 def predict_xgb(features):
+    print(f"Features passed to XGB model: {features}")  # Debugging line
     return xgb_model.predict([features])[0]
 
 # Streamlit UI
@@ -41,8 +43,9 @@ glucose = st.number_input("Glucose Level", min_value=40, max_value=300)
 # Combine inputs into a list
 features = [age, sex_male, cigs_per_day, sys_bp, dia_bp, bmi, heart_rate, glucose]
 
-# Display the shape of features to confirm the input dimensions (for debugging)
-st.write(f"Features shape: {len(features)}")
+# Display the features list and shape for debugging
+st.write(f"Features: {features}")
+st.write(f"Number of features: {len(features)}")
 
 # Radio buttons to choose between RandomForest and XGBoost
 model_choice = st.radio("Select a Model", ("Random Forest", "XGBoost"))
