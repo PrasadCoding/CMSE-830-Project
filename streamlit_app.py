@@ -69,12 +69,10 @@ st.markdown(
         text-align: left;  /* Align the bullet points to the left */
         max-width: 800px;
         margin: 0 auto;
-        font-size: 24px;  /* Increased font size */
+        font-size: 20px;  /* Increased font size */
         color: #000000;  /* Bullet points in black */
     }
-    li {
-        font-size: 28px
-    }
+
     </style>
     """,
     unsafe_allow_html=True,
