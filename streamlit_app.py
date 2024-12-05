@@ -7,7 +7,7 @@ import io
 st.set_page_config(page_title="Heart Disease Prediction App", page_icon="❤️")
 
 # Load the image using Image.open
-image = Image.open('images/heart_disease_image.jpg')
+image = Image.open('images/bg3.png')
 
 # Convert the image to base64 for embedding in CSS
 buffer = io.BytesIO()
