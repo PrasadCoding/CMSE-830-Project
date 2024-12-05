@@ -1,83 +1,77 @@
 import streamlit as st
 from PIL import Image
-import base64
-import io
+import os
 
-# Set page config
-st.set_page_config(page_title="Heart Disease Prediction App", page_icon="❤️")
+# Set the page layout to wide
+st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", layout="wide")
 
-# Load the image using Image.open
-image = Image.open('images/bg4_o.png')
+# Set background image using a relative path
+def set_bg_image(image_path):
+    """
+    Set background image for the Streamlit app
+    """
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_path}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-# Convert the image to base64 for embedding in CSS
-buffer = io.BytesIO()
-image.save(buffer, format="PNG")
-img_str = base64.b64encode(buffer.getvalue()).decode()
+# Path to the image in the 'images' folder
+image_path = 'images/your-image-name.png'  # Replace with your actual image name
+set_bg_image(image_path)
 
-# Custom CSS for styling (full-screen background and text overlay)
-st.markdown(f"""
+# Add title to the app
+st.title("Heart Disease Prediction App")
+st.markdown(
+    """
+    ### Predict Heart Disease Risk with Machine Learning
+
+    This app uses a machine learning model to predict the risk of heart disease based on various health parameters. It provides valuable insights to help individuals understand their heart health status and take preventive measures.
+
+    #### Key Features:
+    - User-friendly interface
+    - Accurate predictions based on real-time data
+    - Quick results to help assess heart disease risk
+
+    [Get Started Now →](#)
+    """,
+    unsafe_allow_html=True,
+)
+
+# Display an attractive, interactive button
+st.markdown(
+    """
     <style>
-    .stApp {{
-        background-image: url('data:image/png;base64,{img_str}');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        min-height: 100vh;
-        position: relative;
-    }}
-    
-    .overlay {{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .stButton > button {
+        background-color: #ff4b4b;
         color: white;
-        text-align: center;
-        font-family: 'Arial', sans-serif;
-        padding: 20px;
-    }}
-    
-    .main-title {{
-        font-size: 55px;
-        font-weight: bold;
-        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
-        color: white;
-        margin: 0;
-    }}
-    
-    .sub-title {{
-        font-size: 28px;
-        margin-top: 10px;
-        font-weight: normal;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-        color: #F5D0A9; /* Light cream color */
-        margin: 0;
-    }}
-    
-    .description {{
         font-size: 18px;
-        margin-top: 15px;
-        font-weight: normal;
-        max-width: 600px;
-        line-height: 1.6;
-        margin-left: auto;
-        margin-right: auto;
-        color: #F5F5F5; /* Soft white for description */
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        margin-bottom: 0;
-    }}
+        font-weight: bold;
+        border-radius: 12px;
+        height: 50px;
+        width: 300px;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: background-color 0.3s ease;
+    }
+    .stButton > button:hover {
+        background-color: #ff1a1a;
+    }
     </style>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True,
+)
 
-# Overlay text on the background image
-st.markdown(f"""
-    <div class="overlay">
-        <h1 class="main-title">Heart Disease Prediction</h1>
-        <h3 class="sub-title">Using Data to Predict and Prevent Heart Disease</h3>
-        <p class="description">Explore risk factors, visualize trends, and predict heart disease risk using advanced machine learning and interactive tools.</p>
-    </div>
-""", unsafe_allow_html=True)
-
-# Footer
-st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("<p class='footer' style='text-align:center; color: gray;'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
+if st.button("Start Prediction"):
+    st.markdown("#### Let's Predict Your Heart Disease Risk!")
+    # Add your prediction form or further logic here
+    # You can link this to other parts of your app
