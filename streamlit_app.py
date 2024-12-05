@@ -24,34 +24,32 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Add title and subtitle with improved styling using the light red color
+# Add title and subtitle with improved styling using the dark attractive color
 st.markdown(
     """
     <style>
     .title {
-        color: #FF7F7F;  /* Light Red color for the title text */
+        color: #8B0000;  /* Dark Red color for the title text */
         font-size: 50px;
         font-weight: bold;
-        text-align: left;  /* Align text to the left */
+        text-align: center;  /* Center text */
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Strong shadow for readability */
         margin-top: 50px;
-        margin-left: 20px;  /* Add left margin for spacing */
     }
     .subtitle {
-        color: #FF7F7F;  /* Light Red for the subtitle */
+        color: #8B0000;  /* Dark Red for the subtitle */
         font-size: 24px;
-        text-align: left;  /* Align text to the left */
+        text-align: center;  /* Center text */
         margin-top: 10px;
-        margin-left: 20px;  /* Add left margin for spacing */
         text-shadow: none;  /* No shadow for subtitle */
     }
     .content {
-        color: #FF7F7F;  /* Light Red for content text */
+        color: #8B0000;  /* Dark Red for content text */
         font-size: 18px;
-        text-align: left;  /* Align text to the left */
+        text-align: center;  /* Center text */
         margin: 50px auto;
         padding: 20px;
         max-width: 800px;
@@ -64,7 +62,7 @@ st.markdown(
         margin-top: 30px;
     }
     .stButton > button {
-        background-color: #FF7F7F;  /* Light Red color for button background */
+        background-color: #8B0000;  /* Dark Red color for button background */
         color: #ffffff;
         font-size: 18px;
         font-weight: bold;
@@ -76,7 +74,12 @@ st.markdown(
         transition: background-color 0.3s ease;
     }
     .stButton > button:hover {
-        background-color: #FF4D4D;  /* Darker shade of Light Red for button hover */
+        background-color: #660000;  /* Darker shade of Dark Red for button hover */
+    }
+    ul {
+        text-align: left;  /* Keep bullet points left-aligned */
+        max-width: 800px;
+        margin: 0 auto;
     }
     </style>
     """,
@@ -95,9 +98,11 @@ st.markdown(
     It provides valuable insights to help individuals understand their heart health status and take preventive measures.
 
     #### Key Features:
-    - User-friendly interface
-    - Accurate predictions based on real-time data
-    - Quick results to help assess heart disease risk
+    <ul>
+        <li>User-friendly interface</li>
+        <li>Accurate predictions based on real-time data</li>
+        <li>Quick results to help assess heart disease risk</li>
+    </ul>
     </div>
     """,
     unsafe_allow_html=True,
