@@ -24,7 +24,7 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
 # Add title and subtitle with improved styling using a black color
@@ -33,7 +33,7 @@ st.markdown(
     <style>
     .title {
         color: #000000;  /* Black color for the title text */
-        font-size: 60px;
+        font-size: 70px;  /* Increased font size */
         font-weight: bold;
         text-align: center;  /* Center text */
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Shadow for readability */
@@ -41,14 +41,14 @@ st.markdown(
     }
     .subtitle {
         color: #000000;  /* Black for the subtitle */
-        font-size: 30px;
+        font-size: 40px;  /* Increased font size */
         text-align: center;  /* Center text */
         margin-top: 10px;
         text-shadow: none;  /* No shadow for subtitle */
     }
     .content {
         color: #000000;  /* Black for content text */
-        font-size: 20px;
+        font-size: 24px;  /* Increased font size */
         text-align: center;  /* Center text */
         margin: 50px auto;
         padding: 20px;
@@ -57,17 +57,20 @@ st.markdown(
         text-shadow: none;  /* No shadow for content */
     }
     .key-features {
-        text-align: center;
-        font-size: 24px;
+        text-align: left;  /* Align "Key Features" to left */
+        font-size: 28px;  /* Increased font size */
         font-weight: bold;
         margin-top: 40px;
         color: #000000;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
     ul {
         text-align: left;  /* Align the bullet points to the left */
         max-width: 800px;
         margin: 0 auto;
-        font-size: 20px;
+        font-size: 24px;  /* Increased font size */
         color: #000000;  /* Bullet points in black */
     }
     </style>
