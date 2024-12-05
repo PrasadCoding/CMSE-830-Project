@@ -21,18 +21,17 @@ def set_bg_image(image_path):
             height: 100vh;
         }}
         </style>
-        """,
         unsafe_allow_html=True,
     )
 
 # Path to the image in the 'images' folder
-image_path = 'images/your-image-name.png'  # Replace with your actual image name
+image_path = 'images/bg4_o.png'  # Replace with your actual image name
 set_bg_image(image_path)
 
 # Add title to the app
 st.title("Heart Disease Prediction App")
 st.markdown(
-    """
+
     ### Predict Heart Disease Risk with Machine Learning
 
     This app uses a machine learning model to predict the risk of heart disease based on various health parameters. It provides valuable insights to help individuals understand their heart health status and take preventive measures.
