@@ -1,43 +1,31 @@
 import streamlit as st
-import base64
-from pathlib import Path
 
 # Set the page layout to wide
 st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", layout="wide")
 
-# Function to load an image for background
-def set_bg_image(image_path):
+# Function to set background image using raw URL
+def set_bg_image(image_url):
     """
-    Set background image for the Streamlit app
+    Set background image for the Streamlit app using a raw GitHub URL
     """
-    # Load the image as binary
-    try:
-        with open(image_path, "rb") as image_file:
-            img_bytes = image_file.read()
-        # Encode the image to base64
-        encoded_image = base64.b64encode(img_bytes).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_url}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-        # Use the base64 encoded image for the background
-        st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url('data:image/png;base64,{encoded_image}');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                height: 100vh;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
-    except FileNotFoundError:
-        st.error("The image file was not found. Please check the path.")
-
-# Path to your image file
-image_path = Path('https://github.com/PrasadCoding/CMSE-830-Project/blob/master/images/bg4_o.png?raw=true')  # Make sure the file is in the correct folder
-set_bg_image(image_path)
+# Path to your image file on GitHub (use the raw URL)
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
+set_bg_image(image_url)
 
 # Add title to the app
 st.title("Heart Disease Prediction App")
@@ -85,4 +73,3 @@ if st.button("Start Prediction"):
     st.markdown("#### Let's Predict Your Heart Disease Risk!")
     # Add your prediction form or further logic here
     # You can link this to other parts of your app
-
