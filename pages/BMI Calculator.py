@@ -60,12 +60,29 @@ if height > 0 and weight > 0:
 
     st.write(f"Based on your BMI, you are in the **{category}** category.")
 
-    # Visualization of BMI category
-    fig, ax = plt.subplots(figsize=(4, 2))
-    ax.barh([category], [bmi], color=color)
-    ax.set_xlim(0, 40)
-    ax.set_xlabel("BMI Value")
-    st.pyplot(fig)
+# Visualization of BMI category
+fig, ax = plt.subplots(figsize=(4, 2))  # Adjusting the figure size for compactness
+ax.barh([category], [bmi], color=color, height=0.4)  # Adjust bar height for better fit
+ax.set_xlim(0, 40)
+ax.set_xlabel("BMI Value")
+ax.tick_params(axis='y', labelsize=10)  # Smaller font size for the y-axis labels
+ax.tick_params(axis='x', labelsize=8)  # Smaller font size for the x-axis labels
 
-else:
-    st.write("Please enter valid height and weight values.")
+# Use CSS to fix the plot size
+st.markdown(
+    """
+    <style>
+    div.stPlotlyChart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;  /* Adjust plot width */
+        margin: 0 auto;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.pyplot(fig)
+
