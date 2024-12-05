@@ -35,21 +35,23 @@ st.markdown(
         color: #FF7F7F;  /* Light Red color for the title text */
         font-size: 50px;
         font-weight: bold;
-        text-align: center;
+        text-align: left;  /* Align text to the left */
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Strong shadow for readability */
         margin-top: 50px;
+        margin-left: 20px;  /* Add left margin for spacing */
     }
     .subtitle {
         color: #FF7F7F;  /* Light Red for the subtitle */
         font-size: 24px;
-        text-align: center;
+        text-align: left;  /* Align text to the left */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Light shadow for contrast */
         margin-top: 10px;
+        margin-left: 20px;  /* Add left margin for spacing */
     }
     .content {
         color: #FF7F7F;  /* Light Red for content text */
         font-size: 18px;
-        text-align: center;
+        text-align: left;  /* Align text to the left */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* Slight shadow for readability */
         max-width: 800px;
         margin: 50px auto;
