@@ -1,10 +1,21 @@
 import joblib
 import streamlit as st
-import pandas as pd
+import requests
+from io import BytesIO
 
-# Load the trained models
-rf_model = joblib.load('models/heart_disease_rf_model.joblib')
-xgb_model = joblib.load('models/heart_disease_xgb_model.joblib')
+# Function to download a model from a GitHub URL
+def load_model_from_github(url):
+    response = requests.get(url)
+    model = joblib.load(BytesIO(response.content))
+    return model
+
+# GitHub raw file URLs for the models
+rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/blob/master/models/heart_disease_rf_model.joblib"
+xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/blob/master/models/heart_disease_xgb_model.joblib"
+
+# Load the models from GitHub
+rf_model = load_model_from_github(rf_model_url)
+xgb_model = load_model_from_github(xgb_model_url)
 
 # Function to make prediction with RandomForest
 def predict_rf(features):
