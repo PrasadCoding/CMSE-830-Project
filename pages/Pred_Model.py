@@ -41,6 +41,9 @@ glucose = st.number_input("Glucose Level", min_value=40, max_value=300)
 # Combine inputs into a list
 features = [age, sex_male, cigs_per_day, sys_bp, dia_bp, bmi, heart_rate, glucose]
 
+# Display the shape of features to confirm the input dimensions (for debugging)
+st.write(f"Features shape: {len(features)}")
+
 # Radio buttons to choose between RandomForest and XGBoost
 model_choice = st.radio("Select a Model", ("Random Forest", "XGBoost"))
 
