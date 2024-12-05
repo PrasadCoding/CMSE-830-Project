@@ -24,7 +24,7 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
 # Add title and subtitle with improved styling using the light red color
@@ -54,7 +54,7 @@ st.markdown(
         text-align: left;  /* Align text to the left */
         margin: 50px auto;
         padding: 20px;
-        background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent dark background for text readability */
+        max-width: 800px;
         border-radius: 10px;
         text-shadow: none;  /* No shadow for content */
     }
@@ -87,7 +87,7 @@ st.markdown(
 st.markdown('<p class="title">Heart Disease Prediction App</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Predict Heart Disease Risk with Machine Learning</p>', unsafe_allow_html=True)
 
-# Content section with a left-aligned, well-spaced layout
+# Content section with a left-aligned, well-spaced layout (without black transparent background)
 st.markdown(
     """
     <div class="content">
