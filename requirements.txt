@@ -9,3 +9,6 @@ scipy
 statsmodels
 hiplot
 imbalanced-learn
+joblib
+xgboost
+requests
