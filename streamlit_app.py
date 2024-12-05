@@ -24,31 +24,31 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_f.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Add title and subtitle with improved styling using the dark attractive color
+# Add title and subtitle with improved styling using a black color
 st.markdown(
     """
     <style>
     .title {
-        color: #8B0000;  /* Dark Red color for the title text */
-        font-size: 50px;
+        color: #000000;  /* Black color for the title text */
+        font-size: 60px;
         font-weight: bold;
         text-align: center;  /* Center text */
-        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Strong shadow for readability */
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Shadow for readability */
         margin-top: 50px;
     }
     .subtitle {
-        color: #8B0000;  /* Dark Red for the subtitle */
-        font-size: 24px;
+        color: #000000;  /* Black for the subtitle */
+        font-size: 30px;
         text-align: center;  /* Center text */
         margin-top: 10px;
         text-shadow: none;  /* No shadow for subtitle */
     }
     .content {
-        color: #8B0000;  /* Dark Red for content text */
-        font-size: 18px;
+        color: #000000;  /* Black for content text */
+        font-size: 20px;
         text-align: center;  /* Center text */
         margin: 50px auto;
         padding: 20px;
@@ -56,30 +56,19 @@ st.markdown(
         border-radius: 10px;
         text-shadow: none;  /* No shadow for content */
     }
-    .button-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
-    }
-    .stButton > button {
-        background-color: #8B0000;  /* Dark Red color for button background */
-        color: #ffffff;
-        font-size: 18px;
+    .key-features {
+        text-align: center;
+        font-size: 24px;
         font-weight: bold;
-        border-radius: 12px;
-        height: 50px;
-        width: 300px;
-        border: none;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        transition: background-color 0.3s ease;
-    }
-    .stButton > button:hover {
-        background-color: #660000;  /* Darker shade of Dark Red for button hover */
+        margin-top: 40px;
+        color: #000000;
     }
     ul {
-        text-align: left;  /* Keep bullet points left-aligned */
+        text-align: left;  /* Align the bullet points to the left */
         max-width: 800px;
         margin: 0 auto;
+        font-size: 20px;
+        color: #000000;  /* Bullet points in black */
     }
     </style>
     """,
@@ -97,7 +86,7 @@ st.markdown(
     This app uses a machine learning model to predict the risk of heart disease based on various health parameters. 
     It provides valuable insights to help individuals understand their heart health status and take preventive measures.
 
-    #### Key Features:
+    <p class="key-features">Key Features:</p>
     <ul>
         <li>User-friendly interface</li>
         <li>Accurate predictions based on real-time data</li>
@@ -107,11 +96,3 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-# Button to start prediction with hover effects
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
-if st.button("Start Prediction"):
-    st.markdown("#### Let's Predict Your Heart Disease Risk!")
-    # Add your prediction form or further logic here
-    # You can link this to other parts of your app
-st.markdown('</div>', unsafe_allow_html=True)
