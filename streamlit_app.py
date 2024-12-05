@@ -27,28 +27,41 @@ def set_bg_image(image_url):
 image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Add title to the app
-st.title("Heart Disease Prediction App")
-st.markdown(
-    """
-    ### Predict Heart Disease Risk with Machine Learning
-
-    This app uses a machine learning model to predict the risk of heart disease based on various health parameters. It provides valuable insights to help individuals understand their heart health status and take preventive measures.
-
-    #### Key Features:
-    - User-friendly interface
-    - Accurate predictions based on real-time data
-    - Quick results to help assess heart disease risk
-
-    [Get Started Now →](#)
-    """,
-    unsafe_allow_html=True,
-)
-
-# Display an attractive, interactive button
+# Title and subtitle with improved styling
 st.markdown(
     """
     <style>
+    .title {
+        color: white;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        margin-top: 50px;
+    }
+    .subtitle {
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-top: 10px;
+    }
+    .content {
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
     .stButton > button {
         background-color: #ff4b4b;
         color: white;
@@ -69,7 +82,30 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Add title and subtitle with shadowing for readability
+st.markdown('<p class="title">Heart Disease Prediction App</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Predict Heart Disease Risk with Machine Learning</p>', unsafe_allow_html=True)
+
+# Content section with a centered, well-spaced layout
+st.markdown(
+    """
+    <div class="content">
+    This app uses a machine learning model to predict the risk of heart disease based on various health parameters. 
+    It provides valuable insights to help individuals understand their heart health status and take preventive measures.
+
+    #### Key Features:
+    - User-friendly interface
+    - Accurate predictions based on real-time data
+    - Quick results to help assess heart disease risk
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Button to start prediction with hover effects
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
 if st.button("Start Prediction"):
     st.markdown("#### Let's Predict Your Heart Disease Risk!")
     # Add your prediction form or further logic here
     # You can link this to other parts of your app
+st.markdown('</div>', unsafe_allow_html=True)
