@@ -82,11 +82,11 @@ st.markdown(
 st.markdown('<p class="title">Heart Disease Prediction App</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Predict Heart Disease Risk with Machine Learning</p>', unsafe_allow_html=True)
 
-# Add image between subtitle and content
+# Add image between subtitle and content, with specific width
 image_url_between = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/heart_disease_image.jpg'  # Replace with your image URL
 
-# Add the image
-st.image(image_url_between, use_column_width=True)  # `use_column_width=True` ensures the image fits the width of the screen
+# Add the image with a fixed width
+st.image(image_url_between, width=600)  # Adjust the width to fit the desired size (e.g., 600px or any size you prefer)
 
 # Content section with a left-aligned, well-spaced layout (without black transparent background)
 st.markdown(
