@@ -10,8 +10,8 @@ def load_model_from_github(url):
     return model
 
 # GitHub raw file URLs for the models
-rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/blob/master/models/heart_disease_rf_model.joblib"
-xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/blob/master/models/heart_disease_xgb_model.joblib"
+rf_model_url = "https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/models/heart_disease_rf_model.joblib"
+xgb_model_url = "https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/models/heart_disease_xgb_model.joblib"
 
 # Load the models from GitHub
 rf_model = load_model_from_github(rf_model_url)
