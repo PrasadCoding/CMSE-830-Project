@@ -1,18 +1,24 @@
 import streamlit as st
 from PIL import Image
 import base64
+import io
 
 # Set page config
 st.set_page_config(page_title="Heart Disease Prediction App", page_icon="❤️")
 
-# Raw URL of the background image hosted on GitHub
-bg_image_url = "https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/master/images/bg3.png"
+# Load the image using Image.open
+image = Image.open('images/heart_disease_image.jpg')
+
+# Convert the image to base64 for embedding in CSS
+buffer = io.BytesIO()
+image.save(buffer, format="PNG")
+img_str = base64.b64encode(buffer.getvalue()).decode()
 
 # Custom CSS for styling (full-screen background and text overlay)
 st.markdown(f"""
     <style>
     .stApp {{
-        background-image: url('{bg_image_url}');
+        background-image: url('data:image/png;base64,{img_str}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -68,4 +74,3 @@ st.markdown(f"""
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<p class='footer' style='text-align:center; color: gray;'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
-
