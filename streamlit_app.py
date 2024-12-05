@@ -34,6 +34,7 @@ st.markdown(f"""
         color: white;
         text-align: center;
         font-family: 'Arial', sans-serif;
+        padding: 20px;
     }}
     
     .main-title {{
@@ -41,6 +42,7 @@ st.markdown(f"""
         font-weight: bold;
         text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
         color: white;
+        margin: 0;
     }}
     
     .sub-title {{
@@ -49,6 +51,7 @@ st.markdown(f"""
         font-weight: normal;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         color: #F5D0A9; /* Light cream color */
+        margin: 0;
     }}
     
     .description {{
@@ -61,6 +64,7 @@ st.markdown(f"""
         margin-right: auto;
         color: #F5F5F5; /* Soft white for description */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 0;
     }}
     </style>
 """, unsafe_allow_html=True)
