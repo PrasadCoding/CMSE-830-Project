@@ -61,7 +61,7 @@ if height > 0 and weight > 0:
     st.write(f"Based on your BMI, you are in the **{category}** category.")
 
     # Visualization of BMI category
-    fig, ax = plt.subplots(figsize=(5, 3))
+    fig, ax = plt.subplots(figsize=(4, 2))
     ax.barh([category], [bmi], color=color)
     ax.set_xlim(0, 40)
     ax.set_xlabel("BMI Value")
