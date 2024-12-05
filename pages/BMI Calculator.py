@@ -2,7 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # Set the page layout to wide
-st.set_page_config(page_title="BMI Calculator", page_icon="📊", layout="wide")
+st.set_page_config(page_title="BMI Calculator", page_icon="📊", layout="centered")
 
 # Function to set background image using raw URL
 def set_bg_image(image_url):
