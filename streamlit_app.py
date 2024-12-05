@@ -33,7 +33,7 @@ st.markdown(
     <style>
     .title {
         color: #000000;  /* Black color for the title text */
-        font-size: 70px;  /* Increased font size */
+        font-size: 50px;  /* Increased font size */
         font-weight: bold;
         text-align: center;  /* Center text */
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Shadow for readability */
@@ -48,7 +48,7 @@ st.markdown(
     }
     .content {
         color: #000000;  /* Black for content text */
-        font-size: 24px;  /* Increased font size */
+        font-size: 30px;  /* Increased font size */
         text-align: center;  /* Center text */
         margin: 50px auto;
         padding: 20px;
@@ -58,7 +58,7 @@ st.markdown(
     }
     .key-features {
         text-align: left;  /* Align "Key Features" to left */
-        font-size: 28px;  /* Increased font size */
+        font-size: 30px;  /* Increased font size */
         font-weight: bold;
         margin-top: 40px;
         color: #000000;
@@ -70,7 +70,7 @@ st.markdown(
         text-align: left;  /* Align the bullet points to the left */
         max-width: 800px;
         margin: 0 auto;
-        font-size: 28px;  /* Increased font size */
+        font-size: 30px;  /* Increased font size */
         color: #000000;  /* Bullet points in black */
     }
     </style>
