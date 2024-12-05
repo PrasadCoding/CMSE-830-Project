@@ -36,7 +36,7 @@ def set_bg_image(image_path):
         st.error("The image file was not found. Please check the path.")
 
 # Path to your image file
-image_path = Path('images/bg_4.png')  # Make sure the file is in the correct folder
+image_path = Path('https://github.com/PrasadCoding/CMSE-830-Project/blob/master/images/bg4_o.png?raw=true')  # Make sure the file is in the correct folder
 set_bg_image(image_path)
 
 # Add title to the app
