@@ -5,6 +5,29 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 
+
+def set_bg_image(image_url):
+    """
+    Set background image for the Streamlit app using a raw GitHub URL
+    """
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_url}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# Path to your background image file on GitHub (use the raw URL)
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+set_bg_image(image_url)
 # Load the dataset (replace this with your actual dataset)
 df = pd.read_csv("dataset/heart_disease.csv")  # Your DataFrame
 df = df.drop('education', axis=1)
