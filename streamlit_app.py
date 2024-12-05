@@ -49,7 +49,7 @@ st.markdown(
     .content {
         color: #000000;  /* Black for content text */
         font-size: 30px;  /* Increased font size */
-        text-align: left;  /* Center text */
+        text-align: justify;  /* Center text */
         margin: 50px auto;
         padding: 20px;
         max-width: 800px;
