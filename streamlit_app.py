@@ -26,7 +26,7 @@ def set_bg_image(image_path):
     )
 
 # Path to the image in the 'images' folder
-image_path = 'images/your-image-name.png'  # Replace with your actual image name
+image_path = 'images/bg4_o.png'  # Replace with your actual image name
 set_bg_image(image_path)
 
 # Add title to the app
