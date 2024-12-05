@@ -24,7 +24,7 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
 # Add title and subtitle with improved styling using a black color
@@ -33,7 +33,7 @@ st.markdown(
     <style>
     .title {
         color: #000000;  /* Black color for the title text */
-        font-size: 50px;  /* Increased font size */
+        font-size: 70px;  /* Increased font size */
         font-weight: bold;
         text-align: center;  /* Center text */
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Shadow for readability */
@@ -48,8 +48,8 @@ st.markdown(
     }
     .content {
         color: #000000;  /* Black for content text */
-        font-size: 30px;  /* Increased font size */
-        text-align: justify;  /* Center text */
+        font-size: 24px;  /* Increased font size */
+        text-align: center;  /* Center text */
         margin: 50px auto;
         padding: 20px;
         max-width: 800px;
@@ -58,7 +58,7 @@ st.markdown(
     }
     .key-features {
         text-align: left;  /* Align "Key Features" to left */
-        font-size: 30px;  /* Increased font size */
+        font-size: 28px;  /* Increased font size */
         font-weight: bold;
         margin-top: 40px;
         color: #000000;
@@ -70,7 +70,7 @@ st.markdown(
         text-align: left;  /* Align the bullet points to the left */
         max-width: 800px;
         margin: 0 auto;
-        font-size: 30px;  /* Increased font size */
+        font-size: 24px;  /* Increased font size */
         color: #000000;  /* Bullet points in black */
     }
     </style>
@@ -81,6 +81,12 @@ st.markdown(
 # Add title and subtitle with shadowing for readability
 st.markdown('<p class="title">Heart Disease Prediction App</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Predict Heart Disease Risk with Machine Learning</p>', unsafe_allow_html=True)
+
+# Add image between subtitle and content
+image_url_between = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/heart_disease_image.jpg'  # Replace with your image URL
+
+# Add the image
+st.image(image_url_between, use_column_width=True)  # `use_column_width=True` ensures the image fits the width of the screen
 
 # Content section with a left-aligned, well-spaced layout (without black transparent background)
 st.markdown(
