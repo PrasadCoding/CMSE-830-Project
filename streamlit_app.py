@@ -49,7 +49,7 @@ st.markdown(
     .content {
         color: #000000;  /* Black for content text */
         font-size: 24px;  /* Increased font size */
-        text-align: center;  /* Center text */
+        text-align: justify;  /* Center text */
         margin: 50px auto;
         padding: 20px;
         max-width: 800px;
@@ -82,11 +82,18 @@ st.markdown(
 st.markdown('<p class="title">Heart Disease Prediction App</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Predict Heart Disease Risk with Machine Learning</p>', unsafe_allow_html=True)
 
-# Add image between subtitle and content, with specific width
+# Add image between subtitle and content with centered alignment using a div
 image_url_between = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/heart_disease_image.jpg'  # Replace with your image URL
 
-# Add the image with a fixed width
-st.image(image_url_between, width=600)  # Adjust the width to fit the desired size (e.g., 600px or any size you prefer)
+# Centering the image using HTML and CSS
+st.markdown(
+    f"""
+    <div style="text-align: center;">
+        <img src="{image_url_between}" width="600px" />
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Content section with a left-aligned, well-spaced layout (without black transparent background)
 st.markdown(
