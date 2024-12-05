@@ -24,7 +24,7 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
 # Add title and subtitle with improved styling using a black color
@@ -36,7 +36,6 @@ st.markdown(
         font-size: 70px;  /* Increased font size */
         font-weight: bold;
         text-align: center;  /* Center text */
-        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);  /* Shadow for readability */
         margin-top: 50px;
     }
     .subtitle {
@@ -70,7 +69,7 @@ st.markdown(
         text-align: left;  /* Align the bullet points to the left */
         max-width: 800px;
         margin: 0 auto;
-        font-size: 24px;  /* Increased font size */
+        font-size: 28px;  /* Increased font size */
         color: #000000;  /* Bullet points in black */
     }
     </style>
