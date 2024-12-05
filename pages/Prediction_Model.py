@@ -4,12 +4,14 @@ import pandas as pd
 # Load the pre-trained Random Forest model
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # Sample DataFrame (replace this with your actual DataFrame)
 df = pd.read_csv("dataset/heart_disease.csv")  # Your DataFrame
 df = df.drop('education', axis=1)
-df.dropna(inplace = True)
+df.dropna(inplace=True)
+
 # Assuming 'TenYearCHD' is the target variable and all other columns are features
 X = df.drop(columns=['TenYearCHD'])
 y = df['TenYearCHD']
@@ -17,18 +19,21 @@ y = df['TenYearCHD']
 # Splitting the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Creating the Random Forest Classifier
+# Creating the Random Forest Classifier and Logistic Regression models
 rf_model = RandomForestClassifier(random_state=42)
+lr_model = LogisticRegression(max_iter=1000, random_state=42)
 
-# Fitting the model
+# Fitting the models
 rf_model.fit(X_train, y_train)
+lr_model.fit(X_train, y_train)
 
-# Making predictions
-y_pred = rf_model.predict(X_test)
+# Making predictions with Random Forest and Logistic Regression
+rf_y_pred = rf_model.predict(X_test)
+lr_y_pred = lr_model.predict(X_test)
 
 # Calculating accuracy
-accuracy = accuracy_score(y_test, y_pred)
-
+rf_accuracy = accuracy_score(y_test, rf_y_pred)
+lr_accuracy = accuracy_score(y_test, lr_y_pred)
 
 # Set up the page title and description
 st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction Model</h1>", unsafe_allow_html=True)
@@ -63,6 +68,9 @@ prevalentStroke = 1 if prevalentStroke == "Yes" else 0
 prevalentHyp = 1 if prevalentHyp == "Yes" else 0
 diabetes = 1 if diabetes == "Yes" else 0
 
+# Add a dropdown to select the model
+model_choice = st.selectbox("Choose a Model", options=["Random Forest", "Logistic Regression"])
+
 # Add a button to submit and calculate the prediction
 if st.button("Predict Heart Disease Risk"):
     try:
@@ -87,8 +95,11 @@ if st.button("Predict Heart Disease Risk"):
         # Create a DataFrame
         input_data = pd.DataFrame(user_data)
 
-        # Make a prediction using the loaded model
-        prediction = rf_model.predict(input_data)
+        # Make a prediction using the selected model
+        if model_choice == "Random Forest":
+            prediction = rf_model.predict(input_data)
+        elif model_choice == "Logistic Regression":
+            prediction = lr_model.predict(input_data)
 
         # Display the prediction result
         if prediction[0] == 1:
