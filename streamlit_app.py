@@ -53,7 +53,6 @@ st.markdown(f"""
         margin-right: auto;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }}
-    
     </style>
 """, unsafe_allow_html=True)
 
@@ -69,3 +68,4 @@ st.markdown(f"""
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<p class='footer' style='text-align:center; color: gray;'>Created by Prasad Upasani | Michigan State University | Data Science Project</p>", unsafe_allow_html=True)
+
