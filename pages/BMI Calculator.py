@@ -76,7 +76,7 @@ st.markdown(
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50%;  /* Adjust plot width */
+        width: 20%;  /* Adjust plot width */
         margin: 0 auto;
     }
     </style>
