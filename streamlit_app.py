@@ -5,22 +5,22 @@ import base64
 # Set page config
 st.set_page_config(page_title="Heart Disease Prediction App", page_icon="❤️")
 
-# URL of the background image hosted on GitHub (use the raw URL from the previous step)
-bg_image_url = "https://github.com/PrasadCoding/CMSE-830-Project/blob/master/images/bg3.png"
+# URL of the background image hosted on GitHub (use the raw URL)
+bg_image_url = "https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/master/images/bg3.png"
 
 # Custom CSS for styling (full-screen background and text overlay)
-st.markdown("""
+st.markdown(f"""
     <style>
-    .stApp {
+    .stApp {{
         background-image: url('{bg_image_url}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         min-height: 100vh;
         position: relative;
-    }
+    }}
     
-    .overlay {
+    .overlay {{
         position: absolute;
         top: 50%;
         left: 50%;
@@ -28,22 +28,22 @@ st.markdown("""
         color: white;
         text-align: center;
         font-family: 'Arial', sans-serif;
-    }
+    }}
     
-    .main-title {
+    .main-title {{
         font-size: 50px;
         font-weight: bold;
         text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-    }
+    }}
     
-    .sub-title {
+    .sub-title {{
         font-size: 24px;
         margin-top: 10px;
         font-weight: normal;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
+    }}
     
-    .description {
+    .description {{
         font-size: 18px;
         margin-top: 15px;
         font-weight: normal;
@@ -52,10 +52,10 @@ st.markdown("""
         margin-left: auto;
         margin-right: auto;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
+    }}
     
     </style>
-""".format(bg_image_url=bg_image_url), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # Overlay text on the background image
 st.markdown(f"""
