@@ -6,7 +6,7 @@ import base64
 st.set_page_config(page_title="Heart Disease Prediction App", page_icon="❤️")
 
 # URL of the background image hosted on GitHub (use the raw URL from the previous step)
-bg_image_url = "https://raw.githubusercontent.com/username/repository-name/branch-name/images/heart_disease_image.jpg"
+bg_image_url = "images/bg3.png"
 
 # Custom CSS for styling (full-screen background and text overlay)
 st.markdown("""
