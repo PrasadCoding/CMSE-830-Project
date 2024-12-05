@@ -24,7 +24,7 @@ def set_bg_image(image_url):
     )
 
 # Path to your image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg4_o.png'  # Replace with your raw URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
 # Add title and subtitle with improved styling using a black color
