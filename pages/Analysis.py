@@ -106,7 +106,7 @@ data = {
 df = pd.DataFrame(data)
 
 # Display the table in Streamlit
-st.title("Common Columns in Both Datasets")
+st.markdown("###Common Columns in Both Datasets")
 st.write("The following table shows the common columns present in both datasets with their original names:")
 
 st.dataframe(df)
