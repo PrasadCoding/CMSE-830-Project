@@ -226,3 +226,23 @@ df_combined = handle_outliers_iqr(df_combined, numeric_columns)
 # Plot after handling outliers
 st.write("Boxplots After Handling Outliers:")
 plot_boxplots(df_combined, numeric_columns, "Boxplots After Handling Outliers")
+
+
+
+st.subheader("EDA")
+st.write("""
+    In this section, EDA on the dataset. 
+    We will create **histograms** to understand the distribution and spread of the data. 
+    The histograms show the frequency distribution of the variables.
+""")
+
+# Select numeric columns
+numeric_cols = df_combined.select_dtypes(include=['float64', 'int64']).columns
+
+# Create histograms with Plotly for interactivity
+for col in numeric_cols:
+    st.subheader(f'Histogram of {col}')
+    
+    # Plot histogram using Plotly for better interactivity
+    fig = px.histogram(df_combined, x=col, nbins=30, title=f'Histogram of {col}', marginal="box")
+    st.plotly_chart(fig)
