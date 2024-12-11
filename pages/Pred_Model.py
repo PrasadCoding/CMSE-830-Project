@@ -35,7 +35,7 @@ def load_model_from_github(url):
     return model
 
 # URLs to your models on GitHub (use raw URLs for the pickle files)
-xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/heart_disease_xgb_model.joblib"
+xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
 gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
 
 # Load the models from GitHub
