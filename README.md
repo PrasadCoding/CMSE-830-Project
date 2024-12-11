@@ -5,6 +5,10 @@
 
 <a href="https://cmse-heart-disease-pred.streamlit.app/" class="custom-button">Open in Streamlit</a>
 
+## Data Sources 
+- heart_disease(Framingham) - https://www.kaggle.com/datasets/aasheesh200/framingham-heart-study-dataset
+- diabetes -> https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
