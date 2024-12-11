@@ -291,6 +291,15 @@ st.write(df_combined.describe())
 
 
 from imblearn.over_sampling import SMOTE
+
+st.subheader("SMOTE: Handling Class Imbalance")
+
+st.write("""
+    SMOTE (Synthetic Minority Over-sampling Technique) is used to address the class imbalance 
+    in the dataset by generating synthetic examples for the minority class. This process helps 
+    balance the class distribution by creating new, synthetic data points that resemble existing 
+    minority class instances, which can improve model performance when dealing with imbalanced data.
+""")
 # Separate features and target
 X = df_combined.drop('heart_disease', axis=1)  # Features
 y = df_combined['heart_disease']  # Target variable
