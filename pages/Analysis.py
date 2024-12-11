@@ -159,6 +159,7 @@ st.write("The Iterative Imputer is a machine learning-based imputation technique
 missing_values_after_imputation = df_combined_imputed.isnull().sum()
 st.write(missing_values_after_imputation)
 
+df_combined = df_combined_imputed
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 # Data Transformation: Standard Scaling and Min-Max Scaling
