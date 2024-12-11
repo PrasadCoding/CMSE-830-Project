@@ -346,8 +346,19 @@ import matplotlib.pyplot as plt
 # Title for the page
 st.title("Model Development")
 
-# Code snippet display
-st.subheader("Random Forest Model Development")
+st.subheader('Random Forest Model')
+
+st.write("""
+The **Random Forest** model is an ensemble learning method that combines multiple decision trees to improve prediction accuracy and reduce overfitting. It works by constructing a collection of decision trees, each trained on a random subset of the data, and making predictions based on the majority vote from all trees in the forest.
+
+**Key Features**:
+- Random Forests are robust to overfitting.
+- They provide feature importance, helping identify the most important variables in the dataset.
+- It can handle both classification and regression tasks.
+
+For our dataset, we used Random Forest to predict the likelihood of heart disease based on various health metrics. The model was evaluated using **classification accuracy**, **ROC AUC score**, and the **confusion matrix**.
+""")
+
 
 code = """
 from sklearn.ensemble import RandomForestClassifier
@@ -363,34 +374,71 @@ rf_model.fit(X_train, y_train)
 # Predictions
 rf_preds = rf_model.predict(X_test)
 rf_probs = rf_model.predict_proba(X_test)[:, 1]
-
-# Evaluation
-print("Random Forest Classification Report:\n", classification_report(y_test, rf_preds))
-print("Confusion Matrix:\n", confusion_matrix(y_test, rf_preds))
-print("ROC AUC Score:", roc_auc_score(y_test, rf_probs))
-
-# Plot ROC Curve
-fpr, tpr, _ = roc_curve(y_test, rf_probs)
-plt.plot(fpr, tpr, label="Random Forest (AUC = {:.2f})".format(roc_auc_score(y_test, rf_probs)))
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-plt.title("ROC Curve - Random Forest")
-plt.legend()
-plt.show()
 """
 st.code(code, language='python')
 
-# Code execution and displaying output
-rf_model = RandomForestClassifier(random_state=42)
+st.subheader('XGBoost Model')
+
+st.write("""
+The **XGBoost** (Extreme Gradient Boosting) model is a high-performance implementation of gradient boosting that is widely used for structured/tabular data. XGBoost builds decision trees in a sequential manner, where each tree corrects the errors of the previous one, making it highly effective for both classification and regression tasks.
+
+**Key Features**:
+- It handles missing values internally.
+- It is faster and more accurate due to regularization and parallelization.
+- XGBoost has built-in cross-validation and model evaluation capabilities.
+
+For our dataset, we used XGBoost to predict the likelihood of heart disease. We evaluated the model using **classification accuracy**, **ROC AUC score**, and the **confusion matrix**.
+""")
+
+code_xgb = """
+import xgboost as xgb
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# Initialize XGBoost model
+xgb_model = xgb.XGBClassifier(random_state=42)
 
 # Train the model
-rf_model.fit(X_train, y_train)
+xgb_model.fit(X_train, y_train)
 
 # Predictions
-rf_preds = rf_model.predict(X_test)
-rf_probs = rf_model.predict_proba(X_test)[:, 1]
+xgb_preds = xgb_model.predict(X_test)
+xgb_probs = xgb_model.predict_proba(X_test)[:, 1]
+"""
+st.code(code_xgb, language='python')
 
-st.write(rf_pred[:10])
+st.subheader('Gradient Boosting Model')
+
+st.write("""
+The **Gradient Boosting** (GB) model is an ensemble learning technique that builds decision trees sequentially, with each tree aiming to correct the errors made by the previous one. It is known for its high predictive accuracy and ability to handle both classification and regression problems. 
+
+**Key Features**:
+- It works by minimizing a loss function using gradient descent.
+- It performs well with a small number of weak learners (trees).
+- Gradient Boosting is less prone to overfitting than individual decision trees.
+
+For our dataset, we used Gradient Boosting to predict the likelihood of heart disease. The model was evaluated using **classification accuracy**, **ROC AUC score**, and the **confusion matrix**.
+""")
+
+code_gb = """
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# Initialize Gradient Boosting model
+gb_model = GradientBoostingClassifier(random_state=42)
+
+# Train the model
+gb_model.fit(X_train, y_train)
+
+# Predictions
+gb_preds = gb_model.predict(X_test)
+gb_probs = gb_model.predict_proba(X_test)[:, 1]
+"""
+st.code(code_gb, language='python')
+
+
+
 
 
 
