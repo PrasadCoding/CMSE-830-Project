@@ -113,6 +113,10 @@ df = pd.DataFrame(data)
 st.markdown("### Common Columns in Both Datasets")
 st.write("The following table shows the common columns present in both datasets with their original names:")
 
+st.dataframe(df)
+st.markdown("### Merged Data")
+st.dataframe(df_combined)
+
 st.subheader("Handling Missing Values")
 st.write("The following shows the number of missing values in each column of the combined dataset:")
 
@@ -128,8 +132,6 @@ plt.figure(figsize=(12, 8))
 sns.heatmap(missing_data, cmap='magma', cbar=False, yticklabels=False)
 plt.title("Heatmap of Missing Values", fontsize=16, pad=20)
 
-# Save the figure as a static image, and display it in Streamlit
-st.pyplot(plt)
 
 # Alternatively, to use Plotly for an interactive heatmap
 # Reshaping the missing data into a long format for Plotly
@@ -140,6 +142,5 @@ missing_data_long["Missing"] = missing_data_long["Missing"].apply(lambda x: 1 if
 fig = px.density_heatmap(missing_data_long, x="Column", y="Row", z="Missing", 
                          color_continuous_scale='magma', title="Interactive Heatmap of Missing Values")
 st.plotly_chart(fig)
-st.dataframe(df)
-st.markdown("### Merged Data")
-st.dataframe(df_combined)
+
+
