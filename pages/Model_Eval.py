@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score, roc_curve, ConfusionMatrixDisplay
 import xgboost as xgb
 import joblib
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import cross_val_score
@@ -31,17 +31,12 @@ def set_bg_image(image_url):
 image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Load the dataset (replace this with your actual dataset)
-df = pd.read_csv("dataset1/final_df.csv")  # Your DataFrame
-df = df.drop('education', axis=1)
-df.dropna(inplace=True)
+# Load the dataset (assuming it's final_df in your case)
+final_df = pd.read_csv("dataset1/final_df.csv")
 
-# Assuming 'heart_disease' is the target variable and all other columns are features
-X = df.drop(columns=['heart_disease'])
-y = df['heart_disease']
-
-# Splitting the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Separate features and target
+X = final_df.drop('heart_disease', axis=1)
+y = final_df['heart_disease']
 
 def load_model_from_github(url):
     response = requests.get(url)
@@ -56,116 +51,76 @@ gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/
 xgb_model = load_model_from_github(xgb_model_url)
 gb_model = load_model_from_github(gb_model_url)
 
-# Making predictions with XGBoost and Gradient Boosting
-xgb_y_pred = xgb_model.predict(X_test)
-gb_y_pred = gb_model.predict(X_test)
+# Function to plot the ROC curve
+def plot_roc_curve(fpr, tpr, auc, model_name):
+    plt.figure()
+    plt.plot(fpr, tpr, label=f"{model_name} (AUC = {auc:.2f})")
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title(f"ROC Curve - {model_name}")
+    plt.legend()
+    st.pyplot()
 
-# Getting prediction probabilities for ROC AUC
-xgb_y_prob = xgb_model.predict_proba(X_test)[:, 1]
-gb_y_prob = gb_model.predict_proba(X_test)[:, 1]
+# Function to plot feature importances
+def plot_feature_importance(importance, features, model_name):
+    importance_df = pd.DataFrame({"Feature": features, "Importance": importance})
+    importance_df = importance_df.sort_values(by="Importance", ascending=False)
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x='Importance', y='Feature', data=importance_df.head(10), color='blue')
+    plt.title(f'Top 10 Feature Importance - {model_name}')
+    plt.xlabel('Importance')
+    plt.ylabel('Feature')
+    plt.tight_layout()
+    st.pyplot()
 
-# Calculating accuracy for both models
-xgb_accuracy = accuracy_score(y_test, xgb_y_pred)
-gb_accuracy = accuracy_score(y_test, gb_y_pred)
+# Function for Cross-validation AUC scores
+def plot_cv_scores(cv_scores, model_name):
+    st.write(f"{model_name} Cross-Validation AUC Scores: {cv_scores}")
+    st.write(f"Mean AUC Score: {cv_scores.mean()}")
+
+# Evaluation for XGBoost
+def evaluate_model(model, model_name):
+    y_pred = model.predict(X)
+    y_prob = model.predict_proba(X)[:, 1]
+
+    # Classification Report
+    st.write(f"**{model_name} Classification Report:**")
+    st.text(classification_report(y, y_pred))
+
+    # Confusion Matrix
+    cm = confusion_matrix(y, y_pred)
+    cm_display = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Disease", "Heart Disease"])
+    cm_display.plot(cmap='Blues')
+    st.pyplot(cm_display.figure_)
+
+    # ROC AUC Score
+    auc_score = roc_auc_score(y, y_prob)
+    st.write(f"**{model_name} ROC AUC Score:** {auc_score:.2f}")
+
+    # ROC Curve
+    fpr, tpr, _ = roc_curve(y, y_prob)
+    plot_roc_curve(fpr, tpr, auc_score, model_name)
+
+    # Feature Importance
+    importance = model.feature_importances_
+    plot_feature_importance(importance, X.columns, model_name)
+
+    # Cross-Validation AUC Scores
+    cv_scores = cross_val_score(model, X, y, cv=5, scoring='roc_auc')
+    plot_cv_scores(cv_scores, model_name)
 
 # Set up the page title and description
 st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Model Evaluation</h1>", unsafe_allow_html=True)
 st.write("Choose a model to see its evaluation metrics and confusion matrix:")
 
-# Add a dropdown to select the model for evaluation
+# Dropdown to select the model
 model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting"])
 
 # Display evaluation and confusion matrix for the selected model
 if model_choice == "XGBoost":
-    # Display the XGBoost model evaluation
-    st.write("**XGBoost Model Evaluation**")
-    st.write(f"Accuracy: {xgb_accuracy * 100:.2f}%")
-
-    # Classification report
-    st.write("**Classification Report**")
-    st.text(classification_report(y_test, xgb_y_pred))
-
-    # Confusion matrix
-    st.write("**Confusion Matrix**")
-    cm_xgb = confusion_matrix(y_test, xgb_y_pred)
-    cm_display_xgb = ConfusionMatrixDisplay(confusion_matrix=cm_xgb, display_labels=["No Disease", "Heart Disease"])
-    cm_display_xgb.plot(cmap='Blues')
-    st.pyplot(cm_display_xgb.figure_)
-
-    # ROC AUC Score
-    xgb_roc_auc = roc_auc_score(y_test, xgb_y_prob)
-    st.write(f"**ROC AUC Score**: {xgb_roc_auc:.2f}")
-
-    # Plot ROC curve
-    fpr, tpr, _ = roc_curve(y_test, xgb_y_prob)
-    plt.plot(fpr, tpr, label="XGBoost (AUC = {:.2f})".format(xgb_roc_auc))
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.title("ROC Curve - XGBoost")
-    plt.legend()
-    st.pyplot()
-
-    # Feature importance plot
-    xgb_importance = xgb_model.feature_importances_
-    xgb_features = pd.DataFrame({"Feature": X.columns, "Importance": xgb_importance})
-    xgb_features = xgb_features.sort_values(by="Importance", ascending=False)
-    st.write("**Top 10 Feature Importance**")
-    plt.figure(figsize=(12, 6))
-    sns.barplot(x='Importance', y='Feature', data=xgb_features.head(10), color='blue')
-    plt.title('Top 10 Feature Importance - XGBoost')
-    plt.xlabel('Importance')
-    plt.ylabel('Feature')
-    plt.tight_layout()
-    st.pyplot()
-
-    # Cross-validation AUC scores
-    xgb_cv_scores = cross_val_score(xgb_model, X, y, cv=5, scoring='roc_auc')
-    st.write(f"**XGBoost Cross-Validation AUC Scores**: {xgb_cv_scores}")
-    st.write(f"**Mean AUC Score**: {xgb_cv_scores.mean():.2f}")
+    st.write("**Evaluating XGBoost Model**")
+    evaluate_model(xgb_model, "XGBoost")
 
 elif model_choice == "Gradient Boosting":
-    # Display the Gradient Boosting model evaluation
-    st.write("**Gradient Boosting Model Evaluation**")
-    st.write(f"Accuracy: {gb_accuracy * 100:.2f}%")
-
-    # Classification report
-    st.write("**Classification Report**")
-    st.text(classification_report(y_test, gb_y_pred))
-
-    # Confusion matrix
-    st.write("**Confusion Matrix**")
-    cm_gb = confusion_matrix(y_test, gb_y_pred)
-    cm_display_gb = ConfusionMatrixDisplay(confusion_matrix=cm_gb, display_labels=["No Disease", "Heart Disease"])
-    cm_display_gb.plot(cmap='Blues')
-    st.pyplot(cm_display_gb.figure_)
-
-    # ROC AUC Score
-    gb_roc_auc = roc_auc_score(y_test, gb_y_prob)
-    st.write(f"**ROC AUC Score**: {gb_roc_auc:.2f}")
-
-    # Plot ROC curve
-    fpr, tpr, _ = roc_curve(y_test, gb_y_prob)
-    plt.plot(fpr, tpr, label="Gradient Boosting (AUC = {:.2f})".format(gb_roc_auc))
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.title("ROC Curve - Gradient Boosting")
-    plt.legend()
-    st.pyplot()
-
-    # Feature importance plot
-    gb_importance = gb_model.feature_importances_
-    gb_features = pd.DataFrame({"Feature": X.columns, "Importance": gb_importance})
-    gb_features = gb_features.sort_values(by="Importance", ascending=False)
-    st.write("**Top 10 Feature Importance**")
-    plt.figure(figsize=(12, 6))
-    sns.barplot(x='Importance', y='Feature', data=gb_features.head(10), color='blue')
-    plt.title('Top 10 Feature Importance - Gradient Boosting')
-    plt.xlabel('Importance')
-    plt.ylabel('Feature')
-    plt.tight_layout()
-    st.pyplot()
-
-    # Cross-validation AUC scores
-    gb_cv_scores = cross_val_score(gb_model, X, y, cv=5, scoring='roc_auc')
-    st.write(f"**Gradient Boosting Cross-Validation AUC Scores**: {gb_cv_scores}")
-    st.write(f"**Mean AUC Score**: {gb_cv_scores.mean():.2f}")
+    st.write("**Evaluating Gradient Boosting Model**")
+    evaluate_model(gb_model, "Gradient Boosting")
