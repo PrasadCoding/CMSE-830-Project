@@ -2,7 +2,7 @@ streamlit
 pandas
 numpy
 scikit-learn==1.4.2
-joblib==1.0.1
+joblib
 seaborn
 matplotlib
 plotly
