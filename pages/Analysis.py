@@ -39,7 +39,7 @@ df_diabetes = pd.read_csv('dataset1/diabetes1.csv')  # Update with your second d
 
 # Display the first dataset
 st.subheader('Dataset 1: Heart Disease Prediction Data')
-st.write(dataset_1.head())  # Display first 5 rows of the first dataset
+st.write(df_fram.head())  # Display first 5 rows of the first dataset
 
 # Explanation for Dataset 1 variables
 st.markdown("""
@@ -64,7 +64,7 @@ st.markdown("""
 
 # Display the second dataset
 st.subheader('Dataset 2: Diabetes Prediction Data')
-st.write(dataset_2.head())  # Display first 5 rows of the second dataset
+st.write(df_diabetes.head())  # Display first 5 rows of the second dataset
 
 # Explanation for Dataset 2 variables
 st.markdown("""
