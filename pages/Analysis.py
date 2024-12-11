@@ -159,4 +159,21 @@ st.write("The Iterative Imputer is a machine learning-based imputation technique
 missing_values_after_imputation = df_combined_imputed.isnull().sum()
 st.write(missing_values_after_imputation)
 
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
+# Data Transformation: Standard Scaling and Min-Max Scaling
+numeric_columns = ['age', 'bmi', 'blood_glucose_level']
+
+# Standard Scaling
+standard_scaler = StandardScaler()
+df_combined[numeric_columns] = standard_scaler.fit_transform(df_combined[numeric_columns])
+
+# Displaying the data after Standard Scaling
+st.title("Data Transformation")
+
+st.markdown("Standard Scaling: The StandardScaler standardizes the numeric columns by removing the mean and scaling to unit variance. This is useful when the features have different scales, and you want to ensure that they contribute equally to machine learning models.")
+st.markdown(""Min-Max Scaling: The MinMaxScaler scales the numeric columns to a specific range (usually 0 to 1). This is particularly useful when features have varying scales and you need a consistent range for certain algorithms that are sensitive to the range of input features, such as neural networks.)
+st.write("The following table shows the data after applying Standard Scaling:")
+
+# Displaying the transformed data
+st.write(df_combined[numeric_columns].head())
