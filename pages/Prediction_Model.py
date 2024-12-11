@@ -37,7 +37,7 @@ def load_model_from_github(url):
 # URLs to your models on GitHub (use raw URLs for the pickle files)
 xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
 gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
-rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/rf_model.pkl"  # Add the Random Forest model URL
+rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/rf_model1.pkl"  # Add the Random Forest model URL
 
 # Load the models from GitHub
 xgb_model = load_model_from_github(xgb_model_url)
