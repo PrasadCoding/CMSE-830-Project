@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-import pickle
 import requests
 from io import BytesIO
+import joblib  # Use joblib to load models if they are saved in joblib format
 
 # Set background image
 def set_bg_image(image_url):
@@ -28,10 +28,10 @@ def set_bg_image(image_url):
 image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Function to load model from a GitHub URL
+# Function to load model from a GitHub URL using joblib
 def load_model_from_github(url):
     response = requests.get(url)
-    model = pickle.load(BytesIO(response.content))
+    model = joblib.load(BytesIO(response.content))  # Use joblib for loading models
     return model
 
 # URLs to your models on GitHub (use raw URLs for the pickle files)
