@@ -280,10 +280,8 @@ st.write("""
     You can interact with the plot to zoom, hover over data points, and more.
 """)
 
-# Select numeric columns and categorical 'heart_disease' column
 sns.pairplot(df_combined, hue='heart_disease', diag_kind='kde')
-plt.show()
 
-# Show the interactive pairplot
-st.plotly_chart(fig)
+# Display the plot in Streamlit
+st.pyplot(plt)
 
