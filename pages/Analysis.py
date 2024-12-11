@@ -230,12 +230,13 @@ plot_boxplots(df_combined, numeric_columns, "Boxplots After Handling Outliers")
 
 
 st.subheader("EDA")
+
 st.write("""
-    In this section, EDA on the dataset. 
+    EDA on the dataset. 
     We will create **histograms** to understand the distribution and spread of the data. 
     The histograms show the frequency distribution of the variables.
 """)
-
+st.subheader("Histogram")
 # Select numeric columns
 # Select numeric columns
 numeric_cols = df_combined.select_dtypes(include=['float64', 'int64']).columns
@@ -252,6 +253,7 @@ st.plotly_chart(fig)
 
 
 # Streamlit UI: Title and explanation
+st.subheader("Scatterplot")
 st.write("""
     Now, we perform bivariate analysis on the numeric variables by plotting **scatter plots**.
     The scatter plot helps us examine the relationship between two numeric variables.
@@ -270,3 +272,28 @@ st.subheader(f'Scatter Plot between {x_col} and {y_col}')
 # Create scatter plot using Plotly
 fig = px.scatter(df_combined, x=x_col, y=y_col, title=f'Scatter Plot between {x_col} and {y_col}')
 st.plotly_chart(fig)
+
+
+st.subheader("Pairplot")
+st.write("""
+    This is an interactive pairplot visualizing relationships between numeric features with hue by 'heart_disease'.
+    You can interact with the plot to zoom, hover over data points, and more.
+""")
+
+# Select numeric columns and categorical 'heart_disease' column
+numeric_cols = df_combined.select_dtypes(include=['float64', 'int64']).columns
+
+# Create an interactive pairplot (scatter matrix)
+fig = px.scatter_matrix(
+    df_combined,
+    dimensions=numeric_cols,
+    color='heart_disease',  # Add hue by 'heart_disease'
+    title="Interactive Pairplot with Hue",
+    labels={col: col for col in numeric_cols},  # Label axes with column names
+    color_continuous_scale='Viridis',  # Adjust color scheme for continuous hue
+    opacity=0.7  # Optional: Adjust transparency for better visualization
+)
+
+# Show the interactive pairplot
+st.plotly_chart(fig)
+
