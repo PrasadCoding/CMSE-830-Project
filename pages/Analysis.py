@@ -93,3 +93,20 @@ st.markdown("### Dataset 2: Diabetes Prediction Data")
 df_diabetes['gender'] = df_diabetes['gender'].map({'Male': 1, 'Female': 0})
 df_diabetes['smoking_history'] = df_diabetes['smoking_history'].map({'never': 0, 'current': 1, 'former': 1})
 st.write(df_diabetes.head())
+
+st.subheader('Merging the datasets')
+st.markdown("The common columns in both datasets are matched, and the data is merged accordingly, ensuring that the corresponding rows are aligned. After the combination, we have a single dataset that integrates all relevant features.")
+# DataFrame for the table with common columns
+data = {
+    'Framingham Heart Study': ['male', 'age', 'prevalentHyp', 'currentSmoker', 'BMI', 'glucose', 'totChol', 'TenYearCHD'],
+    'Diabetes Prediction Dataset': ['gender', 'age', 'hypertension', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes']
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Display the table in Streamlit
+st.title("Common Columns in Both Datasets")
+st.write("The following table shows the common columns present in both datasets with their original names:")
+
+st.dataframe(df)
