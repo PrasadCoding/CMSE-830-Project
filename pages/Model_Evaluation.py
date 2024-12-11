@@ -8,7 +8,6 @@ import seaborn as sns
 from sklearn.model_selection import cross_val_score
 import requests
 from io import BytesIO
-import joblib
 # Set background image
 def set_bg_image(image_url):
     """
@@ -47,11 +46,22 @@ def load_model_from_github(url):
 
 # URLs to your models on GitHub (use raw URLs for the pickle files)
 xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
-gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
 
 # Load the models from GitHub
 xgb_model = load_model_from_github(xgb_model_url)
-gb_model = load_model_from_github(gb_model_url)
+
+def load_model_from_github(url):
+    response = requests.get(url)
+    model = joblib.load(BytesIO(response.content))  # Use joblib for loading models
+    return model
+
+# Test loading model from GitHub directly
+model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
+try:
+    model = load_model_from_github(model_url)
+    print("Model loaded successfully")
+except Exception as e:
+    print(f"Error: {e}")
 
 # Function to plot the ROC curve
 def plot_roc_curve(fpr, tpr, auc, model_name):
