@@ -111,3 +111,5 @@ st.markdown("### Common Columns in Both Datasets")
 st.write("The following table shows the common columns present in both datasets with their original names:")
 
 st.dataframe(df)
+st.markdown("### Merged Data")
+st.dataframe(df_combined)
