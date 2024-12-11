@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import cross_val_score
 import requests
-import BytesIO
+from io import BytesIO
 # Set background image
 def set_bg_image(image_url):
     """
