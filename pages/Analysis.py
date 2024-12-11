@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import streamlit as st
 def set_bg_image(image_url):
     """
     Set background image for the Streamlit app using a raw GitHub URL
