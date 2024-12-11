@@ -281,18 +281,8 @@ st.write("""
 """)
 
 # Select numeric columns and categorical 'heart_disease' column
-numeric_cols = df_combined.select_dtypes(include=['float64', 'int64']).columns
-
-# Create an interactive pairplot (scatter matrix)
-fig = px.scatter_matrix(
-    df_combined,
-    dimensions=numeric_cols,
-    color='heart_disease',  # Add hue by 'heart_disease'
-    title="Interactive Pairplot with Hue",
-    labels={col: col for col in numeric_cols},  # Label axes with column names
-    color_continuous_scale='Viridis',  # Adjust color scheme for continuous hue
-    opacity=0.7  # Optional: Adjust transparency for better visualization
-)
+sns.pairplot(df_combined, hue='heart_disease', diag_kind='kde')
+plt.show()
 
 # Show the interactive pairplot
 st.plotly_chart(fig)
