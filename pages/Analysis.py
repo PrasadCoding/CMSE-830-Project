@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import plotly.express as px
+
+
 def set_bg_image(image_url):
     """
     Set background image for the Streamlit app using a raw GitHub URL
@@ -110,6 +113,33 @@ df = pd.DataFrame(data)
 st.markdown("### Common Columns in Both Datasets")
 st.write("The following table shows the common columns present in both datasets with their original names:")
 
+st.subheader("Handling Missing Values")
+st.write("The following shows the number of missing values in each column of the combined dataset:")
+
+# Display the count of missing values in each column
+missing_values = df_combined.isnull().sum()
+st.write(missing_values)
+
+# Creating the heatmap of missing data
+missing_data = df_combined.isnull()
+
+# Plot using seaborn and convert to plotly for interactivity
+plt.figure(figsize=(12, 8))
+sns.heatmap(missing_data, cmap='magma', cbar=False, yticklabels=False)
+plt.title("Heatmap of Missing Values", fontsize=16, pad=20)
+
+# Save the figure as a static image, and display it in Streamlit
+st.pyplot(plt)
+
+# Alternatively, to use Plotly for an interactive heatmap
+# Reshaping the missing data into a long format for Plotly
+missing_data_long = missing_data.reset_index().melt(id_vars=["index"]).rename(columns={"index": "Row", "variable": "Column", "value": "Missing"})
+missing_data_long["Missing"] = missing_data_long["Missing"].apply(lambda x: 1 if x else 0)
+
+# Plotly heatmap
+fig = px.density_heatmap(missing_data_long, x="Column", y="Row", z="Missing", 
+                         color_continuous_scale='magma', title="Interactive Heatmap of Missing Values")
+st.plotly_chart(fig)
 st.dataframe(df)
 st.markdown("### Merged Data")
 st.dataframe(df_combined)
