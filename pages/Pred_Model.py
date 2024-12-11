@@ -35,12 +35,10 @@ def load_model_from_github(url):
     return model
 
 # URLs to your models on GitHub (use raw URLs for the pickle files)
-rf_model_url = "https://github.com/yourusername/yourrepository/raw/main/models/rf_model.pkl"
 xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/heart_disease_xgb_model.joblib"
 gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
 
 # Load the models from GitHub
-rf_model = load_model_from_github(rf_model_url)
 xgb_model = load_model_from_github(xgb_model_url)
 gb_model = load_model_from_github(gb_model_url)
 
@@ -77,14 +75,12 @@ user_data = {
 input_data = pd.DataFrame(user_data)
 
 # Dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["Random Forest", "XGBoost", "Gradient Boosting"])
+model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting"])
 
 # Prediction on button click
 if st.button("Predict Heart Disease Risk"):
     try:
-        if model_choice == "Random Forest":
-            prediction = rf_model.predict(input_data)
-        elif model_choice == "XGBoost":
+        if model_choice == "XGBoost":
             prediction = xgb_model.predict(input_data)
         elif model_choice == "Gradient Boosting":
             prediction = gb_model.predict(input_data)
