@@ -34,8 +34,8 @@ st.title('Data Analysis')
 
 # Load the datasets
 # Replace the paths with your actual dataset paths or upload functionality
-dataset_1 = pd.read_csv('dataset1/framingham.csv')  # Update with your first dataset path
-dataset_2 = pd.read_csv('dataset1/diabetes1.csv')  # Update with your second dataset path
+df_fram = pd.read_csv('dataset1/framingham.csv')  # Update with your first dataset path
+df_diabetes = pd.read_csv('dataset1/diabetes1.csv')  # Update with your second dataset path
 
 # Display the first dataset
 st.subheader('Dataset 1: Heart Disease Prediction Data')
@@ -86,3 +86,10 @@ st.markdown("""
 1. Heart Disease Dataset (Framingham): [Link to Dataset](https://www.kaggle.com/datasets/aasheesh200/framingham-heart-study-dataset)
 2. Diabetes Prediction Dataset: [Link to Dataset](https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset)
 """)
+
+
+st.subheader('Categorical to Numerical')
+st.markdown("### Dataset 2: Diabetes Prediction Data")
+df_diabetes['gender'] = df_diabetes['gender'].map({'Male': 1, 'Female': 0})
+df_diabetes['smoking_history'] = df_diabetes['smoking_history'].map({'never': 0, 'current': 1, 'former': 1})
+st.write(df_diabetes.head())
