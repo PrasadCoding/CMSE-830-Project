@@ -44,23 +44,52 @@ This project aims to predict the likelihood of individuals developing heart dise
 ## Features
 The dataset consists of multiple medical and demographic features, which are key in predicting heart disease.
 
+## Dataset 1 Variables
+
 | **Feature Name**     | **Description**                                                      |
 |----------------------|----------------------------------------------------------------------|
-| `age`                | Age of the individual                                                |
-| `Sex_male`           | Gender (1: Male, 0: Female)                                          |
-| `currentSmoker`      | Whether the individual is a current smoker (1: Yes, 0: No)           |
-| `cigsPerDay`         | Number of cigarettes smoked per day                                  |
-| `BPMeds`             | Whether the individual is on blood pressure medication (1 or 0)      |
-| `prevalentStroke`    | Whether the individual has had a stroke (1 or 0)                     |
-| `prevalentHyp`       | Whether the individual has hypertension (1 or 0)                     |
-| `diabetes`           | Whether the individual has diabetes (1 or 0)                         |
-| `totChol`            | Total cholesterol level                                              |
-| `sysBP`              | Systolic blood pressure                                              |
-| `diaBP`              | Diastolic blood pressure                                             |
-| `BMI`                | Body Mass Index                                                      |
-| `heartRate`          | Heart rate                                                           |
-| `glucose`            | Glucose level                                                       |
-| `TenYearCHD`         | Whether the individual develops heart disease in 10 years (1 or 0)   |
+| `male`               | Gender of the individual (1: Male, 0: Female)                        |
+| `age`                | Age of the individual in years                                        |
+| `education`          | Education level of the individual (categorical: e.g., high school, college, etc.) |
+| `currentSmoker`      | Whether the individual currently smokes (1: Yes, 0: No)              |
+| `cigsPerDay`         | Average number of cigarettes smoked per day                           |
+| `BPMeds`             | Whether the individual is on blood pressure medication (1: Yes, 0: No)|
+| `prevalentStroke`    | Whether the individual has had a stroke in the past (1: Yes, 0: No)  |
+| `prevalentHyp`       | Whether the individual has hypertension (1: Yes, 0: No)              |
+| `diabetes`           | Whether the individual has diabetes (1: Yes, 0: No)                  |
+| `totChol`            | Total cholesterol level (mg/dL)                                      |
+| `sysBP`              | Systolic blood pressure (mmHg)                                       |
+| `diaBP`              | Diastolic blood pressure (mmHg)                                      |
+| `BMI`                | Body Mass Index (calculated from height and weight)                   |
+| `heartRate`          | Heart rate (beats per minute)                                        |
+| `glucose`            | Glucose level (mg/dL)                                                |
+| `TenYearCHD`         | Whether the individual develops heart disease in 10 years (1: Yes, 0: No) |
+
+---
+
+## Dataset 2 Variables
+
+| **Feature Name**     | **Description**                                                      |
+|----------------------|----------------------------------------------------------------------|
+| `gender`             | Gender of the individual (1: Male, 0: Female)                        |
+| `age`                | Age of the individual in years                                        |
+| `hypertension`       | Whether the individual has hypertension (1: Yes, 0: No)              |
+| `heart_disease`      | Whether the individual has heart disease (1: Yes, 0: No)             |
+| `smoking_history`    | History of smoking (categorical: e.g., 'never smoked', 'smokes currently', etc.) |
+| `bmi`                | Body Mass Index (calculated from height and weight)                   |
+| `HbA1c_level`        | Hemoglobin A1c level (percentage)                                     |
+| `blood_glucose_level`| Blood glucose level (mg/dL)                                          |
+| `diabetes`           | Whether the individual has diabetes (1: Yes, 0: No)                  |
+
+---
+
+## Models Used
+
+This project uses machine learning models to predict heart disease risk:
+- XGBoost
+- Gradient Boosting
+- Random Forest (to be added in future updates)
+
 
 ## Installation
 To run this project locally, follow these steps:
