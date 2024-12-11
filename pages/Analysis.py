@@ -338,6 +338,87 @@ axes[1].set_title("Class Distribution After SMOTE")
 st.pyplot(fig)
 
 
+import streamlit as st
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# Title for the page
+st.title("Model Development")
+
+# Code snippet display
+st.subheader("Random Forest Model Development")
+
+code = """
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# Initialize Random Forest
+rf_model = RandomForestClassifier(random_state=42)
+
+# Train the model
+rf_model.fit(X_train, y_train)
+
+# Predictions
+rf_preds = rf_model.predict(X_test)
+rf_probs = rf_model.predict_proba(X_test)[:, 1]
+
+# Evaluation
+print("Random Forest Classification Report:\n", classification_report(y_test, rf_preds))
+print("Confusion Matrix:\n", confusion_matrix(y_test, rf_preds))
+print("ROC AUC Score:", roc_auc_score(y_test, rf_probs))
+
+# Plot ROC Curve
+fpr, tpr, _ = roc_curve(y_test, rf_probs)
+plt.plot(fpr, tpr, label="Random Forest (AUC = {:.2f})".format(roc_auc_score(y_test, rf_probs)))
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.title("ROC Curve - Random Forest")
+plt.legend()
+plt.show()
+"""
+st.code(code, language='python')
+
+# Code execution and displaying output
+rf_model = RandomForestClassifier(random_state=42)
+
+# Train the model
+rf_model.fit(X_train, y_train)
+
+# Predictions
+rf_preds = rf_model.predict(X_test)
+rf_probs = rf_model.predict_proba(X_test)[:, 1]
+
+# Display evaluation metrics
+classification_rep = classification_report(y_test, rf_preds)
+confusion_mat = confusion_matrix(y_test, rf_preds)
+roc_auc = roc_auc_score(y_test, rf_probs)
+
+# Display the classification report, confusion matrix, and ROC AUC score
+st.subheader("Model Evaluation")
+st.text("Random Forest Classification Report:")
+st.text(classification_rep)
+st.text("Confusion Matrix:")
+st.text(confusion_mat)
+st.text(f"ROC AUC Score: {roc_auc:.2f}")
+
+# Plot ROC Curve
+st.subheader("ROC Curve")
+fpr, tpr, _ = roc_curve(y_test, rf_probs)
+
+# Plotting the ROC curve using Matplotlib
+fig, ax = plt.subplots()
+ax.plot(fpr, tpr, label=f"Random Forest (AUC = {roc_auc:.2f})")
+ax.set_xlabel("False Positive Rate")
+ax.set_ylabel("True Positive Rate")
+ax.set_title("ROC Curve - Random Forest")
+ax.legend()
+
+# Display the ROC curve plot in Streamlit
+st.pyplot(fig)
+
+
 
 
 
