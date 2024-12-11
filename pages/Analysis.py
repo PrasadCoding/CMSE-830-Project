@@ -285,3 +285,17 @@ sns.pairplot(df_combined, hue='heart_disease', diag_kind='kde')
 # Display the plot in Streamlit
 st.pyplot(plt)
 
+st.subheader("Statistical Summary")
+st.write(df_combined.describe())
+
+
+
+
+
+
+
+
+
+
+
+
