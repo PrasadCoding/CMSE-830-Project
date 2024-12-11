@@ -246,6 +246,10 @@ selected_col = st.selectbox("Select a numeric feature to plot the histogram:", n
 # Plot selected feature's histogram with Plotly
 st.subheader(f'Histogram of {selected_col}')
 
+# Plot histogram using Plotly for interactivity
+fig = px.histogram(df_combined, x=selected_col, nbins=30, title=f'Histogram of {selected_col}', marginal="box")
+st.plotly_chart(fig)
+
 
 # Streamlit UI: Title and explanation
 st.write("""
@@ -265,9 +269,4 @@ st.subheader(f'Scatter Plot between {x_col} and {y_col}')
 
 # Create scatter plot using Plotly
 fig = px.scatter(df_combined, x=x_col, y=y_col, title=f'Scatter Plot between {x_col} and {y_col}')
-st.plotly_chart(fig)
-
-
-# Plot histogram using Plotly for interactivity
-fig = px.histogram(df_combined, x=selected_col, nbins=30, title=f'Histogram of {selected_col}', marginal="box")
 st.plotly_chart(fig)
