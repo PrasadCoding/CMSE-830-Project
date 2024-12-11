@@ -36,7 +36,7 @@ st.title('Data Analysis')
 # Replace the paths with your actual dataset paths or upload functionality
 df_fram = pd.read_csv('dataset1/framingham.csv')  # Update with your first dataset path
 df_diabetes = pd.read_csv('dataset1/diabetes1.csv')  # Update with your second dataset path
-df_combined = pd.read_csv('dataset1/merged_data.csv')
+df_combined = pd.read_csv('dataset1/merged_data.csv', index_col = 0)
 
 # Display the first dataset
 st.subheader('Dataset 1: Heart Disease Prediction Data')
