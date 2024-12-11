@@ -177,3 +177,52 @@ st.write("The following table shows the data after applying Standard Scaling:")
 
 # Displaying the transformed data
 st.write(df_combined[numeric_columns].head())
+
+
+# Function to handle outliers using IQR method
+def handle_outliers_iqr(df, columns):
+    for col in columns:
+        Q1 = df[col].quantile(0.25)
+        Q3 = df[col].quantile(0.75)
+        IQR = Q3 - Q1
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+
+        # Replace outliers with the median value of the column
+        outliers = (df[col] < lower_bound) | (df[col] > upper_bound)
+        if outliers.any():
+            df.loc[outliers, col] = df[col].median()
+    return df
+
+# Function to plot boxplots
+def plot_boxplots(df, columns, title):
+    plt.figure(figsize=(12, 6))
+    for i, col in enumerate(columns, 1):
+        plt.subplot(1, len(columns), i)
+        sns.boxplot(y=df[col], color='lightblue')
+        plt.title(f'{col}')
+    plt.suptitle(title, fontsize=16)
+    plt.tight_layout()
+    st.pyplot(plt)
+
+# Columns to analyze
+numeric_columns = ['age', 'bmi', 'blood_glucose_level']
+
+# Streamlit UI: Display explanation and boxplots before and after handling outliers
+st.title("Outlier Handling")
+st.write("""
+    In this section, we use the **IQR (Interquartile Range)** method to identify and handle outliers. The IQR method calculates the 
+    range between the first (Q1) and third (Q3) quartiles, and any values outside the range of `Q1 - 1.5 * IQR` to `Q3 + 1.5 * IQR` 
+    are considered outliers. These outliers are then replaced with the median value of the respective column.
+""")
+
+# Plot before handling outliers
+st.write("Boxplots Before Handling Outliers:")
+plot_boxplots(df_combined, numeric_columns, "Boxplots Before Handling Outliers")
+
+# Apply IQR method to handle outliers
+df_combined = handle_outliers_iqr(df_combined, numeric_columns)
+
+# Plot after handling outliers
+st.write("Boxplots After Handling Outliers:")
+plot_boxplots(df_combined, numeric_columns, "Boxplots After Handling Outliers")
