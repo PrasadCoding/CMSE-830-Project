@@ -144,3 +144,19 @@ fig = px.density_heatmap(missing_data_long, x="Column", y="Row", z="Missing",
 st.plotly_chart(fig)
 
 
+from sklearn.experimental import enable_iterative_imputer 
+from sklearn.impute import IterativeImputer
+
+# Imputing missing values using Iterative Imputer
+iterative_imputer = IterativeImputer(max_iter=10, random_state=0)
+df_combined_imputed = pd.DataFrame(iterative_imputer.fit_transform(df_combined), columns=df_combined.columns)
+
+# Displaying the number of missing values after imputation
+st.title("Handling Missing Values - Iterative Imputer")
+st.write("The Iterative Imputer is a machine learning-based imputation technique that models each feature with missing values as a function of the other features and iteratively predicts the missing values. This method is more sophisticated than simple imputation strategies (such as mean or median imputation) because it takes into account the relationships between the features.")
+
+# Display null values count after imputation
+missing_values_after_imputation = df_combined_imputed.isnull().sum()
+st.write(missing_values_after_imputation)
+
+
