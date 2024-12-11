@@ -8,6 +8,7 @@ import seaborn as sns
 from sklearn.model_selection import cross_val_score
 import requests
 from io import BytesIO
+import joblib
 # Set background image
 def set_bg_image(image_url):
     """
