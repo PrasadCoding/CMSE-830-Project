@@ -37,10 +37,12 @@ def load_model_from_github(url):
 # URLs to your models on GitHub (use raw URLs for the pickle files)
 xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
 gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
+rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/rf_model.pkl"  # Add the Random Forest model URL
 
 # Load the models from GitHub
 xgb_model = load_model_from_github(xgb_model_url)
 gb_model = load_model_from_github(gb_model_url)
+rf_model = load_model_from_github(rf_model_url)  # Load the Random Forest model
 
 # Set up the page title and description
 st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction</h1>", unsafe_allow_html=True)
@@ -75,7 +77,7 @@ user_data = {
 input_data = pd.DataFrame(user_data)
 
 # Dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting"])
+model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting", "Random Forest"])
 
 # Prediction on button click
 if st.button("Predict Heart Disease Risk"):
@@ -84,6 +86,8 @@ if st.button("Predict Heart Disease Risk"):
             prediction = xgb_model.predict(input_data)
         elif model_choice == "Gradient Boosting":
             prediction = gb_model.predict(input_data)
+        elif model_choice == "Random Forest":
+            prediction = rf_model.predict(input_data)  # Predict using the Random Forest model
 
         # Display the prediction result
         if prediction[0] == 1:
