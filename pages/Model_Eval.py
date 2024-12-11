@@ -6,6 +6,7 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import cross_val_score
+import requests
 
 # Set background image
 def set_bg_image(image_url):
