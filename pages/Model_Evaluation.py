@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import xgboost as xgb
 import joblib
+import xgboost as xgb
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -33,46 +33,44 @@ def set_bg_image(image_url):
 image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Load the dataset (assuming it's final_df in your case)
+# Load the dataset
 final_df = pd.read_csv("dataset1/final_df.csv", index_col = 0)
-
-# Separate features and target
 X = final_df.drop('heart_disease', axis=1)
 y = final_df['heart_disease']
 
+# Load models from GitHub
 def load_model_from_github(url):
     response = requests.get(url)
-    model = joblib.load(BytesIO(response.content))  # Use joblib for loading models
+    model = joblib.load(BytesIO(response.content))  
     return model
 
-# URLs to your models on GitHub (use raw URLs for the pickle files)
 xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
 gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
-# Load the models from GitHub
+
 xgb_model = load_model_from_github(xgb_model_url)
 gb_model = load_model_from_github(gb_model_url)
 
 # Function to plot the ROC curve
 def plot_roc_curve(fpr, tpr, auc, model_name):
-    plt.figure()
-    plt.plot(fpr, tpr, label=f"{model_name} (AUC = {auc:.2f})")
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.title(f"ROC Curve - {model_name}")
-    plt.legend()
-    st.pyplot()
+    fig, ax = plt.subplots()
+    ax.plot(fpr, tpr, label=f"{model_name} (AUC = {auc:.2f})")
+    ax.set_xlabel("False Positive Rate")
+    ax.set_ylabel("True Positive Rate")
+    ax.set_title(f"ROC Curve - {model_name}")
+    ax.legend()
+    st.pyplot(fig)
 
 # Function to plot feature importances
 def plot_feature_importance(importance, features, model_name):
+    fig, ax = plt.subplots(figsize=(12, 6))
     importance_df = pd.DataFrame({"Feature": features, "Importance": importance})
     importance_df = importance_df.sort_values(by="Importance", ascending=False)
-    plt.figure(figsize=(12, 6))
-    sns.barplot(x='Importance', y='Feature', data=importance_df.head(10), color='blue')
-    plt.title(f'Top 10 Feature Importance - {model_name}')
-    plt.xlabel('Importance')
-    plt.ylabel('Feature')
+    sns.barplot(x='Importance', y='Feature', data=importance_df.head(10), color='blue', ax=ax)
+    ax.set_title(f'Top 10 Feature Importance - {model_name}')
+    ax.set_xlabel('Importance')
+    ax.set_ylabel('Feature')
     plt.tight_layout()
-    st.pyplot()
+    st.pyplot(fig)
 
 # Function for Cross-validation AUC scores
 def plot_cv_scores(cv_scores, model_name):
@@ -115,13 +113,13 @@ st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Model Evaluation</h1>", u
 st.write("Choose a model to see its evaluation metrics and confusion matrix:")
 
 # Dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting"])
+model_choice = st.selectbox("### Choose a Model", options=["XGBoost", "Gradient Boosting"])
 
 # Display evaluation and confusion matrix for the selected model
 if model_choice == "XGBoost":
-    st.write("**Evaluating XGBoost Model**")
+    st.markdown("<h3 style='color: #2196F3;'>Evaluating XGBoost Model</h3>", unsafe_allow_html=True)
     evaluate_model(xgb_model, "XGBoost")
 
 elif model_choice == "Gradient Boosting":
-    st.write("**Evaluating Gradient Boosting Model**")
+    st.markdown("<h3 style='color: #2196F3;'>Evaluating Gradient Boosting Model</h3>", unsafe_allow_html=True)
     evaluate_model(gb_model, "Gradient Boosting")
