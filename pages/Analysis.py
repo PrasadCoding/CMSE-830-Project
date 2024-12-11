@@ -237,29 +237,15 @@ st.write("""
 """)
 
 # Select numeric columns
+# Select numeric columns
 numeric_cols = df_combined.select_dtypes(include=['float64', 'int64']).columns
 
-# Create subplots for histograms
-fig = make_subplots(rows=4, cols=4, subplot_titles=numeric_cols)
+# Dropdown to select feature
+selected_col = st.selectbox("Select a numeric feature to plot the histogram:", numeric_cols)
 
-# Loop through each numeric column to add a histogram as a subplot
-for i, col in enumerate(numeric_cols):
-    row = i // 4 + 1  # Determine the row (1-based index)
-    col_num = i % 4 + 1  # Determine the column (1-based index)
-    
-    # Create histogram for each numeric column
-    trace = go.Histogram(x=df_combined[col], name=col, nbinsx=30)
-    
-    # Add the histogram trace to the subplot
-    fig.add_trace(trace, row=row, col=col_num)
+# Plot selected feature's histogram with Plotly
+st.subheader(f'Histogram of {selected_col}')
 
-# Update layout
-fig.update_layout(
-    title_text="Histograms of Numeric Variables",
-    height=1000,
-    showlegend=False,
-    title_x=0.5
-)
-
-# Display the subplot in Streamlit
+# Plot histogram using Plotly for interactivity
+fig = px.histogram(df_combined, x=selected_col, nbins=30, title=f'Histogram of {selected_col}', marginal="box")
 st.plotly_chart(fig)
