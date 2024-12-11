@@ -28,14 +28,17 @@ This project aims to predict the likelihood of individuals developing heart dise
 
 ## Project Structure
 ```
-├── dataset/                   # Folder for dataset
-      ├──heart_disease.csv
-├── Heart_Disease_Prediction.ipynb/              # Jupyter notebooks for analysis and model building
+├── dataset1/                   # Folder for dataset
+      ├──framingham.csv
+      ├──diabetes1.csv
+├── Heart_Disease_Prediction.ipynb/(midterm)
+├── Final_proj.ipynb
 ├── pages/                  # Streamlit pages for the app
-      ├──My Analysis.py
+      ├──Analysis.py
       ├──EDA Overview.py
       ├──BMI Calculator.py
       ├──Prediction_Model.py
+      ├──Model_Evaluation
 ├── streamlit_app.py                  # Main Streamlit app script
 ├──requirements.txt
 └── README.md               # Project README file
@@ -123,7 +126,7 @@ To run this project locally, follow these steps:
 The EDA section provides insights into the dataset through various visualizations like histograms, box plots, scatter plots, and more. It also handles missing data, outliers, and distribution of features.
 
 ## Modeling
-The project uses machine learning models such as Random Forest, Logistic Regression, and Support Vector Machines to predict heart disease risk. Each model was evaluated on key metrics such as accuracy, precision, and recall.
+The project uses machine learning models such as Random Forest, XGBoost, and Gradient Boosting to predict heart disease risk. Each model was evaluated on key metrics such as accuracy, precision, and recall.
 
 ## Results
 The Random Forest model was the best-performing model, achieving an accuracy of 85%. The results from this model are further explored using confusion matrices and ROC curves to analyze the trade-offs between precision and recall.
