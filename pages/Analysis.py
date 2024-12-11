@@ -289,6 +289,45 @@ st.subheader("Statistical Summary")
 st.write(df_combined.describe())
 
 
+from imblearn.over_sampling import SMOTE
+# Separate features and target
+X = df_combined.drop('heart_disease', axis=1)  # Features
+y = df_combined['heart_disease']  # Target variable
+
+# Apply SMOTE
+smote = SMOTE(random_state=42)
+X_smote, y_smote = smote.fit_resample(X, y)
+
+# Display class distribution before and after SMOTE
+st.subheader("SMOTE: Before and After")
+
+# Before SMOTE class distribution
+st.write("Before SMOTE class distribution:")
+st.write(y.value_counts())
+
+# After SMOTE class distribution
+st.write("\nAfter SMOTE class distribution:")
+st.write(y_smote.value_counts())
+
+# Combine the resampled data back
+df_combined = X_smote
+df_combined["heart_disease"] = y_smote
+
+# Plot the class distribution before and after
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Before SMOTE class distribution plot
+sns.countplot(x=y, ax=axes[0])
+axes[0].set_title("Class Distribution Before SMOTE")
+
+# After SMOTE class distribution plot
+sns.countplot(x=y_smote, ax=axes[1])
+axes[1].set_title("Class Distribution After SMOTE")
+
+# Display the plots in Streamlit
+st.pyplot(fig)
+
+
 
 
 
