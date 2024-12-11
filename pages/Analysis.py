@@ -246,6 +246,28 @@ selected_col = st.selectbox("Select a numeric feature to plot the histogram:", n
 # Plot selected feature's histogram with Plotly
 st.subheader(f'Histogram of {selected_col}')
 
+
+# Streamlit UI: Title and explanation
+st.write("""
+    Now, we perform bivariate analysis on the numeric variables by plotting **scatter plots**.
+    The scatter plot helps us examine the relationship between two numeric variables.
+""")
+
+# Select numeric columns
+numeric_cols = df_combined.select_dtypes(include=['float64', 'int64']).columns
+
+# Dropdowns to select features for scatter plot
+x_col = st.selectbox("Select the feature for the x-axis:", numeric_cols)
+y_col = st.selectbox("Select the feature for the y-axis:", numeric_cols)
+
+# Plot selected features' scatter plot with Plotly
+st.subheader(f'Scatter Plot between {x_col} and {y_col}')
+
+# Create scatter plot using Plotly
+fig = px.scatter(df_combined, x=x_col, y=y_col, title=f'Scatter Plot between {x_col} and {y_col}')
+st.plotly_chart(fig)
+
+
 # Plot histogram using Plotly for interactivity
 fig = px.histogram(df_combined, x=selected_col, nbins=30, title=f'Histogram of {selected_col}', marginal="box")
 st.plotly_chart(fig)
