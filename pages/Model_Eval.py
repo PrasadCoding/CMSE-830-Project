@@ -33,7 +33,7 @@ image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/ref
 set_bg_image(image_url)
 
 # Load the dataset (assuming it's final_df in your case)
-final_df = pd.read_csv("dataset1/final_df.csv")
+final_df = pd.read_csv("dataset1/final_df.csv", index_col = 0)
 
 # Separate features and target
 X = final_df.drop('heart_disease', axis=1)
