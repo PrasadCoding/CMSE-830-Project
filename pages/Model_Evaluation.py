@@ -56,9 +56,9 @@ def load_model_from_github(url):
     return model
 
 # Test loading model from GitHub directly
-model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
+model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
 try:
-    model = load_model_from_github(model_url)
+    gb_model = load_model_from_github(model_url)
     print("Model loaded successfully")
 except Exception as e:
     print(f"Error: {e}")
