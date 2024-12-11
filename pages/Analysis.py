@@ -390,33 +390,9 @@ rf_model.fit(X_train, y_train)
 rf_preds = rf_model.predict(X_test)
 rf_probs = rf_model.predict_proba(X_test)[:, 1]
 
-# Display evaluation metrics
-classification_rep = classification_report(y_test, rf_preds)
-confusion_mat = confusion_matrix(y_test, rf_preds)
-roc_auc = roc_auc_score(y_test, rf_probs)
+st.write(rf_pred[:10])
 
-# Display the classification report, confusion matrix, and ROC AUC score
-st.subheader("Model Evaluation")
-st.text("Random Forest Classification Report:")
-st.text(classification_rep)
-st.text("Confusion Matrix:")
-st.text(confusion_mat)
-st.text(f"ROC AUC Score: {roc_auc:.2f}")
 
-# Plot ROC Curve
-st.subheader("ROC Curve")
-fpr, tpr, _ = roc_curve(y_test, rf_probs)
-
-# Plotting the ROC curve using Matplotlib
-fig, ax = plt.subplots()
-ax.plot(fpr, tpr, label=f"Random Forest (AUC = {roc_auc:.2f})")
-ax.set_xlabel("False Positive Rate")
-ax.set_ylabel("True Positive Rate")
-ax.set_title("ROC Curve - Random Forest")
-ax.legend()
-
-# Display the ROC curve plot in Streamlit
-st.pyplot(fig)
 
 
 
