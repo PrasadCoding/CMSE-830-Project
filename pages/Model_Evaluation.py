@@ -48,9 +48,12 @@ def load_model_from_github(url):
 # URLs to your models on GitHub (use raw URLs for the pickle files)
 xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
 gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
+rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/rf_model.pkl"  # Add the Random Forest model URL
+
 # Load the models from GitHub
 xgb_model = load_model_from_github(xgb_model_url)
 gb_model = load_model_from_github(gb_model_url)
+rf_model = load_model_from_github(rf_model_url)  # Load the Random Forest model
 
 # Function to plot the ROC curve
 def plot_roc_curve(fpr, tpr, auc, model_name):
@@ -79,7 +82,7 @@ def plot_cv_scores(cv_scores, model_name):
     st.write(f"{model_name} Cross-Validation AUC Scores: {cv_scores}")
     st.write(f"Mean AUC Score: {cv_scores.mean()}")
 
-# Evaluation for XGBoost
+# Evaluation for XGBoost, Gradient Boosting, and Random Forest models
 def evaluate_model(model, model_name):
     y_pred = model.predict(X)
     y_prob = model.predict_proba(X)[:, 1]
@@ -116,7 +119,7 @@ st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Model Evaluation</h1>", u
 st.write("Choose a model to see its evaluation metrics and confusion matrix:")
 
 # Dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting"])
+model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting", "Random Forest"])
 
 # Display evaluation and confusion matrix for the selected model
 if model_choice == "XGBoost":
@@ -126,3 +129,7 @@ if model_choice == "XGBoost":
 elif model_choice == "Gradient Boosting":
     st.write("**Evaluating Gradient Boosting Model**")
     evaluate_model(gb_model, "Gradient Boosting")
+
+elif model_choice == "Random Forest":
+    st.write("**Evaluating Random Forest Model**")
+    evaluate_model(rf_model, "Random Forest")
