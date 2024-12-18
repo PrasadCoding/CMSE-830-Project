@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import joblib
+from sklearn.model_selection import train_test_split
 
 # Function to download model from GitHub
 def download_model_from_github(url, filename):
@@ -52,44 +53,64 @@ X = df.drop(columns=['TenYearCHD'])
 y = df['TenYearCHD']
 
 # Splitting the data into training and testing sets
-from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Add a dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["Random Forest", "Logistic Regression"])
+model_choice = st.selectbox("Choose a Model", options=["Random Forest", "Logistic Regression", "XGBoost"])
+
+# Divide the input form into two columns
+col1, col2 = st.columns(2)
+
+# Collect user input for prediction in two columns
+with col1:
+    male = st.selectbox("Gender (Male)", [0, 1])
+    age = st.number_input("Age", min_value=20, max_value=120)
+    currentSmoker = st.selectbox("Smoker", [0, 1])
+    cigsPerDay = st.number_input("Cigarettes Per Day", min_value=0, max_value=50)
+    BPMeds = st.selectbox("Taking Blood Pressure Medication", [0, 1])
+    prevalentStroke = st.selectbox("Previous Stroke", [0, 1])
+    prevalentHyp = st.selectbox("Hypertension", [0, 1])
+
+with col2:
+    diabetes = st.selectbox("Diabetes", [0, 1])
+    totChol = st.number_input("Total Cholesterol", min_value=100, max_value=400)
+    sysBP = st.number_input("Systolic Blood Pressure", min_value=80, max_value=200)
+    diaBP = st.number_input("Diastolic Blood Pressure", min_value=50, max_value=120)
+    BMI = st.number_input("BMI", min_value=10.0, max_value=50.0)
+    heartRate = st.number_input("Heart Rate", min_value=40, max_value=150)
+    glucose = st.number_input("Glucose", min_value=50, max_value=300)
+
+# Create a DataFrame from the input data
+user_data = {
+    "male": [male],
+    "age": [age],
+    "currentSmoker": [currentSmoker],
+    "cigsPerDay": [cigsPerDay],
+    "BPMeds": [BPMeds],
+    "prevalentStroke": [prevalentStroke],
+    "prevalentHyp": [prevalentHyp],
+    "diabetes": [diabetes],
+    "totChol": [totChol],
+    "sysBP": [sysBP],
+    "diaBP": [diaBP],
+    "BMI": [BMI],
+    "heartRate": [heartRate],
+    "glucose": [glucose]
+}
+
+# Create a DataFrame
+input_data = pd.DataFrame(user_data)
 
 # Add a button to submit and calculate the prediction
 if st.button("Predict Heart Disease Risk"):
     try:
-        # Collect user input for prediction (same as before)
-        # Code for collecting user input...
-
-        # Create a DataFrame from the input data
-        user_data = {
-            "male": [male],
-            "age": [age],
-            "currentSmoker": [currentSmoker],
-            "cigsPerDay": [cigsPerDay],
-            "BPMeds": [BPMeds],
-            "prevalentStroke": [prevalentStroke],
-            "prevalentHyp": [prevalentHyp],
-            "diabetes": [diabetes],
-            "totChol": [totChol],
-            "sysBP": [sysBP],
-            "diaBP": [diaBP],
-            "BMI": [BMI],
-            "heartRate": [heartRate],
-            "glucose": [glucose]
-        }
-
-        # Create a DataFrame
-        input_data = pd.DataFrame(user_data)
-
         # Make a prediction using the selected model
         if model_choice == "Random Forest":
             prediction = rf_model.predict(input_data)
         elif model_choice == "Logistic Regression":
             prediction = lr_model.predict(input_data)
+        else:
+            prediction = xgboost_model.predict(input_data)
 
         # Display the prediction result
         if prediction[0] == 1:
