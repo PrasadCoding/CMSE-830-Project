@@ -34,7 +34,6 @@ try:
     rf_model = joblib.load(rf_model_path)
     lr_model = joblib.load(lr_model_path)
     xgboost_model = joblib.load(xgboost_model_path)
-    st.write("Models loaded successfully.")
 except Exception as e:
     st.error(f"Error loading models: {e}")
 
