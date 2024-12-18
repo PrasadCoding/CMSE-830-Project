@@ -34,7 +34,7 @@ image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/ref
 set_bg_image(image_url)
 
 # Load the dataset (replace this with your actual dataset)
-df = pd.read_csv("dataset1/midterm_data.csv")  # Your DataFrame
+df = pd.read_csv("dataset1/midterm_data.csv", index_col = 0)  # Your DataFrame
 
 # Assuming 'TenYearCHD' is the target variable and all other columns are features
 X = df.drop(columns=['TenYearCHD'])
