@@ -76,6 +76,7 @@ def plot_roc_curve(fpr, tpr, auc, model_name):
     ax.set_title(f"ROC Curve - {model_name}")
     ax.legend()
     st.pyplot(fig)
+    st.markdown(f"#### The ROC curve shows the trade-off between sensitivity and specificity for {model_name}.")
 
 # Function to plot feature importances
 def plot_feature_importance(importance, features, model_name):
@@ -88,11 +89,13 @@ def plot_feature_importance(importance, features, model_name):
     ax.set_ylabel('Feature')
     plt.tight_layout()
     st.pyplot(fig)
+    st.markdown(f"#### This plot highlights the top 10 features influencing predictions in {model_name}.")
 
 # Function for Cross-validation AUC scores
 def plot_cv_scores(cv_scores, model_name):
     st.write(f"{model_name} Cross-Validation AUC Scores: {cv_scores}")
     st.write(f"Mean AUC Score: {cv_scores.mean()}")
+    st.markdown(f"#### Cross-validation scores give an estimate of model performance consistency.")
 
 # Evaluation for XGBoost, Gradient Boosting, and Random Forest models
 def evaluate_model(model, model_name):
@@ -107,10 +110,11 @@ def evaluate_model(model, model_name):
     cm_display = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Disease", "Heart Disease"])
     cm_display.plot(cmap='Blues')
     st.pyplot(cm_display.figure_)
+    st.markdown(f"#### The confusion matrix displays the number of correct and incorrect predictions for {model_name}.")
 
     # ROC AUC Score
     auc_score = roc_auc_score(y, y_prob)
-    st.write(f"**{model_name} ROC AUC Score:** {auc_score:.2f}")
+    st.markdown(f"<h3 style='color: green; font-size: 24px;'><b>{model_name} ROC AUC Score: {auc_score:.2f}</b></h3>", unsafe_allow_html=True)
 
     # ROC Curve
     fpr, tpr, _ = roc_curve(y, y_prob)
