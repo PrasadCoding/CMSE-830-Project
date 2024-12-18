@@ -11,7 +11,6 @@ def download_model_from_github(url, filename):
         response.raise_for_status()  # Check for HTTP errors
         with open(filename, 'wb') as f:
             f.write(response.content)
-        st.write(f"Model downloaded successfully: {filename}")
     except requests.exceptions.RequestException as e:
         st.error(f"Error downloading model: {e}")
 
