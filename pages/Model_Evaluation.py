@@ -34,7 +34,7 @@ image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/ref
 set_bg_image(image_url)
 
 # Load the dataset (assuming it's final_df in your case)
-final_df = pd.read_csv("dataset1/final_df.csv", index_col = 0)
+final_df = pd.read_csv("dataset1/final_df.csv", index_col=0)
 
 # Separate features and target
 X = final_df.drop('heart_disease', axis=1)
@@ -54,6 +54,18 @@ rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/
 xgb_model = load_model_from_github(xgb_model_url)
 gb_model = load_model_from_github(gb_model_url)
 rf_model = load_model_from_github(rf_model_url)  # Load the Random Forest model
+
+# Function to display the classification report as a nicely formatted table
+def display_classification_report(y_true, y_pred, model_name):
+    """
+    Display classification report as a table.
+    """
+    st.markdown(f"### **{model_name} Classification Report**")
+    report_dict = classification_report(y_true, y_pred, target_names=["No Disease", "Heart Disease"], output_dict=True)
+    report_df = pd.DataFrame(report_dict).transpose()
+    report_df.index.name = "Metrics"
+    report_df.reset_index(inplace=True)
+    st.table(report_df)
 
 # Function to plot the ROC curve
 def plot_roc_curve(fpr, tpr, auc, model_name):
@@ -87,10 +99,8 @@ def evaluate_model(model, model_name):
     y_pred = model.predict(X)
     y_prob = model.predict_proba(X)[:, 1]
 
-    # Classification Report
-    st.markdown(f"### **{model_name} Classification Report**")
-    report = classification_report(y, y_pred, target_names=["No Disease", "Heart Disease"], output_dict=False)
-    st.text(report)
+    # Display Classification Report
+    display_classification_report(y, y_pred, model_name)
 
     # Confusion Matrix
     cm = confusion_matrix(y, y_pred)
