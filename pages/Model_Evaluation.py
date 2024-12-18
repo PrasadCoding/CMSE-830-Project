@@ -70,7 +70,8 @@ def display_classification_report(y_true, y_pred, model_name):
 # Function to plot the ROC curve
 def plot_roc_curve(fpr, tpr, auc, model_name):
     fig, ax = plt.subplots()
-    ax.plot(fpr, tpr, label=f"{model_name} (AUC = {auc:.2f})")
+    ax.plot(fpr, tpr, label=f"{model_name} (AUC = {auc:.2f})", color="darkorange", linewidth=2)
+    ax.plot([0, 1], [0, 1], linestyle='--', color='grey', lw=1.5)
     ax.set_xlabel("False Positive Rate")
     ax.set_ylabel("True Positive Rate")
     ax.set_title(f"ROC Curve - {model_name}")
@@ -82,11 +83,12 @@ def plot_roc_curve(fpr, tpr, auc, model_name):
 def plot_feature_importance(importance, features, model_name):
     importance_df = pd.DataFrame({"Feature": features, "Importance": importance})
     importance_df = importance_df.sort_values(by="Importance", ascending=False)
+    palette = sns.color_palette("coolwarm", len(importance_df.head(10)))
     fig, ax = plt.subplots(figsize=(12, 6))
-    sns.barplot(x='Importance', y='Feature', data=importance_df.head(10), color='blue', ax=ax)
-    ax.set_title(f'Top 10 Feature Importance - {model_name}')
-    ax.set_xlabel('Importance')
-    ax.set_ylabel('Feature')
+    sns.barplot(x='Importance', y='Feature', data=importance_df.head(10), palette=palette, ax=ax)
+    ax.set_title(f'Top 10 Feature Importance - {model_name}', fontsize=16, color="navy")
+    ax.set_xlabel('Importance', fontsize=14, color="darkblue")
+    ax.set_ylabel('Feature', fontsize=14, color="darkblue")
     plt.tight_layout()
     st.pyplot(fig)
     st.markdown(f"#### This plot highlights the top 10 features influencing predictions in {model_name}.")
