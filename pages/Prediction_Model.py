@@ -1,10 +1,12 @@
 import streamlit as st
 import pandas as pd
-import requests
-from io import BytesIO
-import joblib  # Use joblib to load models if they are saved in joblib format
 
-# Set background image
+# Load the pre-trained Random Forest model
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
 def set_bg_image(image_url):
     """
     Set background image for the Streamlit app using a raw GitHub URL
@@ -28,66 +30,99 @@ def set_bg_image(image_url):
 image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
 set_bg_image(image_url)
 
-# Function to load model from a GitHub URL using joblib
-def load_model_from_github(url):
-    response = requests.get(url)
-    model = joblib.load(BytesIO(response.content))  # Use joblib for loading models
-    return model
+# Sample DataFrame (replace this with your actual DataFrame)
+df = pd.read_csv("dataset/heart_disease.csv")  # Your DataFrame
+df = df.drop('education', axis=1)
+df.dropna(inplace=True)
 
-# URLs to your models on GitHub (use raw URLs for the pickle files)
-xgb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/xgb_model.pkl"
-gb_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/gb_model.pkl"
-rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models/rf_model1.pkl"  # Add the Random Forest model URL
+# Assuming 'TenYearCHD' is the target variable and all other columns are features
+X = df.drop(columns=['TenYearCHD'])
+y = df['TenYearCHD']
 
-# Load the models from GitHub
-xgb_model = load_model_from_github(xgb_model_url)
-gb_model = load_model_from_github(gb_model_url)
-rf_model = load_model_from_github(rf_model_url)  # Load the Random Forest model
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Creating the Random Forest Classifier and Logistic Regression models
+rf_model = RandomForestClassifier(random_state=42)
+lr_model = LogisticRegression(max_iter=1000, random_state=42)
+
+# Fitting the models
+rf_model.fit(X_train, y_train)
+lr_model.fit(X_train, y_train)
+
+# Making predictions with Random Forest and Logistic Regression
+rf_y_pred = rf_model.predict(X_test)
+lr_y_pred = lr_model.predict(X_test)
+
+# Calculating accuracy
+rf_accuracy = accuracy_score(y_test, rf_y_pred)
+lr_accuracy = accuracy_score(y_test, lr_y_pred)
 
 # Set up the page title and description
-st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction Model</h1>", unsafe_allow_html=True)
 st.write("Provide the following information to predict the likelihood of heart disease:")
 
-# Collect user input for the prediction (all inputs in one column)
-gender = st.selectbox("Gender", options=["Male", "Female"])
-age = st.number_input("Age", min_value=1, max_value=120, value=50)
-smoking_history = st.selectbox("Smoking History", options=["Yes", "No"])
-bmi = st.number_input("BMI", min_value=10.0, max_value=50.0, value=25.0)
-blood_glucose_level = st.number_input("Blood Glucose Level", min_value=50, max_value=300, value=100)
-hypertension = st.selectbox("Hypertension", options=["Yes", "No"])
-diabetes = st.selectbox("Diabetes", options=["Yes", "No"])
+# Collect user input for the prediction model
+col1, col2 = st.columns(2)
+
+with col1:
+    sex = st.selectbox("Sex", options=["Male", "Female"], help="Select your gender")
+    age = st.number_input("Age", min_value=1, max_value=120, value=39)
+    currentSmoker = st.selectbox("Current Smoker", options=["Yes", "No"], help="Select 'Yes' if you smoke currently")
+    cigsPerDay = st.number_input("Cigarettes Per Day", min_value=0, max_value=100, value=0)
+    BPMeds = st.selectbox("On Blood Pressure Medication", options=["Yes", "No"], help="Select 'Yes' if you are on BP meds")
+    prevalentStroke = st.selectbox("Prevalent Stroke", options=["Yes", "No"], help="Select 'Yes' if you've had a stroke")
+    prevalentHyp = st.selectbox("Prevalent Hypertension", options=["Yes", "No"], help="Select 'Yes' if you have high BP")
+
+with col2:
+    diabetes = st.selectbox("Diabetes", options=["Yes", "No"], help="Select 'Yes' if you have diabetes")
+    totChol = st.number_input("Total Cholesterol (mg/dL)", min_value=100, max_value=500, value=195)
+    sysBP = st.number_input("Systolic Blood Pressure", min_value=80, max_value=200, value=106)
+    diaBP = st.number_input("Diastolic Blood Pressure", min_value=50, max_value=130, value=70)
+    BMI = st.number_input("Body Mass Index (BMI)", min_value=10.0, max_value=50.0, value=26.97)
+    heartRate = st.number_input("Heart Rate (bpm)", min_value=40, max_value=200, value=80)
+    glucose = st.number_input("Glucose Level (mg/dL)", min_value=50, max_value=300, value=77)
 
 # Convert categorical inputs to binary values
-gender = 1 if gender == "Male" else 0
-smoking_history = 1 if smoking_history == "Yes" else 0
-hypertension = 1 if hypertension == "Yes" else 0
+male = 1 if sex == "Male" else 0
+currentSmoker = 1 if currentSmoker == "Yes" else 0
+BPMeds = 1 if BPMeds == "Yes" else 0
+prevalentStroke = 1 if prevalentStroke == "Yes" else 0
+prevalentHyp = 1 if prevalentHyp == "Yes" else 0
 diabetes = 1 if diabetes == "Yes" else 0
 
-# Prepare the input data as a DataFrame
-user_data = {
-    "gender": [gender],
-    "age": [age],
-    "hypertension": [hypertension],
-    "smoking_history": [smoking_history],
-    "bmi": [bmi],
-    "blood_glucose_level": [blood_glucose_level],
-    "diabetes": [diabetes]
-}
+# Add a dropdown to select the model
+model_choice = st.selectbox("Choose a Model", options=["Random Forest", "Logistic Regression"])
 
-input_data = pd.DataFrame(user_data)
-
-# Dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["XGBoost", "Gradient Boosting", "Random Forest"])
-
-# Prediction on button click
+# Add a button to submit and calculate the prediction
 if st.button("Predict Heart Disease Risk"):
     try:
-        if model_choice == "XGBoost":
-            prediction = xgb_model.predict(input_data)
-        elif model_choice == "Gradient Boosting":
-            prediction = gb_model.predict(input_data)
-        elif model_choice == "Random Forest":
-            prediction = rf_model.predict(input_data)  # Predict using the Random Forest model
+        # Create a DataFrame from the input data
+        user_data = {
+            "male": [male],
+            "age": [age],
+            "currentSmoker": [currentSmoker],
+            "cigsPerDay": [cigsPerDay],
+            "BPMeds": [BPMeds],
+            "prevalentStroke": [prevalentStroke],
+            "prevalentHyp": [prevalentHyp],
+            "diabetes": [diabetes],
+            "totChol": [totChol],
+            "sysBP": [sysBP],
+            "diaBP": [diaBP],
+            "BMI": [BMI],
+            "heartRate": [heartRate],
+            "glucose": [glucose]
+        }
+
+        # Create a DataFrame
+        input_data = pd.DataFrame(user_data)
+
+        # Make a prediction using the selected model
+        if model_choice == "Random Forest":
+            prediction = rf_model.predict(input_data)
+        elif model_choice == "Logistic Regression":
+            prediction = lr_model.predict(input_data)
 
         # Display the prediction result
         if prediction[0] == 1:
