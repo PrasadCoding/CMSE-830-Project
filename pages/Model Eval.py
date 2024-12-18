@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import requests
+import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
@@ -40,10 +42,30 @@ df.dropna(inplace=True)
 X = df.drop(columns=['TenYearCHD'])
 y = df['TenYearCHD']
 
+# Helper function to download model from GitHub
+def download_model_from_github(url, filename):
+    response = requests.get(url)
+    with open(filename, 'wb') as f:
+        f.write(response.content)
+
+# Download models from GitHub (replace with actual raw URLs)
+rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/Random%20Forest_model.pkl"
+lr_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/Logistic%20Regression_model.pkl"
+xgboost_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/XGBoost_model.pkl"
+
+# Download models
+rf_model_path = "Random_Forest_model.pkl"
+lr_model_path = "Logistic_Regression_model.pkl"
+xgboost_model_path = "XGBoost_model.pkl"
+
+download_model_from_github(rf_model_url, rf_model_path)
+download_model_from_github(lr_model_url, lr_model_path)
+download_model_from_github(xgboost_model_url, xgboost_model_path)
+
 # Load pre-trained models
-rf_model = joblib.load("https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/Random%20Forest_model.pkl")  # Replace with the path to your Random Forest model
-lr_model = joblib.load("https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/Logistic%20Regression_model.pkl")  # Replace with the path to your Logistic Regression model
-xgboost_model = joblib.load("https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/XGBoost_model.pkl")  # Replace with the path to your XGBoost model
+rf_model = joblib.load(rf_model_path)
+lr_model = joblib.load(lr_model_path)
+xgboost_model = joblib.load(xgboost_model_path)
 
 # Making predictions with Random Forest, Logistic Regression, and XGBoost
 rf_y_pred = rf_model.predict(X)
