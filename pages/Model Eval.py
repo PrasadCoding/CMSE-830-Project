@@ -35,8 +35,6 @@ set_bg_image(image_url)
 
 # Load the dataset (replace this with your actual dataset)
 df = pd.read_csv("dataset1/midterm_data.csv")  # Your DataFrame
-df = df.drop('education', axis=1)
-df.dropna(inplace=True)
 
 # Assuming 'TenYearCHD' is the target variable and all other columns are features
 X = df.drop(columns=['TenYearCHD'])
