@@ -82,11 +82,10 @@ with col2:
 
 # Create a DataFrame from the input data
 user_data = {
-    "male": [male],
+    "sex": [male],
     "age": [age],
     "currentSmoker": [currentSmoker],
     "cigsPerDay": [cigsPerDay],
-    "BPMeds": [BPMeds],
     "prevalentStroke": [prevalentStroke],
     "prevalentHyp": [prevalentHyp],
     "diabetes": [diabetes],
