@@ -34,7 +34,7 @@ image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/ref
 set_bg_image(image_url)
 
 # Load the dataset (replace this with your actual dataset)
-df = pd.read_csv("dataset/heart_disease.csv")  # Your DataFrame
+df = pd.read_csv("dataset1/midterm_data.csv")  # Your DataFrame
 df = df.drop('education', axis=1)
 df.dropna(inplace=True)
 
