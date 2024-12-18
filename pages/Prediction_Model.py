@@ -1,16 +1,34 @@
 import streamlit as st
 import pandas as pd
+import joblib  # To load pre-trained models
 
-# Load the pre-trained Random Forest model
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+# Function to load the models from GitHub (adjusted from your original code)
+def download_model_from_github(url, filename):
+    response = requests.get(url)
+    with open(filename, 'wb') as f:
+        f.write(response.content)
 
+# URLs to download the pre-trained models
+rf_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/Random%20Forest_model.pkl"
+lr_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/Logistic%20Regression_model.pkl"
+xgboost_model_url = "https://github.com/PrasadCoding/CMSE-830-Project/raw/refs/heads/master/models_midterm/XGBoost_model.pkl"
+
+# Download model files
+rf_model_path = "Random_Forest_model.pkl"
+lr_model_path = "Logistic_Regression_model.pkl"
+xgboost_model_path = "XGBoost_model.pkl"
+
+download_model_from_github(rf_model_url, rf_model_path)
+download_model_from_github(lr_model_url, lr_model_path)
+download_model_from_github(xgboost_model_url, xgboost_model_path)
+
+# Load the pre-trained models using joblib
+rf_model = joblib.load(rf_model_path)
+lr_model = joblib.load(lr_model_path)
+xgboost_model = joblib.load(xgboost_model_path)
+
+# Set background image
 def set_bg_image(image_url):
-    """
-    Set background image for the Streamlit app using a raw GitHub URL
-    """
     st.markdown(
         f"""
         <style>
@@ -26,39 +44,20 @@ def set_bg_image(image_url):
         unsafe_allow_html=True,
     )
 
-# Path to your background image file on GitHub (use the raw URL)
-image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+# Background image URL
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'
 set_bg_image(image_url)
 
-# Sample DataFrame (replace this with your actual DataFrame)
+# Load sample DataFrame (replace this with actual data)
 df = pd.read_csv("dataset/heart_disease.csv")  # Your DataFrame
 df = df.drop('education', axis=1)
 df.dropna(inplace=True)
 
-# Assuming 'TenYearCHD' is the target variable and all other columns are features
+# Define features and target
 X = df.drop(columns=['TenYearCHD'])
 y = df['TenYearCHD']
 
-# Splitting the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Creating the Random Forest Classifier and Logistic Regression models
-rf_model = RandomForestClassifier(random_state=42)
-lr_model = LogisticRegression(max_iter=1000, random_state=42)
-
-# Fitting the models
-rf_model.fit(X_train, y_train)
-lr_model.fit(X_train, y_train)
-
-# Making predictions with Random Forest and Logistic Regression
-rf_y_pred = rf_model.predict(X_test)
-lr_y_pred = lr_model.predict(X_test)
-
-# Calculating accuracy
-rf_accuracy = accuracy_score(y_test, rf_y_pred)
-lr_accuracy = accuracy_score(y_test, lr_y_pred)
-
-# Set up the page title and description
+# Set up the page title
 st.markdown("<h1 style='color: #FF4B4B;'>Heart Disease Prediction Model</h1>", unsafe_allow_html=True)
 st.write("Provide the following information to predict the likelihood of heart disease:")
 
@@ -92,7 +91,7 @@ prevalentHyp = 1 if prevalentHyp == "Yes" else 0
 diabetes = 1 if diabetes == "Yes" else 0
 
 # Add a dropdown to select the model
-model_choice = st.selectbox("Choose a Model", options=["Random Forest", "Logistic Regression"])
+model_choice = st.selectbox("Choose a Model", options=["Random Forest", "Logistic Regression", "XGBoost"])
 
 # Add a button to submit and calculate the prediction
 if st.button("Predict Heart Disease Risk"):
@@ -123,6 +122,8 @@ if st.button("Predict Heart Disease Risk"):
             prediction = rf_model.predict(input_data)
         elif model_choice == "Logistic Regression":
             prediction = lr_model.predict(input_data)
+        elif model_choice == "XGBoost":
+            prediction = xgboost_model.predict(input_data)
 
         # Display the prediction result
         if prediction[0] == 1:
