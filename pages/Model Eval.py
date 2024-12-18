@@ -5,7 +5,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 
-
 def set_bg_image(image_url):
     """
     Set background image for the Streamlit app using a raw GitHub URL
