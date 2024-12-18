@@ -153,11 +153,13 @@ elif model_choice == "XGBoost":
 # Add footer to display additional knowledge
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown(
-    """<div style='text-align: center;'>
+    """<div style='text-align: left; padding-left: 20px;'>
     <h4>Insights:</h4>
-    <p>The Random Forest model provides feature importance, enabling interpretability and highlighting key risk factors for heart disease.</p>
-    <p>Logistic Regression offers simplicity and is well-suited for binary classification tasks.</p>
-    <p>XGBoost is a powerful gradient boosting model that often outperforms other models in classification tasks.</p>
+    <ul>
+        <li><b>Random Forest:</b> Provides feature importance, enabling interpretability and highlighting key risk factors for heart disease.</li>
+        <li><b>Logistic Regression:</b> Offers simplicity and is well-suited for binary classification tasks.</li>
+        <li><b>XGBoost:</b> A powerful gradient boosting model that often outperforms other models in classification tasks.</li>
+    </ul>
     </div>""",
     unsafe_allow_html=True
 )
