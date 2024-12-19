@@ -4,6 +4,31 @@ import requests
 import joblib
 from sklearn.model_selection import train_test_split
 
+
+def set_bg_image(image_url):
+    """
+    Set background image for the Streamlit app using a raw GitHub URL
+    """
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_url}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# Path to your background image file on GitHub (use the raw URL)
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+set_bg_image(image_url)
+
+
 # Function to download model from GitHub
 def download_model_from_github(url, filename):
     try:
