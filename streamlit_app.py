@@ -46,7 +46,7 @@ st.markdown(
     - Accurate predictions based on real-time data
     - Quick results to help assess heart disease risk
     </div>
-    """
+    """, unsafe_allow_html=True,
 )
 
 
