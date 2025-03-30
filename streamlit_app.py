@@ -22,7 +22,7 @@ gif_height = 300  # Height of the GIF (in pixels)
 
 # Center the content in a container and add the GIF animation
 st.markdown("""<div style="width: 80%; max-width: 1000px; margin: 0 auto;">""", unsafe_allow_html=True)
-
+st.wrtie("#")
 # Display the GIF image
 st.markdown(
     f"""
@@ -32,7 +32,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
+st.wrtie("#")
 st.markdown(
     f"""
     <h3 style='text-align: center; color:{text_color};'>App Features</h3>
