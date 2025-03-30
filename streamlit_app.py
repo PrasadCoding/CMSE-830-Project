@@ -56,7 +56,7 @@ st.write("")
 st.markdown(
     f"""
     <h3 style='text-align: center; color:{text_color};'>App Features</h3>
-    <p style='text-align: justify; color:{text_color};'>Uses machine learning to assess heart disease risk based on health parameters.</p>
+    <p style='text-align: center; color:{text_color};'>Uses machine learning to assess heart disease risk based on health parameters.</p>
     <p style='text-align: center; color:{text_color};'>Provides accurate, real-time predictions to understand heart health.</p>
     <p style='text-align: center; color:{text_color};'>Offers a user-friendly interface and quick results for evaluating risk.</p>
     """, unsafe_allow_html=True
