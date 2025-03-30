@@ -34,7 +34,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Content section with regular alignment (not centered)
+# Content section with left alignment (no text-align: center)
 st.markdown(
     """
     This app uses a machine learning model to predict the risk of heart disease based on various health parameters. 
