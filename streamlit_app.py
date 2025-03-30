@@ -10,9 +10,8 @@ title_color = "#1e3d58"  # Set your desired title color here
 # Apply the background color to the app
 st.markdown(f"<style>.stApp {{ background-color: {bg_color}; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }}</style>", unsafe_allow_html=True)
 
-# Add title and subtitle with the chosen color
+# Add title with the chosen color
 st.markdown(f"<h1 style='color:{title_color}; text-align: center;'>Heart Disease Prediction App</h1>", unsafe_allow_html=True)
-#st.markdown("<h3 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h3>", unsafe_allow_html=True)
 
 # Display the GIF animation with size customization
 gif_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/animation/Animation%20-%201743363269713.gif'  # Replace with your GIF URL
@@ -34,15 +33,12 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Content section with left alignment (no text-align: center)
+# Content section with center alignment
 st.markdown(
-    f"""
-    <h3App Features</h3>
-    - Uses machine learning to assess heart disease risk based on health parameters.
-    - Provides accurate, real-time predictions to understand heart health.
-    - Offers a user-friendly interface and quick results for evaluating risk.
-    </div>
-    """, unsafe_allow_html=True,
+    """
+    <h3 style='text-align: center;'>App Features</h3>
+    <p style='text-align: center;'>Uses machine learning to assess heart disease risk based on health parameters.</p>
+    <p style='text-align: center;'>Provides accurate, real-time predictions to understand heart health.</p>
+    <p style='text-align: center;'>Offers a user-friendly interface and quick results for evaluating risk.</p>
+    """, unsafe_allow_html=True
 )
-
-
