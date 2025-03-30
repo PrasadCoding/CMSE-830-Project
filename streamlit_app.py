@@ -4,8 +4,8 @@ import streamlit as st
 st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", layout="centered")
 
 # Manually set the background color and title color
-bg_color = "#f4442e"  # Set your desired background color here
-title_color = "#d90429"  # Set your desired title color here
+bg_color = "#ffdab9"  # Set your desired background color here
+title_color = "#f4442e"  # Set your desired title color here
 
 # Apply the background color to the app
 st.markdown(f"<style>.stApp {{ background-color: {bg_color}; }}</style>", unsafe_allow_html=True)
