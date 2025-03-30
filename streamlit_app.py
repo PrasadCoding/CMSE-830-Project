@@ -42,12 +42,4 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# Ideal footer section
-st.markdown(
-    f"""
-    <footer style='text-align: center; color:{text_color}; font-size: 14px; margin-top: 20px;'>
-        <p>&copy; 2025 Heart Disease Prediction App. All rights reserved.</p>
-        <p>Developed by Prasad Upasani, CMSE 830 Project</p>
-    </footer>
-    """, unsafe_allow_html=True
-)
+
