@@ -18,8 +18,8 @@ st.markdown("<h2 style='text-align: center;'>Predict Heart Disease Risk with Mac
 gif_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/animation/Animation%20-%201743363269713.gif'  # Replace with your GIF URL
 
 # Customize the width and height of the GIF
-gif_width = 600  # Width of the GIF (in pixels)
-gif_height = 600  # Height of the GIF (in pixels)
+gif_width = 300  # Width of the GIF (in pixels)
+gif_height = 300  # Height of the GIF (in pixels)
 
 # Center the content in a container and add the GIF animation
 st.markdown("""
