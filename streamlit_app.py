@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Set the page layout to wide
-st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", layout="center")
+st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", layout="centered")
 
 # Manually set the background color and title color
 bg_color = "#f0f0f0"  # Set your desired background color here
