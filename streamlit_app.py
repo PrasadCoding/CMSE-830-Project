@@ -12,7 +12,7 @@ st.markdown(f"<style>.stApp {{ background-color: {bg_color}; }}</style>", unsafe
 
 # Add title and subtitle with the chosen color
 st.markdown(f"<h1 style='color:{title_color}; text-align: center;'>Heart Disease Prediction App</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h3>", unsafe_allow_html=True)
 
 # Add an image (optional)
 image_url_between = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/heart_disease_image.jpg'  # Replace with your image URL
