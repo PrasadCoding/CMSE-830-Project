@@ -36,7 +36,8 @@ st.markdown(
 
 # Content section with left alignment (no text-align: center)
 st.markdown(
-    """
+    f"""
+    <div style="text-align: left;">
     This app uses a machine learning model to predict the risk of heart disease based on various health parameters. 
     It provides valuable insights to help individuals understand their heart health status and take preventive measures.
 
@@ -44,6 +45,7 @@ st.markdown(
     - User-friendly interface
     - Accurate predictions based on real-time data
     - Quick results to help assess heart disease risk
+    </div>
     """
 )
 
