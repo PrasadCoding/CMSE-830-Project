@@ -44,7 +44,7 @@ st.markdown(
     - User-friendly interface
     - Accurate predictions based on real-time data
     - Quick results to help assess heart disease risk
-    """, unsafe_allow_html=True
+    """
 )
 
 # Closing the container div
