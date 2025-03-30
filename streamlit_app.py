@@ -12,7 +12,7 @@ st.markdown(f"<style>.stApp {{ background-color: {bg_color}; display: flex; just
 
 # Add title and subtitle with the chosen color
 st.markdown(f"<h1 style='color:{title_color}; text-align: center;'>Heart Disease Prediction App</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h3>", unsafe_allow_html=True)
 
 # Display the GIF animation with size customization
 gif_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/animation/Animation%20-%201743363269713.gif'  # Replace with your GIF URL
@@ -22,9 +22,7 @@ gif_width = 300  # Width of the GIF (in pixels)
 gif_height = 300  # Height of the GIF (in pixels)
 
 # Center the content in a container and add the GIF animation
-st.markdown("""
-    <div style="width: 80%; max-width: 1000px; margin: 0 auto;">
-""", unsafe_allow_html=True)
+st.markdown("""<div style="width: 80%; max-width: 1000px; margin: 0 auto;">""", unsafe_allow_html=True)
 
 # Display the GIF image
 st.markdown(
@@ -36,7 +34,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Content section
+# Content section with regular alignment (not centered)
 st.markdown(
     """
     This app uses a machine learning model to predict the risk of heart disease based on various health parameters. 
@@ -46,7 +44,7 @@ st.markdown(
     - User-friendly interface
     - Accurate predictions based on real-time data
     - Quick results to help assess heart disease risk
-    """
+    """, unsafe_allow_html=True
 )
 
 # Closing the container div
