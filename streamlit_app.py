@@ -16,7 +16,7 @@ st.markdown("<h2 style='text-align: center;'>Predict Heart Disease Risk with Mac
 
 # Add an image (optional)
 image_url_between = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/heart_disease_image.jpg'  # Replace with your image URL
-st.image(image_url_between, width=600)
+st.image(image_url_between, use_container_width=True)
 
 # Content section
 st.markdown(
