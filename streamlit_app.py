@@ -12,7 +12,7 @@ st.markdown(f"<style>.stApp {{ background-color: {bg_color}; display: flex; just
 
 # Add title and subtitle with the chosen color
 st.markdown(f"<h1 style='color:{title_color}; text-align: center;'>Heart Disease Prediction App</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h3>", unsafe_allow_html=True)
+#st.markdown("<h3 style='text-align: center;'>Predict Heart Disease Risk with Machine Learning</h3>", unsafe_allow_html=True)
 
 # Display the GIF animation with size customization
 gif_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/animation/Animation%20-%201743363269713.gif'  # Replace with your GIF URL
@@ -37,14 +37,10 @@ st.markdown(
 # Content section with left alignment (no text-align: center)
 st.markdown(
     f"""
-    <div style="text-align: left;">
-    This app uses a machine learning model to predict the risk of heart disease based on various health parameters. 
-    It provides valuable insights to help individuals understand their heart health status and take preventive measures.
-
-    **Key Features:**
-    - User-friendly interface
-    - Accurate predictions based on real-time data
-    - Quick results to help assess heart disease risk
+    <h3App Features</h3>
+    - Uses machine learning to assess heart disease risk based on health parameters.
+    - Provides accurate, real-time predictions to understand heart health.
+    - Offers a user-friendly interface and quick results for evaluating risk.
     </div>
     """, unsafe_allow_html=True,
 )
