@@ -3,12 +3,32 @@ import streamlit as st
 # Set the page layout to wide
 st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", layout="centered")
 
-# Manually set the background color and title color
-bg_color = "#edf2f4"  # Set your desired background color here
+def set_bg_image(image_url):
+    """
+    Set background image for the Streamlit app using a raw GitHub URL
+    """
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_url}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# Path to your background image file on GitHub (use the raw URL)
+image_url = 'https://raw.githubusercontent.com/PrasadCoding/CMSE-830-Project/refs/heads/master/images/bg43.png'  # Replace with your raw URL
+set_bg_image(image_url)
+
 title_color = "#ef233c"  # Set your desired title color here
 text_color = "#2b2d42"
-# Apply the background color to the app
-st.markdown(f"<style>.stApp {{ background-color: {bg_color}; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }}</style>", unsafe_allow_html=True)
+
 
 # Add title with the chosen color
 st.markdown(f"<h1 style='color:{title_color}; text-align: center;'>Heart Disease Prediction App</h1>", unsafe_allow_html=True)
