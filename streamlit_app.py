@@ -52,7 +52,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-st.write("###")
+st.write("")
 st.markdown(
     f"""
     <h3 style='text-align: center; color:{text_color};'>App Features</h3>
