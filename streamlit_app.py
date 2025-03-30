@@ -6,7 +6,7 @@ st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", la
 # Manually set the background color and title color
 bg_color = "#edf2f4"  # Set your desired background color here
 title_color = "#ef233c"  # Set your desired title color here
-
+text_color = "#2b2d42"
 # Apply the background color to the app
 st.markdown(f"<style>.stApp {{ background-color: {bg_color}; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }}</style>", unsafe_allow_html=True)
 
@@ -33,12 +33,21 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Content section with center alignment
 st.markdown(
-    """
-    <h3 style='text-align: center;'>App Features</h3>
-    <p style='text-align: center;'>Uses machine learning to assess heart disease risk based on health parameters.</p>
-    <p style='text-align: center;'>Provides accurate, real-time predictions to understand heart health.</p>
-    <p style='text-align: center;'>Offers a user-friendly interface and quick results for evaluating risk.</p>
+    f"""
+    <h3 style='text-align: center; color:{text_color};'>App Features</h3>
+    <p style='text-align: center; color:{text_color};'>Uses machine learning to assess heart disease risk based on health parameters.</p>
+    <p style='text-align: center; color:{text_color};'>Provides accurate, real-time predictions to understand heart health.</p>
+    <p style='text-align: center; color:{text_color};'>Offers a user-friendly interface and quick results for evaluating risk.</p>
+    """, unsafe_allow_html=True
+)
+
+# Ideal footer section
+st.markdown(
+    f"""
+    <footer style='text-align: center; color:{text_color}; font-size: 14px; margin-top: 20px;'>
+        <p>&copy; 2025 Heart Disease Prediction App. All rights reserved.</p>
+        <p>Developed by Prasad Upasani, CMSE 830 Project</p>
+    </footer>
     """, unsafe_allow_html=True
 )
